@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+		<customer>
+            <captcha>
+                <shown_to_logged_in_user>
+                    <product_inquiry_form>1</product_inquiry_form>
+                </shown_to_logged_in_user>
+                <always_for>
+                    <product_inquiry_form>1</product_inquiry_form>
+                </always_for>
+            </captcha>
+        </customer>
+        <captcha translate="label">
+            <frontend>
+                <areas>
+                    <product_inquiry_form>
+                        <label>Product Inqury Form</label>
+                    </product_inquiry_form>
+                </areas>
+            </frontend>
+        </captcha>
+        <productinquiry>
+            <general_option>
+                <enable_module>0</enable_module>
+                <enable_all_prd>1</enable_all_prd>
+                <form_type>popup</form_type>
+                <tab_button_title>Inquire Now</tab_button_title>
+                <form_title>Product Inquiry</form_title>
+                <allow_attach>0</allow_attach>
+                <allow_attach_extension>pdf,csv,xls,doc,docx,txt,jpg,jpeg,png,gif</allow_attach_extension>
+                <allow_guest>1</allow_guest>
+                <thanks_msg>Product Inquiry has been successfully submitted.</thanks_msg>
+            </general_option>
+            <captcha_setting>
+                <re_captcha_enable>0</re_captcha_enable>
+            </captcha_setting>
+        	<email_setting>
+                <store_email_list>general</store_email_list>
+                <email_template>productinquiry_email_setting_email_template</email_template>
+                <email_template_customer>productinquiry_email_setting_email_template_customer</email_template_customer>
+                <email_copy></email_copy>
+            </email_setting>
+        </productinquiry>
+        <recaptcha_frontend>
+            <type_for>
+                <productinquiry/>
+                <productinquirytab/>
+            </type_for>
+        </recaptcha_frontend>
+    </default>
+</config>

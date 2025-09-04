@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Sillove_ProductInquiry::view" title="Product Inquiry" module="Sillove_ProductInquiry" sortOrder="40"  parent="Magento_Catalog::catalog" resource="Sillove_ProductInquiry::view"/>
+        <add id="Sillove_ProductInquiry::add_inquiry" title="Manage Inquiries" module="Sillove_ProductInquiry" sortOrder="40" parent="Sillove_ProductInquiry::view" action="productinquiry/productinquiry/index" resource="Sillove_ProductInquiry::add_inquiry"/>
+        <add id="Sillove_ProductInquiry::configration" title="Configuration" module="Sillove_ProductInquiry" sortOrder="50" parent="Sillove_ProductInquiry::view" action="adminhtml/system_config/edit/section/productinquiry" resource="Sillove_ProductInquiry::configration"/>
+    </menu>
+</config>
