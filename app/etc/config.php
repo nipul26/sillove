@@ -1,4 +1,5 @@
 <?php
+
 return [
     'modules' => [
         'Magento_Csp' => 1,
