@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Sillove\ProductInquiry\Api\Data\InquiryInterface" type="Sillove\ProductInquiry\Model\Productinquiry" />
+    <preference for="Magento\Framework\Mail\Template\TransportBuilder" type="Sillove\ProductInquiry\Model\Mail\Template\InquiryAttechment" />
+    <virtualType name="Sillove\ProductInquiry\Model\ResourceModel\Productinquiry\Productinquiry\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">sillove_productinquiry_admingrid</argument>
+            <argument name="resourceModel" xsi:type="string">Sillove\ProductInquiry\Model\ResourceModel\Productinquiry</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="inquiry_record_inquiry_list_data_source" xsi:type="string">Sillove\ProductInquiry\Model\ResourceModel\Productinquiry\Productinquiry\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Sillove\ProductInquiry\Model\FileUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">Product_Inquiry_Attachments</argument>
+            <argument name="basePath" xsi:type="string">Product_Inquiry_Attachments</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="pdf" xsi:type="string">pdf</item>
+                <item name="csv" xsi:type="string">csv</item>
+                <item name="xls" xsi:type="string">xls</item>
+                <item name="doc" xsi:type="string">doc</item>
+                <item name="docx" xsi:type="string">docx</item>
+                <item name="txt" xsi:type="string">txt</item>
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Sillove\ProductInquiry\Ui\Component\MassAction\Status\Options">
+		<arguments>
+			<argument name="data" xsi:type="array">
+				<item name="urlPath" xsi:type="string">productinquiry/productinquiry/massstatus</item>
+				<item name="paramName" xsi:type="string">status</item>
+				<item name="confirm" xsi:type="array">
+					<item name="title" xsi:type="string" translatable="true">Change Status</item>
+					<item name="message" xsi:type="string" translatable="true">Are you sure to change selected record status?</item>
+				</item>
+			</argument>
+		</arguments>
+	</type>
+    <!--  Get Customer Data Without Form Cache -->
+    <type name="Magento\Framework\App\Action\AbstractAction">
+        <plugin name="customize_customer_data" type="Sillove\ProductInquiry\Plugin\Framework\App\Action\AbstractAction" disabled="false" />
+    </type>
+</config>

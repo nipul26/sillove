@@ -1,0 +1,280 @@
+<?php
+// call Method from helper
+$helper = $block->getInquiryHelper();
+/* get current product value */
+$prd = $block->getCurrentProduct();
+$product_entityid = $prd->getEntityId();
+$product_sku = $prd->getSku();
+$product_name = $prd->getName();
+// for Disable Button when no keys
+$user_email = $user_name = $user_subject = $user_inq_msg = $button_disable = '';
+// get Current Store id
+$get_store = $block->getCurrentStoreID();
+// Form Title
+$form_title = $helper->getFormTitle();
+if ($form_title == '') {
+    $form_title = 'Product Inquiry';
+}
+/*  get Module status */
+$module_status  = $helper->getModuleStatus();
+/// get Data bascl after form Submision
+$show_data = $block->getAllDataAfterError();
+if ($show_data) {
+    $user_name = $show_data['usr_name'];
+    $user_email = $show_data['email'];
+    $user_subject = $show_data['subject'];
+    $user_inq_msg = $show_data['inq_msg'];
+} else {
+    $user_name = '';
+    $user_email = '';
+    $user_subject = '';
+    $user_inq_msg = '';
+}
+/*check Guest or not */
+if ($block->getUserStatus()) {
+    $user_name = $block->getCurrentUserName();
+    $user_email = $block->getCurrentUserEmail();
+} else {
+    $guest_status = $helper->getGuestUserStatus();
+    if ($guest_status == 0) {
+        $module_status=0;
+    }
+}
+// for check All product or Speccific Product
+$show_all_prd = $helper->showAllProdcut();
+/* get current product attribute */
+$prd_attribute = $prd->getAttributeText('product_inquiry');
+if ($show_all_prd == 1) {
+    $prd_attribute = "Yes";
+}
+// chacke module Status
+if ($module_status == 1) {
+    /* get current product attribute */
+    if ($prd_attribute == 'Yes') {
+        // button or Tab selection
+        $button_tab = $helper->getButtonTabOption();
+        // for Check button enable
+        if ($button_tab == 'popup') {
+            // button and tab Title
+            $button_tab_title =  $helper->getButtonTabTitle();
+            if ($button_tab_title == '') {
+                $button_tab_title = 'Inquire Now';
+            }
+            ?>
+            <!-- show Inquiry Button  -->
+            <div class="inquiry-actions">
+              <button type="button"
+                        class="action primary inquiry"
+                        id="product-inquiry-button">
+                  <span>
+                    <?= $escaper->escapeHtml($button_tab_title) ?>
+                  </span>
+              </button>
+            </div>
+            <script>
+              require(
+                  [
+                      'jquery',
+                      'Magento_Ui/js/modal/modal'
+                  ],
+                  function($,modal) {
+                      $(document).ready(function(){
+                        $("#product-inquiry-button").click(function(){
+                            var options = {
+                                modalClass: 'prd-inquiry-popup',
+                                type: 'popup',
+                                responsive: true,
+                                innerScroll: true,
+                                title: '<?= $escaper->escapeHtml($form_title) ?>',
+                                 buttons: []
+                            };
+                            var popup = modal(options, $('#myModal'));
+                            $('#myModal').modal('openModal');
+                        });
+                      });
+                  }
+              );
+            </script>
+            <!-- The popup -->
+            <div id="myModal" class="modal" >
+              <!-- Modal content -->
+              <div class="modal-content" >
+                  <form class="form inquiry-form"
+                        name="inquiryFrom"
+                        action="productinquiry/productinquiry/save"
+                        id="inq-form"
+                        method="post"
+                        enctype='multipart/form-data'
+                        autocomplete="off">
+                    <fieldset class="fieldset">
+                        <input type="hidden"
+                               name="prd_entity_id"
+                               id="prd_entity_id"
+                               value="<?= $escaper->escapeHtml($product_entityid) ?>" >
+                        <input type="hidden"
+                               name="storeviews"
+                               id="storeviews"
+                               value="<?= $escaper->escapeHtml($get_store) ?>" >
+                        <input type="hidden"
+                               name="prd_sku"
+                               id="prd_sku"
+                               value="<?= $escaper->escapeHtml($product_sku) ?>" >
+                        <input type="hidden" name="inquiry_status" id="inquiry_status" value="0">
+                        <div class="field required">
+                            <label for="user_name" class="label">
+                                <span><?= $escaper->escapeHtml('Name:') ?></span>
+                            </label>
+                            <div class="control">
+                                <input type="text"
+                                       name="usr_name"
+                                       id="user_name"
+                                       title="<?= $escaper->escapeHtml('Name') ?>"
+                                       value="<?= $escaper->escapeHtml($user_name) ?>"
+                                       class="input-text"
+                                       data-validate="{required:true}">
+                            </div>
+                        </div>
+                        <div class="field required">
+                            <label for="email_address" class="label">
+                              <span>
+                                <?= $escaper->escapeHtml('E-mail:') ?>
+                              </span>
+                            </label>
+                            <div class="control">
+                                <input type="email"
+                                       name="email"
+                                       id="email_address"
+                                       title="<?= $escaper->escapeHtml('E-mail') ?>"
+                                       class="input-text"
+                                       data-validate="{required:true, 'validate-email':true}"
+                                       value="<?= $escaper->escapeHtml($user_email) ?>" >
+                            </div>
+                        </div>
+                        <div class="field required">
+                            <label for="subject" class="label">
+                              <span>
+                                <?= $escaper->escapeHtml('Subject:') ?>
+                              </span>
+                            </label>
+                            <div class="control">
+                                <input type="text"
+                                       name="subject"
+                                       id="subject"
+                                       title="<?= $escaper->escapeHtml('Subject') ?>"
+                                       value="<?= $escaper->escapeHtml($user_subject) ?>"
+                                       class="input-text"
+                                       data-validate="{required:true}">
+                            </div>
+                        </div>
+                        <div class="field comment required">
+                            <label class="label" for="inquiry_msg">
+                              <span>
+                                <?= $escaper->escapeHtml('Message:') ?>
+                              </span>
+                            </label>
+                            <div class="control">
+                                <textarea name="inq_msg"
+                                          id="inq_msg"
+                                          title="<?= $escaper->escapeHtml('Message') ?>"
+                                          class="input-text"
+                                          cols="5"
+                                          rows="3"
+                                          data-validate="{required:true}"
+                                          aria-required="true"><?= $escaper->escapeHtml($user_inq_msg) ?></textarea>
+                            </div>
+                        </div>
+                        <?php
+                        // Email Attachement status
+                        $allow_attechment_status = $helper->getFileAttachmentStatus();
+                        if ($allow_attechment_status == 1) {
+                            // allow file Extension list
+                            $allow_file_extension = $helper->getFileAttachmentExtension();
+                            // verify file Extension list
+                            $allow_file_extension_system = $helper->getFileAttachmentExtension();
+                            $allow_file_extension = explode(',', $allow_file_extension_system);
+                            $form_attechment_extension = [];
+                            foreach ($allow_file_extension as $valid_extension) {
+                                $valid_extension = preg_replace('/\s+/', '', $valid_extension);
+                                $form_attechment_extension[] = $valid_extension;
+                            }
+                            $all_extension = [];
+                            $all_extension[] = "pdf";
+                            $all_extension[] = "csv";
+                            $all_extension[] = "xls";
+                            $all_extension[] = "doc";
+                            $all_extension[] = "docx";
+                            $all_extension[] = "txt";
+                            $all_extension[] = "jpg";
+                            $all_extension[] = "jpeg";
+                            $all_extension[] = "gif";
+                            $all_extension[] = "png";
+                            foreach ($form_attechment_extension as $value) {
+                                if (!in_array($value, $all_extension)) {
+                                    $button_disable = "disabled";
+                                    $allow_file_extension_system ="<span
+                                    class='extension-error'>
+                                    Invalid Extension Configure Settings
+                                    </span>";
+                                }// check value
+                            } // allow attachment check loop
+                            ?>
+                            <div id="file-upload-section" class="field file-upload-section">
+                              <label class="label" for="inquiry_msg">
+                                  <span>
+                                    <?= $escaper->escapeHtml('Upload File:') ?>
+                                  </span>
+                                </label>
+                              <div class="control">
+                                <input type="file"
+                                       name="attechment_file"
+                                       class="file-upload attechment_file"
+                                       data-mage-init='{"prd_inquiry_js":{}}'
+                                       id="file-upload"
+                                       title="<?= $escaper->escapeHtml('Upload File') ?>"
+                                       <?= $escaper->escapeHtml($button_disable) ?> />
+<span>Allow Extension: <span class="check-extension"><?= /* @noEscape */ $allow_file_extension_system ?></span></span>
+                              </div>
+                              <span class="attachement-error-msg"></span>
+                            </div>
+                            <input type="hidden"
+                                   name="allow_attechment"
+                                   id="allow_attechment"
+                                   value="<?= $escaper->escapeHtml($allow_attechment_status) ?>">
+                            <?php
+                        }
+                        /* ReCaptcha Section */
+                        $reCaptcha = $helper->getReCaptcha();
+                        if ($reCaptcha) {
+                             echo $block->getChildHtml('form.additional.info.product.inquiry.button');
+                        } ?>
+                    </fieldset>
+                    <div class="actions-toolbar">
+                        <div class="primary">
+                            <button type="submit"
+                                    id="inq-submit"
+                                    data-mage-init='{"prd_inquiry_js":{}}'
+                                    class="action submit primary inquiry-submit"
+                                    title="<?= $escaper->escapeHtml('Submit') ?>"
+                                    <?= $escaper->escapeHtml($button_disable) ?> >
+                                      <span>
+                                        <?= $escaper->escapeHtml('Submit') ?>
+                                      </span>
+                            </button>
+                        </div>
+                    </div>
+                  </form>
+                  <script type="text/x-magento-init">
+                      {
+                          "#inq-form": {
+                              "validation": {}
+                          }
+                      }
+                  </script>
+              </div>
+            </div>
+            <!--  over Popup -->
+            <?php
+        } // for button popup option
+    } // for prduct attribute
+} // for module status
+?>

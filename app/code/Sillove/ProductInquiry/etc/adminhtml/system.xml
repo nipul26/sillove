@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="sillove" translate="label" sortOrder="201">
+            <label>Sillove </label>
+        </tab>
+        <section id="productinquiry" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Product Inquiry</label>
+            <tab>sillove</tab>
+            <resource>Sillove_ProductInquiry::productinquiry_config</resource>
+            <!--  for general option  -->
+            <group id="general_option"
+                   translate="label"
+                   type="text"
+                   sortOrder="10"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>General Settings</label>
+                <field id="enable_module"
+                       translate="label"
+                       type="select"
+                       sortOrder="10"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Module Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enable_all_prd"
+                       translate="label"
+                       type="select"
+                       sortOrder="20"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Display On</label>
+                    <source_model>Sillove\ProductInquiry\Model\Config\Source\ShowProductType</source_model>
+                    <comment><![CDATA[If you select <strong>All Products</strong>, then all product are enable for inquiry and if you select <strong>Specific Product</strong>, then specific product is enable for inquiry.]]></comment>
+                </field>
+                <field id="form_type"
+                     translate="label"
+                     type="select"
+                     sortOrder="30"
+                     showInDefault="1"
+                     showInWebsite="1"
+                     showInStore="1"
+                     canRestore="1">
+                    <label>Display Type</label>
+                    <source_model>Sillove\ProductInquiry\Model\Config\Source\FormType</source_model>
+                    <comment>Select product inquiry form type.</comment>
+                </field>
+                <field id="tab_button_title"
+                       translate="label"
+                       type="text"
+                       sortOrder="40"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Tab / Button Name</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="form_title"
+                       translate="label"
+                       type="text"
+                       sortOrder="50"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Form Title</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="allow_attach"
+                       translate="label"
+                       type="select"
+                       sortOrder="60"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Allow Attachment</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="allow_attach_extension"
+                       translate="label"
+                       type="text"
+                       sortOrder="70"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Enter Allow File Extension</label>
+                    <depends>
+                        <field id="*/*/allow_attach">1</field>
+                    </depends>
+                    <comment>Enter multiple file extension seperated by comma Ex. pdf,csv,xls. Our extension are allow only this file extensions : pdf, csv, xls, doc, docx, txt, jpg, jpeg, gif, png.</comment>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="allow_guest"
+                       translate="label"
+                       type="select"
+                       sortOrder="80"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Allow Guest Inquiry</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="thanks_msg"
+                       translate="label"
+                       type="text"
+                       sortOrder="90"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Thank You Massage</label>
+                    <comment>Massage displayed after inquiry submission.</comment>
+                </field>
+            </group>
+            <!--  captcha setting  -->
+            <group id="captcha_setting"
+                   translate="label"
+                   type="text"
+                   sortOrder="20"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Captcha Settings</label>
+                <field id="re_captcha_enable"
+                       translate="label"
+                       type="select"
+                       sortOrder="10"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Enable Re-Captcha</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+            <!--  for email option  -->
+            <group id="email_setting"
+                   translate="label"
+                   type="text"
+                   sortOrder="30"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Email Settings</label>
+                <field id="store_email_list"
+                       translate="label"
+                       type="select"
+                       sortOrder="10"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Sender Email</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                    <comment>Select an email address to send product inquiries.</comment>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="email_template"
+                       translate="label"
+                       type="select"
+                       sortOrder="20"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Admin Email</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    <comment>Select an email template for notifying admin for new product inquiries.</comment>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="email_template_customer"
+                       translate="label"
+                       type="select"
+                       sortOrder="30"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Customer Email</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    <comment>Select an email template for notifying the customer when the admin reply.</comment>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="email_copy"
+                       translate="label"
+                       type="text"
+                       sortOrder="40"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>New Inquiry Email Receivers</label>
+                    <comment>Multiple email receivers separated by comma(,).</comment>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+        </section>
+        <section id="recaptcha_frontend">
+            <group id="type_for">
+                <field id="productinquiry" translate="label" type="select" sortOrder="140" showInDefault="1"
+                       showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Enable for Product Inquiry Popup</label>
+                    <source_model>Magento\ReCaptchaAdminUi\Model\OptionSource\Type</source_model>
+                </field>
+                <field id="productinquirytab" translate="label" type="select" sortOrder="140" showInDefault="1"
+                       showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Enable for Product Inquiry Tab</label>
+                    <source_model>Magento\ReCaptchaAdminUi\Model\OptionSource\Type</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
