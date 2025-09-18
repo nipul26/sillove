@@ -1,13 +1,10 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-		<tab id="net_solution" translate="label" sortOrder="999">
-			<label>Sillove</label>
-		</tab>
         <section id="advanced_sorting" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
             <label>Advanced Sorting</label>
-            <tab>net_solution</tab>
+            <tab>sillove</tab>
             <resource>Sillove_AdvancedSorting::config_net_solution_advanced_sorting</resource>
             <group id="general" translate="label comment" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General Configuration</label>
