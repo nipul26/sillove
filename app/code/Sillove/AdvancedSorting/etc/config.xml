@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <advanced_sorting>
+            <general>
+                <enabled>1</enabled>
+                <selectsort>best_seller</selectsort>
+            </general>
+            <best_seller>
+                <enabled>1</enabled>
+                <label>Best Seller</label>
+                <sorting_dir>asc</sorting_dir>
+                <sorting_order>1</sorting_order>
+            </best_seller>
+             <name>
+                <name_a_to_z>
+                    <enabled>1</enabled>
+                    <label>A to Z Name</label>
+                    <sorting_order>1</sorting_order>
+                </name_a_to_z>
+                <name_z_to_a>
+                    <enabled>1</enabled>
+                    <label>Z to A name</label>
+                    <sorting_order>1</sorting_order>
+                </name_z_to_a>
+            </name>
+            <top_rated>
+                <enabled>1</enabled>
+                <label>Top Rated</label>
+                <sorting_dir>asc</sorting_dir>
+                <sorting_order>2</sorting_order>
+            </top_rated>
+            <new_arrivals>
+                <enabled>1</enabled>
+                <label>New Arrivals</label>
+                <sorting_dir>asc</sorting_dir>
+                <sorting_order>3</sorting_order>
+            </new_arrivals>
+            <most_viewed>
+                <enabled>1</enabled>
+                <label>Most Viewed</label>
+                <sorting_dir>asc</sorting_dir>
+                <sorting_order>4</sorting_order>
+            </most_viewed>
+            <review_count>
+                <enabled>1</enabled>
+                <label>Review Count</label>
+                <sorting_dir>asc</sorting_dir>
+                <sorting_order>5</sorting_order>
+            </review_count>
+            <price>
+                <low_to_high_price>
+                    <enabled>1</enabled>
+                    <label>Low To High Price</label>
+                    <sorting_order>6</sorting_order>
+                </low_to_high_price>
+                <high_to_low_price>
+                    <enabled>1</enabled>
+                    <label>High To Low Price</label>
+                    <sorting_order>7</sorting_order>
+                </high_to_low_price>
+            </price>
+            <position>
+                <enabled>1</enabled>
+                <label>Position</label>
+                <sorting_dir>asc</sorting_dir>
+                <sorting_order>8</sorting_order>
+            </position>
+            <relevance>
+                <enabled>1</enabled>
+                <label>Relevance</label>
+                <sorting_dir>asc</sorting_dir>
+                <sorting_order>9</sorting_order>
+            </relevance>
+        </advanced_sorting>
+    </default>
+</config>
