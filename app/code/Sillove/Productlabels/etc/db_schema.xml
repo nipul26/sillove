@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="sillove_product_labels" resource="default" engine="innodb" comment="Sillove Product Labels">
+    <column xsi:type="int" name="label_id" padding="11" unsigned="false" nullable="false" identity="true" comment="Label ID"/>
+    <column xsi:type="int" name="rule_status" padding="11" unsigned="false" nullable="true" identity="false" comment="Label Rule Status"/>
+    <column xsi:type="varchar" name="rule_name" nullable="true" length="255" comment="Rule Name"/>
+    <column xsi:type="int" name="rule_type" padding="11" unsigned="false" nullable="true" identity="false" comment="Rule Type"/>
+    <column xsi:type="varchar" name="display_in" nullable="true" length="255" comment="Display In"/>
+    <column xsi:type="varchar" name="customer_group" nullable="true" length="255" comment="Customer Group"/>
+    <column xsi:type="varchar" name="storeviews" nullable="true" length="255" comment="Store View"/>
+    <column xsi:type="int" name="rule_priority" padding="11" unsigned="false" nullable="true" identity="false" comment="Rule Priority"/>
+    <column xsi:type="int" name="discard_rule" padding="11" unsigned="false" nullable="true" identity="false" comment="Discard Rule"/>
+    <column xsi:type="int" name="label_position" padding="11" unsigned="false" nullable="true" identity="false" comment="Label Position"/>
+    <column xsi:type="int" name="label_type" padding="11" unsigned="false" nullable="true" identity="false" comment="Label Type"/>
+    <column xsi:type="varchar" name="label_img" nullable="true" length="255" comment="Label Image"/>
+    <column xsi:type="varchar" name="label_text" nullable="true" length="255" comment="Label Text"/>
+    <column xsi:type="varchar" name="label_color" nullable="true" length="255" comment="Label Colore"/>
+    <column xsi:type="varchar" name="label_back_color" nullable="true" length="255" comment="Label Back Colore"/>
+    <column xsi:type="int" name="label_shape" padding="11" unsigned="false" nullable="true" identity="false" comment="Label Shape"/>
+    <column xsi:type="int" name="label_fontsize" padding="11" unsigned="false" nullable="true" identity="false" comment="Label Font Size"/>
+    <column xsi:type="varchar" name="label_height" nullable="true" length="255" comment="Label Height"/>
+    <column xsi:type="varchar" name="label_width" nullable="true" length="255" comment="Label Widht"/>
+    <column xsi:type="mediumtext" name="conditions_serialized" nullable="true" comment="Conditions Serialized"/>
+    <column xsi:type="mediumtext" name="actions_serialized" nullable="true" comment="Actions Serialized"/>
+    <column xsi:type="timestamp" name="create_date" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Create Date Time"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="label_id"/>
+    </constraint>
+  </table>
+  <table name="sillove_product_labels_discount" resource="default" engine="innodb" comment="Sillove Product Label Discount">
+    <column xsi:type="int" name="discount_id" padding="11" unsigned="false" nullable="false" identity="true" comment="Discount Id"/>
+    <column xsi:type="int" name="label_id" padding="11" unsigned="false" nullable="false" identity="false" comment="Label Id"/>
+    <column xsi:type="smallint" name="discount_number" padding="6" unsigned="false" nullable="true" identity="false" comment="Discount Number"/>
+    <column xsi:type="varchar" name="discount_text_colore" nullable="true" length="255" comment="Discount Text Colore"/>
+    <column xsi:type="varchar" name="discount_back_colore" nullable="true" length="255" comment="Discount Background Colore"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="discount_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="DOLPHIN_PRD_LBLS_DISCOUNT_LBL_ID_DOLPHIN_PRD_LBLS_LBL_ID" table="sillove_product_labels_discount" column="label_id" referenceTable="sillove_product_labels" referenceColumn="label_id" onDelete="CASCADE"/>
+  </table>
+</schema>

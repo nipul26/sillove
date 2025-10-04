@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+   <menu>
+	     <add id="Sillove_Productlabels::sillove_productlabels"
+            title="Sillove - Product Labels"
+            translate="title"
+            module="Sillove_Productlabels"
+            sortOrder="10"
+            parent="Magento_Backend::marketing"
+            resource="Sillove_Productlabels::sillove_productlabels" />
+
+		  <add id="Sillove_Productlabels::menu"
+           title="Manage Label Rules"
+           module="Sillove_Productlabels"
+           sortOrder="100"
+           parent="Sillove_Productlabels::sillove_productlabels"
+           action="productlable/index/index"
+           resource="Sillove_Productlabels::menu"/>
+
+      <add id="Sillove_Productlabels::configration"
+           title="Configuration"
+           module="Sillove_Productlabels"
+           sortOrder="110"
+           parent="Sillove_Productlabels::sillove_productlabels"
+           action="adminhtml/system_config/edit/section/productlable"
+           resource="Sillove_Productlabels::configration"/>
+
+</menu>
+</config>

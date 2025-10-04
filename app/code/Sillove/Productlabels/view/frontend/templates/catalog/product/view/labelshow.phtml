@@ -1,0 +1,83 @@
+<?php
+//initialize discount valuez
+$discount_val = 0;
+// get product label helper
+$helper = $block->getProductLabelHelper();
+// set product label data
+$prd_label = [];
+// get product view page data
+$page = $helper->getPageName();
+// module status
+$module_ststus = $helper->getModuleStatus();
+if (($module_ststus) && ($page == 'catalog_product_view')) {
+    // get all product label data
+    $label_data = $helper->getLabelData();
+    // filter data by product view page
+    foreach ($label_data as $label_datakey => $label_datavalue) {
+        // get current product
+        $prd_curr = $block->getCurrentProduct();
+        //product page type show
+        $page = $helper->getPageType($label_datavalue->getDisplayIn());
+        // check customer group
+        $group = $label_datavalue->getCustomerGroup();
+        $group_flage = $helper->getCurrentGroup($group);
+        // check store view
+        $store_ids = $label_datavalue->getStoreviews();
+        $store_flage = $helper->getCurrentStore($store_ids);
+        if (($group_flage == 1) && ($store_flage == 1) && ($page == 1)) {
+            // product form and end date
+            $fromDate = $prd_curr->getNewsFromDate();
+            $toDate = $prd_curr->getNewsToDate();
+            // get rule type value
+            $rule_type = $label_datavalue->getRuleType();
+            // check new product
+            if ($rule_type == 0) {
+                $date_cal = $helper->getDateCalculation($fromDate, $toDate);
+                if ($date_cal) {
+                    $prd_label[] = $label_datavalue->getData();
+                }
+
+            } //over new product
+            // check discount value
+            if ($rule_type == 1) {
+                // get discount values
+                $discount_data = $helper->getDiscountData($label_datavalue->getId());
+                if (count($discount_data->getData())) {
+                    $group = $helper->getGroup();
+                    $discount_val = $helper->getDiscount($prd_curr, $group);
+                    $discount_array = $helper->getDiscountColore($label_datavalue->getId(), $discount_val);
+                    if (($discount_val) && (!empty($discount_array))) {
+                        //@codingStandardsIgnoreStart
+                        $prd_label[] = array_merge($label_datavalue->getData(), ["discount" => $discount_val]);
+                        //@codingStandardsIgnoreEnd
+                    }
+                }
+            } // over discount if
+            // check catalog condition rule
+            if ($rule_type == 2) {
+                // check contion data
+                $cond_data = $helper->getConditionData($label_datavalue, $prd_curr);
+                if ($cond_data == 1) {
+                    $prd_label[] = $label_datavalue->getData();
+                }
+            } // condition rule over
+        }
+    } // end for loop
+    if (!empty($prd_label)) {
+        $label_show = $helper->getProductLabelHtml($prd_label, $discount_val);
+        // for hover effect
+        $hover_val = $helper->getDisplayMode();
+        $hover_class = "";
+        if ($hover_val) {
+            $hover_class = "container-hover";
+        }
+        ?>
+        <div class="product-label-main">
+            <div class="product-label-div <?= $escaper->escapeHtmlAttr($hover_class) ?>" >
+                <?= /* @noEscape */ $label_show ?>
+            </div>
+        </div>
+        <?php
+    }
+} // over product view page if
+?>
