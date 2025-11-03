@@ -30,12 +30,13 @@
                         <argument name="block_id" xsi:type="string">sillove-filter</argument>
                     </arguments>
                 </block>
+                <block class="Magento\Theme\Block\Html\Footer" name="copyright" template="Magento_Theme::html/copyright.phtml"/>
             </container>
         </referenceContainer>
         
         <referenceBlock name="register-link" remove="true"/>
         <referenceBlock name="header.panel" remove="true"/>
-        <referenceBlock name="footer_links" remove="true"/>        
+        <referenceBlock name="footer_links" remove="true"/>      
         
         <move element="header.links" destination="header-wrapper" before="minicart"/>
     </body>
