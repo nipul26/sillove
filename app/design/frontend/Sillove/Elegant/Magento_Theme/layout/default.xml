@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="header">
+            <arguments>
+                <argument name="show_part" xsi:type="null"/>
+            </arguments>
+        </referenceBlock>
+
+        <referenceContainer name="header.panel.wrapper">
+            <container name="discount.panel.header" htmlClass="discount-panel-header" htmlTag="div" before="-">
+                <block class="Magento\Cms\Block\Block" name="discount-panel-header">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">discount-panel-header</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+
+        <referenceContainer name="footer-container">
+            <container name="footer" as="footer" label="Page Footer" htmlTag="div" htmlClass="footer content">
+                <block class="Magento\Cms\Block\Block" name="sillove-filter">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">sillove-filter</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Theme\Block\Html\Footer" name="copyright" template="Magento_Theme::html/copyright.phtml"/>
+            </container>
+        </referenceContainer>
+        
+        <referenceBlock name="register-link" remove="true"/>
+        <referenceBlock name="header.panel" remove="true"/>
+        <referenceBlock name="footer_links" remove="true"/>      
+        
+        <move element="header.links" destination="header-wrapper" before="minicart"/>
+    </body>
+</page>
