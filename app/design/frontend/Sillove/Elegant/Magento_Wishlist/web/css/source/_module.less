@@ -34,7 +34,6 @@
 
     .product-social-links,
     .block-bundle-summary,
-    .product-item,
     .table-comparison {
         .action.towishlist {
             &:extend(.abs-actions-addto all);
@@ -42,6 +41,19 @@
             @_icon-font-content: @icon-wishlist-full,
             @_icon-font-position: before
             );
+        }
+    }
+
+    .product-item {
+        .action.towishlist {
+            &::before {
+                content: '';
+                background: url('@{baseDir}/images/wishlist.png') no-repeat center center;
+                background-size: 24px;
+                width: 24px;
+                height: 22px;
+                display: inline-block;
+            }
         }
     }
 
