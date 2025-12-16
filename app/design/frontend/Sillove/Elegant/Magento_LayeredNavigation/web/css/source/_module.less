@@ -52,7 +52,7 @@
         .block-subtitle {
             border-bottom: @border-width__base solid @border-color__base;
             font-size: @font-size__base;
-            font-weight: @font-weight__semibold;
+            font-weight: @font-weight__regular;
             line-height: 1em;
             padding: @indent__s @indent__s @indent__base;
         }
@@ -129,14 +129,13 @@
                 }
 
                 a {
-                    .lib-css(color, @filter-link);
+                    color: @color-black;
                     margin-left: -5px;
                     margin-right: -5px;
                     padding-left: 5px;
                     padding-right: 7px;
 
                     &:hover {
-                        background-color: @color-gray91;
                         text-decoration: none;
 
                         & + .count {
@@ -203,6 +202,7 @@
 
             .filter-title {
                 border-bottom: 1px solid @border-color__base;
+                background: @color-white;
                 height: 48px;
                 left: 0;
                 position: fixed;
@@ -241,6 +241,7 @@
 
             .filter-options {
                 .lib-css(background, @color-white);
+                padding: 20px;
                 bottom: 0;
                 display: block;
                 left: 0;
@@ -249,6 +250,10 @@
                 right: 0;
                 top: 50px;
                 z-index: 10;
+
+                &-item {
+                    margin-bottom: 20px;
+                }
             }
         }
     }
@@ -260,7 +265,7 @@
         }
 
         &-actions {
-            margin: -35px -@indent__s @indent__m;
+            margin: -40px 0 @indent__m;
         }
 
         &-options-content {
@@ -271,7 +276,7 @@
     .filter .filter-current {
         border: solid @border-color__base;
         border-width: 1px 0;
-        margin: @indent__xs -@indent__s 0;
+        margin: 0 0 10px;
 
         .items {
             display: none;
@@ -544,6 +549,8 @@
                 background: @color-white;
                 margin-bottom: 10px;
                 padding: 15px;
+                border: 1px solid @border-color-light;
+                border-radius: 10px;
             }
         }
     }
