@@ -351,6 +351,21 @@
             }
         }
     }
+
+    .link {
+        &.wishlist {
+            float: right;
+            line-height: 0;
+
+            a {
+                &:before {
+                    width: 22px;
+                    height: 22px;
+                    background-size: 22px;
+                }
+            }
+        }
+    }
 }
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {

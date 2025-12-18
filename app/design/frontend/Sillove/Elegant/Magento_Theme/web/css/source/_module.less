@@ -27,8 +27,8 @@
 @header__background-color: @theme-primary-color;
 @header-panel__background-color: @color-white;
 @header-panel__text-color: @color-white;
-@header-icons-color: @color-gray46;
-@header-icons-color-hover: @color-gray20;
+@header-icons-color: @color-white;
+@header-icons-color-hover: @color-white;
 @customer-welcome__z-index: @dropdown-list__z-index + 1;
 
 @addto-color: @color-gray40;
@@ -138,6 +138,7 @@
             margin-bottom: 0;
             list-style-type: none;
             padding-left: 12px;
+            order: 4;
 
             .link {
                 margin-bottom: 0;
@@ -164,6 +165,8 @@
         &.content:extend(.abs-add-clearfix all) {
             padding-top: @indent__s;
             position: relative;
+            display: flex;
+            align-items: center;
         }
     }
 
@@ -614,6 +617,25 @@
     .logo {
         margin-bottom: 13px;
         margin-top: 4px;
+        max-width: 120px;
+        width: 100%;
+    }
+
+    .header.content {
+        .header.links {
+            .link {
+                line-height: 0;
+            }
+            .authorization-link {
+                a {
+                    &:before {
+                        width: 22px;
+                        height: 22px;
+                        background-size: 22px;
+                    }
+                }
+            }
+        }
     }
 
     .cms-page-view .page-main {
@@ -826,12 +848,6 @@
 
         &.content:extend(.abs-add-clearfix-desktop all) {
             padding: @indent__base - 2 @indent__base;
-            display: flex;
-            align-items: center;
-
-            .header.links {
-                order: 4;
-            }
         }
     }
 
