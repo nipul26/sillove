@@ -237,7 +237,28 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .block-search {
-        margin-top: @indent__s;
+        margin-left: auto;
+
+        .label {
+            
+            &:before {
+                font-size: 20px;
+                margin: 0;
+            }
+
+            &.active {
+                + .control {
+                    input {
+                        position: absolute;
+                        background: @theme-primary-color;
+                        left: 0;
+                    }
+                }
+            }
+        }
+        .control {
+            border-top: 0;
+        }
     }
 }
 
