@@ -36,11 +36,14 @@
     .block-bundle-summary,
     .table-comparison {
         .action.towishlist {
-            &:extend(.abs-actions-addto all);
-            .lib-icon-font-symbol(
-            @_icon-font-content: @icon-wishlist-full,
-            @_icon-font-position: before
-            );
+            &::before {
+                content: '';
+                background: url('@{baseDir}/images/wishlist.png') no-repeat center center;
+                background-size: 27px;
+                width: 27px;
+                height: 26px;
+                display: inline-block;
+            }
         }
     }
 
