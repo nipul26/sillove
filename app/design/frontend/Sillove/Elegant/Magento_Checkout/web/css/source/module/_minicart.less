@@ -202,12 +202,13 @@
                     .lib-css(line-height, @minicart-qty__height);
                     border-radius: 2px;
                     display: inline-block;
-                    margin: 3px 0 0;
+                    margin: 0;
                     min-width: 18px;
                     overflow: hidden;
                     padding: 0 3px;
                     text-align: center;
                     white-space: normal;
+                    vertical-align: middle;
 
                     &.empty {
                         display: none;
@@ -291,8 +292,12 @@
             }
         }
 
+        .product-item {
+            .product-item-details {
+                padding-left: 88px;
+            }
+        }
         .product-item-details {
-            padding-left: 88px;
 
             .price {
                 font-weight: @font-weight__bold;
