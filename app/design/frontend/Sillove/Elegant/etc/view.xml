@@ -85,6 +85,10 @@
                 <width>93</width>
                 <height>93</height>
             </image>
+            <image id="swatch_image">
+                <width>56</width>
+                <height>56</height>
+            </image>
             <image id="product_swatch_image_large" type="image"/>
             <image id="product_swatch_image_medium" type="image">
                 <width>240</width>
@@ -151,8 +155,8 @@
                 <height>340</height>
             </image>
             <image id="related_products_list" type="small_image">
-                <width>152</width>
-                <height>190</height>
+                <width>246</width>
+                <height>200</height>
             </image>
             <image id="review_page_product_image" type="small_image">
                 <width>285</width>
