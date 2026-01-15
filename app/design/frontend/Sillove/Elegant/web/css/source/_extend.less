@@ -66,3 +66,20 @@
 //  Link
 //  _____________________________________________
 @link__color: @theme-primary-color;
+
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .pages {
+        .page {
+            min-width: 18px;
+            background-color: @color-white;
+            border: 1px solid @theme-primary-color;
+            font-weight: @font-weight__semibold;
+            border-radius: 5px;
+        }
+    }
+}

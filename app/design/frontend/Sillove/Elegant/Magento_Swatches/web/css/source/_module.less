@@ -147,7 +147,8 @@
                 line-height: 20px;
                 margin-right: 7px;
                 min-width: 22px;
-                padding: 4px 8px;
+                padding: 10px 8px;
+                height: auto;
 
                 &.selected {
                     .lib-css(background-color, @swatch-option-text__selected__background-color);
@@ -347,5 +348,14 @@
         display: block;
         height: 0;
         visibility: hidden;
+    }
+
+    .sidebar {
+        .filter-options {
+            .swatch-option {
+                min-width: 40px;
+                height: 40px;
+            }
+        }
     }
 }
