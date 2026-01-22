@@ -8,6 +8,8 @@
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="product.info.main">
+            <container name="product.options.bottom" htmlClass="product-options-bottom" htmlTag="div" after="-"></container>
+
             <container name="product.other.info" htmlClass="product-other-info" htmlTag="div" after="-">
                 <block class="Magento\Cms\Block\Block" name="product-other-info">
                     <arguments>
@@ -19,7 +21,8 @@
         
         <move element="product.info.overview" destination="product.info.main" after="page.main.title"/>
         <move element="product.info.type" destination="page.main.title" after="-"/>
-        <move element="product.info.social" destination="product.info.addtocart.additional" after="-"/>
+        <move element="product.info" destination="product.options.bottom" before="-"/>
+        <move element="product.info.social" destination="product.info.addtocart" after="-"/>
 
         <referenceBlock name="breadcrumbs" remove="true"/>
         <referenceBlock name="product.info.sku" remove="true"/>
