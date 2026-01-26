@@ -131,9 +131,9 @@
             &:before {
                 content: '';
                 background: url('@{baseDir}/images/minicart.svg') no-repeat center center;
-                background-size: 24px;
-                width: 24px;
-                height: 24px;
+                background-size: 22px;
+                width: 22px;
+                height: 22px;
                 display: inline-block;
                 vertical-align: middle;
             }
@@ -190,25 +190,30 @@
 
             &.showcart {
                 white-space: nowrap;
+                position: relative;
 
                 .text {
                     &:extend(.abs-visually-hidden all);
                 }
 
                 .counter.qty {
-                    .lib-css(background, @active__color);
-                    .lib-css(color, @page__background-color);
-                    .lib-css(height, @minicart-qty__height);
-                    .lib-css(line-height, @minicart-qty__height);
-                    border-radius: 2px;
+                    .lib-css(background, @bg-color-red);
+                    color: @color-white;
+                    font-size: 11px;
+                    font-weight: @font-weight__semibold;
+                    line-height: 12px;
+                    border-radius: 50%;
                     display: inline-block;
                     margin: 0;
-                    min-width: 18px;
+                    min-width: 12px;
                     overflow: hidden;
-                    padding: 0 3px;
+                    padding: 1px;
                     text-align: center;
                     white-space: normal;
                     vertical-align: middle;
+                    position: absolute;
+                    top: -5px;
+                    right: -5px;
 
                     &.empty {
                         display: none;
@@ -219,10 +224,6 @@
                             .lib-css(max-width, @minicart-qty__height);
                         }
                     }
-                }
-
-                .counter-number {
-                    text-shadow: 0 0 7px rgba(0, 0, 0, 1);
                 }
 
                 .counter-label {

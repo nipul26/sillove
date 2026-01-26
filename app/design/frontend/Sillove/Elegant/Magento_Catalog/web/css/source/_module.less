@@ -260,6 +260,10 @@
                             margin-bottom: 0;
                         }
                     }
+
+                    .price-label {
+                        display: none;
+                    }
                 }
             }
 
@@ -272,6 +276,10 @@
                     font-weight: @font-weight__semibold;
                     line-height: 16px;
                 }
+            }
+
+            .price-label {
+                display: none;
             }
 
             .price-wrapper .price {
@@ -319,6 +327,10 @@
             }
         }
 
+        .availability {
+            display: none;
+        }
+
         .product.attribute.sku {
             word-break: break-all;
             word-wrap: break-word;
@@ -355,7 +367,6 @@
 
         .product-add-form {
             clear: both;
-            padding-top: @indent__s + @indent__xs;
         }
 
         .product-reviews-summary {
@@ -566,7 +577,9 @@
                     margin: -2px 5px 0 0;
                 }
             }
-            &:hover {
+            &:hover,
+            &:active,
+            &:focus {
                 span {
                     &:before {
                         filter: brightness(0) saturate(100%) invert(17%) sepia(77%) saturate(493%) hue-rotate(165deg) brightness(98%) contrast(92%);
@@ -864,10 +877,6 @@
             h1 {
                 font-size: 24px;
             }
-        }
-
-        .product-add-form {
-            padding-top: @indent__base;
         }
     }
 

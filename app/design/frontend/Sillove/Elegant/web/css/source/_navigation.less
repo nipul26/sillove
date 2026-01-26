@@ -23,24 +23,21 @@
     }
 
     .nav-sections {
-        .lib-css(background, @navigation__background);
+        .lib-css(background, @navigation-desktop__background);
     }
 
     .nav-toggle {
-        .lib-icon-font(
-            @icon-menu,
-            @_icon-font-size: 28px,
-            @_icon-font-color: @header-icons-color,
-            @_icon-font-color-hover: @header-icons-color-hover
-        );
         .lib-icon-text-hide();
         cursor: pointer;
-        display: block;
-        font-size: 0;
-        left: 15px;
-        position: absolute;
-        top: 10px;
-        z-index: 14;
+
+        &:before {
+            content: '';
+            background: url('@{baseDir}/images/hamburger-icon.svg') no-repeat center;
+            width: 19px;
+            height: 16px;
+            display: inline-block;
+            background-size: 19px;
+        }
     }
 }
 
@@ -73,6 +70,14 @@
                         @_icon-font-content: @icon-up,
                         @_icon-font-position: after
                     );
+                }
+            }
+        }
+
+        .level0 {
+            > .level-top {
+                &:hover {
+                    background: @theme-primary-color;
                 }
             }
         }
@@ -147,6 +152,8 @@
         .header.links {
             .lib-list-reset-styles();
             border-bottom: 1px solid @color-gray82;
+            display: inline-block;
+            width: 100%;
 
             li {
                 font-size: 1.6rem;
@@ -168,7 +175,7 @@
                 .lib-css(color, @navigation-level0-item__color);
                 .lib-css(text-decoration, @navigation-level0-item__text-decoration);
                 display: block;
-                font-weight: @font-weight__bold;
+                font-weight: @font-weight__regular;
                 padding: .8rem @submenu__padding-left;
             }
 
@@ -209,6 +216,7 @@
             .lib-css(box-shadow, @_shadow, 1);
             left: 0;
             z-index: 99;
+            background: @color-gray-light01;
         }
 
         .nav-toggle {
@@ -266,8 +274,6 @@
         &.active {
             display: block;
         }
-
-        padding: @indent__m 0;
     }
 
     .lib-main-navigation();
@@ -308,6 +314,16 @@
         .links,
         .switcher {
             display: inline-block;
+        }
+    }
+
+    .navigation {
+        .level0 {
+            > .level-top {
+                margin: 6px 0;
+                font-family: "Inter";
+                border-radius: 0 10px 0 0;
+            }
         }
     }
 }
