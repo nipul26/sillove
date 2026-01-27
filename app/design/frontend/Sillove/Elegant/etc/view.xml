@@ -17,8 +17,8 @@
                 <height>300</height>
             </image>
             <image id="cart_page_product_thumbnail" type="small_image">
-                <width>165</width>
-                <height>165</height>
+                <width>89</width>
+                <height>89</height>
             </image>
             <image id="category_page_grid" type="small_image">
                 <width>244</width>
@@ -78,8 +78,8 @@
             </image>
             <image id="product_page_image_large" type="image"/>
             <image id="product_page_image_medium" type="image">
-                <width>610</width>
-                <height>610</height>
+                <width>540</width>
+                <height>540</height>
             </image>
             <image id="product_page_image_small" type="thumbnail">
                 <width>93</width>

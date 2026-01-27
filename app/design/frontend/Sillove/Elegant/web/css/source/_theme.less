@@ -59,14 +59,21 @@
 //
 //  Navigation
 //  ---------------------------------------------
+@navigation__background: @color-gray-light01;
+@navigation-level0-item__font-weight: @font-weight__regular;
+@navigation-level0-item__font-size: 14;
 
-@navigation__background: @color-gray94;
 @navigation-level0-item__active__color: @primary__color;
 
 @submenu-item__active__color: @navigation-level0-item__active__color;
+@submenu-item__active__border: 0;
+
 
 //  Desktop navigation
-@navigation-desktop-level0-item__line-height: 35px;
+@navigation-desktop-level0-item__line-height: 23px;
+@navigation-desktop-level0-item__padding: 0 7px;
+@navigation-desktop__font-size: 16px;
+
 @submenu-desktop__font-weight: @font-weight__regular;
 @submenu-desktop-item__active__color: @navigation-level0-item__active__color;
 
@@ -320,3 +327,6 @@
 
 //  Pager link.action visited
 @pager-action__visited__color: false;
+
+
+@dropdown-list-item__margin: 0 0 15px;

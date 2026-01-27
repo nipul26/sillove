@@ -22,10 +22,10 @@
 @swatch-option__disabled__background: @color-red10;
 
 //  Text attributes
-@swatch-option-text__background: @swatch-option__background;
-@swatch-option-text__color: #686868;
+@swatch-option-text__background: @color-white;
+@swatch-option-text__color: @theme-primary-color;
 
-@swatch-option-text__selected__background-color: @color-white;
+@swatch-option-text__selected__background-color: @theme-primary-color;
 
 //  Size and Manufacturer attributes
 @attr-swatch-option__background: @swatch-option__background;
@@ -108,13 +108,19 @@
             &.size,
             &.manufacturer {
                 .swatch-option {
-                    .lib-css(background, @attr-swatch-option__background);
-                    .lib-css(color, @attr-swatch-option__color);
+                    .lib-css(background, @swatch-option-text__background);
+                    .lib-css(color, @swatch-option-text__color);
 
                     &.selected {
-                        .lib-css(background, @attr-swatch-option__selected__background);
-                        .lib-css(border, @attr-swatch-option__selected__border);
-                        .lib-css(color, @attr-swatch-option__selected__color);
+                        .lib-css(background, @swatch-option-text__selected__background-color);
+                        color: @color-white;
+                        outline: 0;
+                    }
+
+                    &:not(.disabled):hover {
+                        color: @color-white;
+                        background: @swatch-option-text__selected__background-color;
+                        outline: 0;
                     }
                 }
             }
@@ -142,16 +148,18 @@
             &.text {
                 .lib-css(background, @swatch-option-text__background);
                 .lib-css(color, @swatch-option-text__color);
-                font-size: @font-size__s;
-                font-weight: @font-weight__bold;
-                line-height: 20px;
-                margin-right: 7px;
-                min-width: 22px;
+                font-size: 16px;
+                font-weight: @font-weight__regular;
+                line-height: 14px;
+                margin-right: 13px;
+                min-width: 73px;
                 padding: 10px 8px;
                 height: auto;
+                border-radius: 5px;
 
                 &.selected {
                     .lib-css(background-color, @swatch-option-text__selected__background-color);
+                    color: @color-white;
                 }
             }
 
@@ -353,8 +361,15 @@
     .sidebar {
         .filter-options {
             .swatch-option {
-                min-width: 40px;
-                height: 40px;
+                &.image {
+                    min-width: 40px;
+                    height: 40px;
+                }
+                &.text {
+                    min-width: 43px;
+                    margin-bottom: 13px;
+                    font-size: 14px;
+                }
             }
         }
     }

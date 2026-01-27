@@ -153,6 +153,7 @@
                 .price-label {
                     .lib-css(color, @product-price__muted__color);
                     font-size: @font-size__s;
+                    display: none;
                 }
             }
 
@@ -215,7 +216,9 @@
                     }
                 }
 
-                &:hover {
+                &:hover,
+                &:active,
+                &:focus {
                     span {
                         &:before {
                             filter: brightness(0) saturate(100%) invert(17%) sepia(77%) saturate(493%) hue-rotate(165deg) brightness(98%) contrast(92%);

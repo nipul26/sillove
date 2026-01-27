@@ -237,7 +237,6 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .block-search {
-        margin-left: auto;
 
         .label {
             
@@ -269,12 +268,11 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .block-search {
         float: right;
-        padding-left: 15px;
         position: relative;
         max-width: 671px;
         width: 100%;
         z-index: 4;
-        margin-right: 83px;
+        margin: auto;
         order: 2;
 
         .label {
@@ -324,5 +322,17 @@
 
     .form.search.advanced {
         &:extend(.abs-forms-general-desktop all);
+    }
+}
+
+& when (@media-common = true) {
+    @media only screen and (min-width: @screen__m) and (max-width: (@screen__l - 1)) {
+        .header {
+            &.content {
+                .block-search {
+                    max-width: 50%;
+                }
+            }
+        }
     }
 }
