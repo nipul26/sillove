@@ -246,36 +246,42 @@
         }
 
         .title {
-            margin-bottom: @indent__s;
-            text-align: center;
+            // margin-bottom: @indent__s;
+            // text-align: center;
 
             strong {
-                font-size: 24px;
-                font-weight: @font-weight__regular;
-                margin: 0 0 10px;
-                color: @theme-primary-color;
-                text-transform: uppercase;
-                letter-spacing: 3px;
-                position: relative;
+                // font-size: 24px;
+                // font-weight: @font-weight__regular;
+                // margin: 0 0 10px;
+                // color: @theme-primary-color;
+                // text-transform: uppercase;
+                // letter-spacing: 3px;
+                // position: relative;
 
-                &::before,
-                &::after {
-                    content: '';
-                    width: 47px;
-                    height: 2px;
-                    background: @theme-primary-color;
-                    display: inline-block;
-                    position: absolute;
-                    top: 50%;
-                    transform: translateY(-50%);
-                }
-                &::before {
-                    left: -65px;
-                }
-                &::after {
-                    right: -65px;
+                // &::before,
+                // &::after {
+                //     content: '';
+                //     width: 47px;
+                //     height: 2px;
+                //     background: @theme-primary-color;
+                //     display: inline-block;
+                //     position: absolute;
+                //     top: 50%;
+                //     transform: translateY(-50%);
+                // }
+                // &::before {
+                //     left: -65px;
+                // }
+                // &::after {
+                //     right: -65px;
+                // }
+
+                .lib-heading(h4);
+                .column.main & {
                 }
             }
+            display: block;
+            margin-bottom: @indent__s;
         }
 
         p:last-child {

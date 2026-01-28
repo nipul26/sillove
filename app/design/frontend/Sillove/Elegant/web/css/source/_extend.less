@@ -17,6 +17,7 @@
 //
 //  Button
 //  _____________________________________________
+@button-primary__color: @theme-secondary-color;
 @button-primary__hover__border: 1px solid @theme__color__primary;
 @button-primary__hover__color: @theme-primary-color;
 @button__font-weight: @font-weight__heavier;
@@ -63,7 +64,6 @@
 @form-element-input__height: 36px;
 @form-element-input__padding: 0 18px;
 @form-element-input__background: #f4f4f4;
-@form-element-input__border: none;
 @form-element-input__border-radius: 5px;
 @form-element-input__font-size: 12px;
 @form-element-input__color: #686868;
@@ -99,6 +99,95 @@
             border: 1px solid @theme-primary-color;
             font-weight: @font-weight__semibold;
             border-radius: 5px;
+        }
+    }
+
+    .abs-cart-block {
+         > .title {
+            border-top: 1px solid @border-color-light;
+            padding: 9px 40px 9px 0;
+            text-align: left;
+
+            &:after {
+                color: @theme-primary-color;
+            }
+         }
+
+         .content {
+            display: block;
+         }
+    }
+
+    .abs-sidebar-totals {
+        border-top: 1px solid @border-color-light;
+        .grand {
+            th,
+            td {
+                padding: 30px 0;
+            }
+            strong {
+                color: @theme-primary-color;
+                padding: 0;
+            }
+            .mark,
+            .amount {
+                .lib-font-size(15);
+                border-top: 1px solid @border-color-light;
+            }
+        }
+
+        tbody tr:last-child td {
+            padding-bottom: 0;
+        }
+    }
+
+    .abs-discount-block {
+        .actions-toolbar {
+            .action {
+                &.primary,
+                &.cancel {
+                    .lib-button-primary();
+                    border-bottom-left-radius: 5px;
+                    border-top-left-radius: 5px;
+                    margin: 0;
+                    white-space: nowrap;
+                    width: auto;
+                    height: 49px;
+                    
+                     &:not(:focus) {
+                        box-shadow: unset;
+                    }
+
+                    &:active {
+                        box-shadow: unset;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .abs-shopping-cart-items-desktop {
+        .lib-layout-column(2, 1, @layout-column-checkout__width-main);
+        &:extend(.abs-add-box-sizing-desktop all);
+        padding-right: 28px;
+        position: relative;
+    }
+
+    .abs-discount-block-desktop {
+        .block {
+            .content {
+                .lib-css(padding, 0);
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .abs-cart-block {
+        > .title {
+            padding: 9px 40px 9px 15px;
         }
     }
 }
