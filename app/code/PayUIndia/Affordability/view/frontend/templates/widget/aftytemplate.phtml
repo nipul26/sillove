@@ -1,0 +1,21 @@
+<?php if($block->getData('payukey')): ?>
+	<script type="text/javascript">
+			require(
+			[
+				"jquery",
+			],
+				function($){
+						
+					window.onload = function() {
+						const widgetConfig = {
+							"key": '<?php echo $block->getData('payukey'); ?>',
+							"amount": <?php echo $block->getPrice(); ?>,
+						};
+						payuAffordability.init(widgetConfig);
+					}
+				})
+			
+		</script>
+		<div id="payuWidget"> </div>
+		
+<?php endif; ?>
