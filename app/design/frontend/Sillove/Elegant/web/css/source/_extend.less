@@ -165,6 +165,20 @@
             }
         }
     }
+
+    .abs-checkout-title {
+        .lib-css(padding-bottom, @checkout-step-title__padding);
+        .lib-typography(
+        @_font-size: @checkout-step-title__font-size,
+        @_font-weight: @checkout-step-title__font-weight,
+        @_font-family: false,
+        @_font-style: false,
+        @_line-height: false
+        );
+        color: @theme-primary-color;
+        margin-bottom: 10px;
+        border-bottom: 1px solid @border-color-light;
+    }
 }
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
