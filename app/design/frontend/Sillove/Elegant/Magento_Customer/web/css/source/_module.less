@@ -246,36 +246,7 @@
         }
 
         .title {
-            // margin-bottom: @indent__s;
-            // text-align: center;
-
             strong {
-                // font-size: 24px;
-                // font-weight: @font-weight__regular;
-                // margin: 0 0 10px;
-                // color: @theme-primary-color;
-                // text-transform: uppercase;
-                // letter-spacing: 3px;
-                // position: relative;
-
-                // &::before,
-                // &::after {
-                //     content: '';
-                //     width: 47px;
-                //     height: 2px;
-                //     background: @theme-primary-color;
-                //     display: inline-block;
-                //     position: absolute;
-                //     top: 50%;
-                //     transform: translateY(-50%);
-                // }
-                // &::before {
-                //     left: -65px;
-                // }
-                // &::after {
-                //     right: -65px;
-                // }
-
                 .lib-heading(h4);
                 .column.main & {
                 }
@@ -292,6 +263,38 @@
             margin-top: @indent__xs;
         }
         &.related {
+            .title {
+                margin-bottom: @indent__s;
+                text-align: center;
+
+                strong {
+                    font-size: 24px;
+                    font-weight: @font-weight__regular;
+                    margin: 0 0 10px;
+                    color: @theme-primary-color;
+                    text-transform: uppercase;
+                    letter-spacing: 3px;
+                    position: relative;
+
+                    &::before,
+                    &::after {
+                        content: '';
+                        width: 47px;
+                        height: 2px;
+                        background: @theme-primary-color;
+                        display: inline-block;
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                    }
+                    &::before {
+                        left: -65px;
+                    }
+                    &::after {
+                        right: -65px;
+                    }
+                }
+            }
             .block-actions {
                 text-align: center;
             }
@@ -437,22 +440,24 @@
     }
 
     .block {
-        .title {
-            strong {
-                font-size: 20px;
+        &.related {
+            .title {
+                strong {
+                    font-size: 20px;
 
-                &::before,
-                &::after {
-                    width: 37px;
-                }
-                &::before {
-                    left: -45px;
-                }
-                &::after {
-                    right: -45px;
+                    &::before,
+                    &::after {
+                        width: 37px;
+                    }
+                    &::before {
+                        left: -45px;
+                    }
+                    &::after {
+                        right: -45px;
+                    }
                 }
             }
-        } 
+        }
     }
 }
 
