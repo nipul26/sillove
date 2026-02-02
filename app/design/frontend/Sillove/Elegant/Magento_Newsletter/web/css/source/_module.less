@@ -1,0 +1,145 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    //  Newsletter subscription
+    .newsletter-section {
+        background: @theme-secondary-color;
+
+        img {
+            display: block;
+        }
+
+        .form-newsletter {
+            max-width: 381px;
+            width: 100%;
+        }
+
+        .heading-section {
+            text-align: center;
+            h3 {
+                font-size: 27px;
+                margin-top: 0;
+                margin-bottom: 3px;
+                color: @theme-primary-color;
+            }
+            p {
+                font-size: 18px;
+                color: @theme-primary-color;
+                font-weight: @font-weight__light;
+                margin-bottom: 3px;
+                text-transform: capitalize;
+            }
+        }
+    }
+    .home-newsletter {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+    .block.newsletter {
+        margin-bottom: 0;
+
+        .form {
+            &.subscribe {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+        .fieldset {
+            display: table-cell;
+            margin: 0;
+            padding: 0;
+            vertical-align: top;
+        }
+
+        .field {
+            margin: 0;
+
+            .control {
+                width: 100%;
+            }
+
+            &.newsletter {
+                width: 100%;
+            }
+        }
+
+        input {
+            height: 38px;
+            border-radius: 0;
+            padding: 0 10px; // Reset some default Safari padding values.
+        }
+
+        .title {
+            display: none;
+        }
+
+        .label {
+            &:extend(.abs-visually-hidden all);
+        }
+
+        .action.subscribe {
+            border-radius: 0;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            height: 38px;
+
+            span {
+                .lib-text-hide();
+            }
+
+            &:before {
+                content: '';
+                width: 25px;
+                height: 15px;
+                display: inline-block;
+                background: url('@{baseDir}/images/double-arrow-icon.svg') no-repeat center;
+                background-size: 25px;
+            }
+
+            &:hover,
+            &:active,
+            &:focus {
+                background: @theme-primary-color;
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .newsletter-section {
+        .left-section,
+        .right-section {
+            display: none;
+        }
+
+        .home-newsletter {
+            padding: 30px 0;
+            justify-content: center;
+        }
+
+        .heading-section {
+            h3 {
+                font-size: 18px;
+            }
+            p {
+                font-size: 14px;
+            }
+        }
+    }
+}
