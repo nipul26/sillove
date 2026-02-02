@@ -21130,16 +21130,16 @@
         },
         {
             "name": "razorpay/magento",
-            "version": "4.1.9",
+            "version": "4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/razorpay/razorpay-magento.git",
-                "reference": "66984da31391c1ceed965e2d16d83e6e835adcee"
+                "reference": "6adaca753bc7627b2b11f5780d43b5ff8956740a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/razorpay/razorpay-magento/zipball/66984da31391c1ceed965e2d16d83e6e835adcee",
-                "reference": "66984da31391c1ceed965e2d16d83e6e835adcee",
+                "url": "https://api.github.com/repos/razorpay/razorpay-magento/zipball/6adaca753bc7627b2b11f5780d43b5ff8956740a",
+                "reference": "6adaca753bc7627b2b11f5780d43b5ff8956740a",
                 "shasum": ""
             },
             "require": {
@@ -21186,7 +21186,7 @@
                 "rss": "https://github.com/razorpay/razorpay-magento/releases.atom",
                 "source": "https://github.com/razorpay/razorpay-magento"
             },
-            "time": "2025-07-16T05:53:04+00:00"
+            "time": "2026-01-16T12:26:41+00:00"
         },
         {
             "name": "razorpay/razorpay",
@@ -29668,7 +29668,7 @@
     },
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
+    "platform": {},
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
