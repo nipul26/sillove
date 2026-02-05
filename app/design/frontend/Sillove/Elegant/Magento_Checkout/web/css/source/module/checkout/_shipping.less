@@ -44,9 +44,9 @@
 & when (@media-common = true) {
 
     .opc-wrapper {
-        .form-login,
-        .form-shipping-address,
-        .form.payments { 
+        .checkout-payment-method,
+        .checkout-shipping-address,
+        .checkout-shipping-method { 
             background: @color-white;
             border-radius: 18px;
             padding: 30px;
@@ -149,6 +149,36 @@
             display: block;
             float: left;
             margin: 26px 5px 0 0;
+        }
+
+        .form-shipping-address {
+            .fieldset {
+                display: flex;
+                flex-wrap: wrap;
+                column-gap: 14px;
+                row-gap: 15px;
+
+                .field {
+                    max-width: ~"calc(100% / 2 - 8px)";
+                    width: 100%;
+                    margin: 0;
+
+                    &[name="shippingAddress.company"] {
+                        max-width: 100%;
+                    }
+
+                    &.street {
+                        max-width: 100%;
+
+                        > .control {
+                            display: flex;
+                            flex-wrap: wrap;
+                            column-gap: 15px;
+                            row-gap: 10px;
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -273,6 +303,23 @@
             position: absolute;
             right: 0;
             top: 1px;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .opc-wrapper {
+        .checkout-payment-method,
+        .checkout-shipping-address,
+        .checkout-shipping-method {
+            padding: 15px;           
+        }
+        .form-shipping-address {
+            .fieldset {
+                .field {
+                    max-width: 100%;
+                }
+            }
         }
     }
 }

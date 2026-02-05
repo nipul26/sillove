@@ -40,24 +40,24 @@
 
     .checkout-container {
         &:extend(.abs-add-clearfix all);
-        .lib-css(margin, 0 0 @checkout-wrapper__margin);
+        // .lib-css(margin, 0 0 @checkout-wrapper__margin);
     }
 
     .opc-wrapper {
-        .lib-css(margin, 0 0 @checkout-wrapper__margin);
+        // .lib-css(margin, 0 0 @checkout-wrapper__margin);
 
         .opc {
             &:extend(.abs-reset-list all);
+
+            > li {
+                margin-bottom: 20px;
+            }
         }
 
         .step-title {
             &:extend(.abs-checkout-title all);
             .lib-css(border-bottom, @checkout-step-title__border);
             margin-bottom: 15px;
-        }
-
-        .step-content {
-            margin: 0 0 @indent__xl;
         }
     }
 

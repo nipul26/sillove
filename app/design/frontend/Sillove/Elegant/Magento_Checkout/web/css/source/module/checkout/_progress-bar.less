@@ -1,0 +1,165 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+@checkout-progress-bar__font-size: 16px;
+@checkout-progress-bar__font-weight: @font-weight__heavier;
+@checkout-progress-bar__margin: @indent__base;
+
+@checkout-progress-bar-item__background-color: #D9D9D9  ;
+@checkout-progress-bar-item__counter-color: @color-686868;
+@checkout-progress-bar-item__border-radius: 6px;
+@checkout-progress-bar-item__color: @primary__color;
+@checkout-progress-bar-item__margin: @indent__s;
+@checkout-progress-bar-item__width: 185px;
+@checkout-progress-bar-item__active__background-color: @theme-primary-color;
+@checkout-progress-bar-item__complete__color: @link__color;
+
+@checkout-progress-bar-item-element__height: @checkout-progress-bar-item-element__width;
+@checkout-progress-bar-item-element__width: 31px;
+
+@checkout-progress-bar-item-element-inner__background-color: @theme-primary-color;
+@checkout-progress-bar-item-element-inner__color: @theme-primary-color;
+@checkout-progress-bar-item-element-inner__height: @checkout-progress-bar-item-element-inner__width;
+@checkout-progress-bar-item-element-inner__width: @checkout-progress-bar-item-element__width - (@checkout-progress-bar-item-element-outer-radius__width * 2);
+@checkout-progress-bar-item-element-inner__active__color: @theme-secondary-color;
+@checkout-progress-bar-item-element-inner__active__content: @icon-checkmark;
+@checkout-progress-bar-item-element-inner__active__font-size: 28px;
+@checkout-progress-bar-item-element-inner__active__line-height: 1;
+
+@checkout-progress-bar-item-element-outer-radius__width: 6px;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    //
+    //  Checkout Progress Bar
+    //  ---------------------------------------------
+
+    .opc-progress-bar {
+        &:extend(.abs-reset-list all);
+        .lib-css(margin, 0 0 @checkout-progress-bar__margin);
+        counter-reset: i;
+        font-size: 0;
+        text-align: center;
+
+        .opc-progress-bar-item:not(:last-child) {
+            margin-right: 10px;
+            padding-right: 41px;
+
+            &::after {
+                .lib-css(background, @checkout-progress-bar-item__background-color);
+                content: '';
+                height: 2px;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 0;
+                position: absolute;
+                max-width: 31px;
+                width: 100%;
+            }
+        }
+    }
+
+    .opc-progress-bar-item {
+        .lib-css(margin, 0 0 @checkout-progress-bar-item__margin);
+        display: inline-block;
+        position: relative;
+        text-align: center;
+        vertical-align: top;
+
+        > span {
+            word-wrap: break-word;
+            text-align: left;
+            padding-left: 41px;
+
+            .lib-typography(
+            @_color: @checkout-progress-bar-item__counter-color,
+            @_font-family: false,
+            @_font-size: @checkout-progress-bar__font-size,
+            @_font-style: false,
+            @_font-weight: @checkout-progress-bar__font-weight,
+            @_line-height: false
+            );
+
+            &:before, // Item element
+            {
+                .lib-css(background, @checkout-progress-bar-item__background-color);
+                .lib-css(height, @checkout-progress-bar-item-element__height);
+                .lib-css(width, @checkout-progress-bar-item-element__width);
+                border-radius: 50%;
+                content: counter(i);
+                counter-increment: i;
+                line-height: @checkout-progress-bar-item-element__width;
+                left: 0;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                text-align: center;
+                .lib-typography(
+                    @_color: @checkout-progress-bar-item-element-inner__color,
+                    @_font-family: false,
+                    @_font-size: @checkout-progress-bar__font-size,
+                    @_font-style: false,
+                    @_font-weight: @font-weight__semibold,
+                    @_line-height: false
+                );
+            }
+        }
+
+        &._active {
+            > span {
+                .lib-css(color, @checkout-progress-bar-item__color);
+
+                &:before {
+                    .lib-css(background, @checkout-progress-bar-item__active__background-color);
+                    .lib-css(color, @checkout-progress-bar-item-element-inner__active__color);
+                }
+            }
+        }
+
+        &._complete {
+            cursor: pointer;
+
+            > span {
+                .lib-css(color, @checkout-progress-bar-item__color);
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .opc-progress-bar {
+        .opc-progress-bar-item {
+            &:not(:last-child) {
+                margin-right: 5px;
+            }
+        }
+    }
+    
+    .opc-progress-bar-item {
+        > span {
+            font-size: 14px;
+            padding-left: 40px;
+
+            &:before {
+                height: 28px;
+                width: 28px;
+                font-size: 14px;
+                line-height: 28px;
+            }
+        }
+    }
+}
