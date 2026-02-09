@@ -6,8 +6,8 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
     <body>
-        <referenceBlock name="compare-link-wrapper" remove="true"/>
-        <referenceBlock name="sidebar.additional" remove="true"/>
+        <referenceBlock name="page.main.title" remove="true" />
     </body>
 </page>
