@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Contact Us</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <container name="contact-banner" htmlTag="div" htmlClass="contact-banner-section">
+                <block class="Magento\Framework\View\Element\Template" name="contactBanner" template="Magento_Contact::contact-banner.phtml"></block>
+            </container>
+
+            <container name="contact-container" htmlTag="div" htmlClass="container">
+                <container name="custom-contact-us" htmlTag="div" htmlClass="contact-us-section">
+                    <block class="Magento\Framework\View\Element\Template" name="contactUs" template="Magento_Contact::contact-us.phtml"></block>
+
+                    <block class="Magento\Contact\Block\ContactForm" name="contactForm" template="Magento_Contact::form.phtml">
+                        <arguments>
+                            <argument name="button_lock_manager" xsi:type="object">Magento\Framework\View\Element\ButtonLockManager</argument>
+                        </arguments>
+                        <container name="form.additional.info" label="Form Additional Info"/>
+                    </block>
+                </container>
+            </container>
+
+            <container name="contact-map" htmlTag="div" htmlClass="map-section">
+                <block class="Magento\Framework\View\Element\Template" name="contactMap" template="Magento_Contact::map.phtml"></block>
+            </container>
+        </referenceContainer>
+
+        <!-- <move element="contactForm" destination="custom-contact-us" before="-" /> -->
+        <!-- <move element="contact-banner" destination="custom-contact-us" before="-" /> -->
+        <move element="contact-banner" destination="content" before="contact-container"/>
+
+    </body>
+</page>

@@ -381,6 +381,71 @@
             vertical-align: middle;
         }
     }
+    
+    .block {
+        &.block-dashboard-info,
+        &.block-dashboard-addresses,
+        &.block-dashboard-orders,
+        &.block-addresses-default,
+        &.block-addresses-list,
+        &.block-reviews-dashboard {
+            background: @color-white;
+            padding: 15px;
+            margin-bottom: 0;
+        }
+        &.block-dashboard-info {
+            border-radius: 18px 18px 0 0;
+            border: 1px solid @border-color-light;
+            border-bottom: 0;
+        }
+        &.block-dashboard-addresses,
+        &.block-addresses-list {
+            border-left: 1px solid @border-color-light;
+            border-right: 1px solid @border-color-light;
+        }
+        &.block-dashboard-orders {
+            border: 1px solid @border-color-light;
+            border-top: 0;
+            border-radius: 0 0 18px 18px;
+        }
+        &.block-addresses-default {
+            border-radius: 18px 18px 0 0;
+            border: 1px solid @border-color-light;
+            border-bottom: 0;
+        }
+
+        &.block-dashboard-info,
+        &.block-dashboard-addresses,
+        &.block-addresses-default {
+            .block-content {
+                .box {
+                    .box-title {
+                        font-weight: @font-weight__heavier;
+                    }
+                }
+            }
+        }
+    }
+
+    .account {
+        &.customer-address-index {
+            .actions-toolbar {
+                background: @color-white;
+                padding: 0 15px 15px;
+                border: 1px solid @border-color-light;
+                border-top: 0;
+                border-radius: 0 0 18px 18px;
+            }
+        }
+    } 
+    
+    .form-edit-account,
+    .form-address-edit {
+        background: @color-white;
+        padding: 15px;
+        border-radius: 18px;
+        border: 1px solid @border-color-light;
+    }
 }
 
 //
@@ -455,6 +520,17 @@
                     &::after {
                         right: -45px;
                     }
+                }
+            }
+        }
+    }
+
+    .block {
+        &.block-dashboard-info,
+        &.block-dashboard-addresses {
+            .block-content {
+                .box:not(:last-child) {
+                    margin-bottom: 20px;
                 }
             }
         }
