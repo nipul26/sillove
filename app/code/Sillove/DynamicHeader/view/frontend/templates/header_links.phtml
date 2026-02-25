@@ -1,0 +1,16 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+$helper = $this->helper(\Sillove\DynamicHeader\Helper\Data::class);
+$links = $helper->getHeaderLinks();
+?>
+<?php if (!empty($links)) : ?>
+    <?php foreach ($links as $link) : ?>
+        <li class="level0 level-top ui-menu-item">
+            <a href="<?= $block->escapeUrl($block->getUrl($link['url'])) ?>"
+               class="level-top ui-corner-all"
+               role="menuitem">
+                <span><?= $block->escapeHtml(__($link['title'])) ?></span>
+            </a>
+        </li>
+    <?php endforeach; ?>
+<?php endif; ?>
