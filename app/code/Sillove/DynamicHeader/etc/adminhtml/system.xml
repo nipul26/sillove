@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="sillove" translate="label" sortOrder="201">
+            <label>Sillove </label>
+        </tab>
+        <section id="sillove_header" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Header</label>
+            <tab>sillove</tab>
+            <resource>Sillove_DynamicHeader::sillove_header</resource>
+            <!--  for general option  -->
+            <group id="dynamic_links"
+                translate="label"
+                type="text"
+                sortOrder="10"
+                showInDefault="1"
+                showInWebsite="1"
+                showInStore="1">
+                <label>Dynamic Header Links</label>
+
+                <!-- <field id="enable_module"
+                       translate="label"
+                       type="select"
+                       sortOrder="10"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Module Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field> -->
+                <field id="links" translate="label"
+                       sortOrder="10"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Header Links</label>
+                    <frontend_model>Sillove\DynamicHeader\Block\Adminhtml\System\Config\Form\Field\Links</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+
+            </group>
+        </section>
+    </system>
+</config>
