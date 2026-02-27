@@ -407,14 +407,12 @@
         padding: 6px 0;
 
         .container {
-            margin-left: auto;
-            margin-right: auto;
-            max-width: @layout__max-width;
-            padding-left: @layout-indent__width;
-            padding-right: @layout-indent__width;
-            width: auto;
+            padding-left: 45px;
+            padding-right: 45px;
+            width: 100%;
             display: flex;
             justify-content: space-between;
+            box-sizing: border-box;
         }
 
         p {
@@ -643,6 +641,7 @@
 
                 img {
                     display: block;
+                    width: 100%;
                 }
 
                 .content-section {
@@ -677,6 +676,7 @@
 
                 img {
                     display: block;
+                    width: 100%;
                 }
             }
         }
@@ -769,6 +769,7 @@
 
                 img {
                     display: block;
+                    width: 100%;
                 }
             }
         }
@@ -785,6 +786,7 @@
 
                 img {
                     display: block;
+                    width: 100%;
                 }
             }
         }
@@ -803,6 +805,11 @@
             .left-section {
                 max-width: 50.3%;
                 width: 100%;
+
+                img {
+                    display: block;
+                    width: 100%;
+                }
             }
             .right-section {
                 max-width: 40%;
@@ -881,6 +888,11 @@
         .right-section {
             max-width: ~"calc(100% / 2 - 10px)";
             width: 100%;
+
+            img {
+                width: 100%;
+                display: block;
+            }
         }
     }
 }
@@ -953,6 +965,11 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .md-15 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
     .logo {
         margin: 0 auto;
         max-width: 110px;
@@ -1208,8 +1225,9 @@
         height: 100%; // Stretch screen area for sticky footer
     }
 
-    .navigation ul {
-        padding: 0 20px;
+    .lg-45 {
+        padding-left: 45px;
+        padding-right: 45px;
     }
 
     .page-header {
@@ -1362,7 +1380,8 @@
         }
 
         &.content:extend(.abs-add-clearfix-desktop all) {
-            padding: @indent__base - 2 @indent__base;
+            padding-top: 18px;
+            padding-bottom: 18px;
         }
     }
 
