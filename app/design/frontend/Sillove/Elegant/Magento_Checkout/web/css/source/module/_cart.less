@@ -18,15 +18,8 @@
     //  ---------------------------------------------
 
     .checkout-cart-index {
-        .page-main {
-            padding-left: 0;
-            padding-right: 0;
-        }
-
+        
         .page-title-wrapper {
-            padding-left: @layout__width-xs-indent;
-            padding-right: @layout__width-xs-indent;
-
             .page-title {
                 font-size: 24px;
                 color: @theme-primary-color;
@@ -694,17 +687,7 @@
 }
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
-    .checkout-cart-index {
-        .page-main {
-            padding-left: @layout__width-xs-indent;
-            padding-right: @layout__width-xs-indent;
-        }
-
-        .page-title-wrapper {
-            &:extend(.abs-revert-side-paddings all);
-        }
-    }
-
+    
     //  Cart container
     .cart-container {
         &:extend(.abs-add-clearfix-desktop all);

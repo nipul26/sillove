@@ -79,7 +79,8 @@
 //
 //  Layout variables
 //  _____________________________________________
-@layout__max-width: 1390px;
+@layout__max-width: 188rem;
+@layout-indent__width: 45px;
 
 //
 //  Link
@@ -183,10 +184,7 @@
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .abs-shopping-cart-items-desktop {
-        .lib-layout-column(2, 1, @layout-column-checkout__width-main);
-        &:extend(.abs-add-box-sizing-desktop all);
         padding-right: 28px;
-        position: relative;
     }
 
     .abs-discount-block-desktop {
