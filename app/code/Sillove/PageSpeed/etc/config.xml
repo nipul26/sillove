@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<Sillove_pagespeed_general_setting>
+			<general>
+				<optimization_on>0</optimization_on>
+			</general>
+        </Sillove_pagespeed_general_setting>
+        <Sillove_pagespeed_javascript_opt_settings>
+        	<general>
+        		<js>0</js>
+        		<exclude_page_from_load_combined_js>checkout</exclude_page_from_load_combined_js>
+        	</general>
+        </Sillove_pagespeed_javascript_opt_settings>
+	</default>
+</config>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="Sillovepagespeed" translate="label" class="Sillovepagespeed" sortOrder="100">
+            <label>Sillove Page speed</label>
+        </tab>
+        <section id="Sillove_pagespeed_general_setting" translate="label" type="text" sortOrder="400" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>General Settings</label>
+            <tab>Sillovepagespeed</tab>
+            <resource>Sillove_PageSpeed::config_opt</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Setting</label>
+                <field id="optimization_on" translate="label" type="select" sortOrder="401" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Optimization</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+            </group>
+        </section>
+        <section id="Sillove_pagespeed_javascript_opt_settings" translate="label" type="text" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Javascript Optimization Settings</label>
+            <tab>Sillovepagespeed</tab>
+            <resource>Sillove_PageSpeed::config_jsopt</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Javascript Optimization</label>
+                <field id="js" translate="label" type="select" sortOrder="540" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable js Optimization</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="exclude_page_from_load_combined_js" translate="label comment" type="textarea" sortOrder="551" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Exclude page from Javascript Optimization</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
