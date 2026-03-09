@@ -206,6 +206,71 @@
                     <validate>required-entry</validate>
                 </field>
             </group>
+            <!--  for WhatsApp option  -->
+            <group id="whatsapp_setting"
+                   translate="label"
+                   type="text"
+                   sortOrder="40"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>WhatsApp Settings</label>
+                <field id="enable_whatsapp"
+                       translate="label"
+                       type="select"
+                       sortOrder="10"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Enable WhatsApp Button</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable or disable the "Send via WhatsApp" button on product inquiry form.</comment>
+                </field>
+                <field id="whatsapp_mobile_number"
+                       translate="label"
+                       type="text"
+                       sortOrder="20"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>WhatsApp Mobile Number</label>
+                    <depends>
+                        <field id="*/*/enable_whatsapp">1</field>
+                    </depends>
+                    <comment>Enter WhatsApp mobile number with country code (e.g., 1234567890). Do not include + or spaces. Only digits are allowed.</comment>
+                    <validate>required-entry validate-digits</validate>
+                </field>
+                <field id="whatsapp_button_text"
+                       translate="label"
+                       type="text"
+                       sortOrder="30"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>WhatsApp Button Text</label>
+                    <depends>
+                        <field id="*/*/enable_whatsapp">1</field>
+                    </depends>
+                    <comment>Text to display on the WhatsApp button (default: "Send via WhatsApp").</comment>
+                </field>
+                <field id="whatsapp_message_template"
+                       translate="label"
+                       type="textarea"
+                       sortOrder="40"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>WhatsApp Message Template</label>
+                    <depends>
+                        <field id="*/*/enable_whatsapp">1</field>
+                    </depends>
+                    <comment>Customize the message template. Available variables: {{name}}, {{email}}, {{subject}}, {{message}}, {{product_name}}, {{product_sku}}, {{product_url}}. Leave empty for default format.</comment>
+                </field>
+            </group>
         </section>
         <section id="recaptcha_frontend">
             <group id="type_for">

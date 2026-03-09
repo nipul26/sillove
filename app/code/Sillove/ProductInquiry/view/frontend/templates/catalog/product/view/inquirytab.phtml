@@ -97,6 +97,7 @@ if ($module_status == 1) {
                                    id="prd_sku"
                                    value="<?= $escaper->escapeHtml($product_sku) ?>" >
                             <input type="hidden" name="inquiry_status" id="inquiry_status" value="0">
+                            <input type="hidden" name="whatsapp_submit_flag" id="whatsapp_submit_flag" value="0">
                             <div class="field required">
                                 <label for="user_name" class="label">
                               <span>
@@ -243,6 +244,31 @@ if ($module_status == 1) {
                                         <?= $escaper->escapeHtml('Submit') ?>
                                       </span>
                                 </button>
+                                <?php
+                                // WhatsApp Button
+                                $whatsapp_enabled = $helper->getWhatsAppEnableStatus();
+                                if ($whatsapp_enabled == 1) {
+                                    $whatsapp_number = $helper->getWhatsAppMobileNumber();
+                                    $whatsapp_button_text = $helper->getWhatsAppButtonText();
+                                    $whatsapp_template = $helper->getWhatsAppMessageTemplate();
+                                    if (!empty($whatsapp_number)) {
+                                        ?>
+                                        <button type="button"
+                                                class="action secondary whatsapp-inquiry"
+                                                id="whatsapp-inquiry-button-tab"
+                                                data-whatsapp-number="<?= $escaper->escapeHtmlAttr($whatsapp_number) ?>"
+                                                data-product-name="<?= $escaper->escapeHtmlAttr($product_name) ?>"
+                                                data-product-sku="<?= $escaper->escapeHtmlAttr($product_sku) ?>"
+                                                data-product-url="<?= $escaper->escapeUrl($prd->getProductUrl()) ?>"
+                                                data-message-template="<?= $escaper->escapeHtmlAttr($whatsapp_template) ?>">
+                                            <span>
+                                              <?= $escaper->escapeHtml($whatsapp_button_text) ?>
+                                            </span>
+                                        </button>
+                                        <?php
+                                    }
+                                }
+                                ?>
                             </div>
                         </div>
                     </form>
@@ -252,6 +278,17 @@ if ($module_status == 1) {
                             "validation": {}
                         }
                     }
+                </script>
+                <script>
+                    require(['jquery'], function($) {
+                        $(document).ready(function(){
+                            // WhatsApp Button Handler for Tab - Set flag for WhatsApp submission
+                            $("#whatsapp-inquiry-button-tab").click(function(){
+                                // Mark as WhatsApp submission
+                                $('#whatsapp_submit_flag').val('1');
+                            });
+                        });
+                    });
                 </script>
                 </div>
             </div>

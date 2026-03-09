@@ -70,6 +70,31 @@ if ($module_status == 1) {
                     <?= $escaper->escapeHtml($button_tab_title) ?>
                   </span>
               </button>
+              <?php
+              // WhatsApp Button
+              $whatsapp_enabled = $helper->getWhatsAppEnableStatus();
+              if ($whatsapp_enabled == 1) {
+                  $whatsapp_number = $helper->getWhatsAppMobileNumber();
+                  $whatsapp_button_text = $helper->getWhatsAppButtonText();
+                  $whatsapp_template = $helper->getWhatsAppMessageTemplate();
+                  if (!empty($whatsapp_number)) {
+                      ?>
+                      <button type="button"
+                              class="action secondary whatsapp-inquiry"
+                              id="whatsapp-inquiry-button"
+                              data-whatsapp-number="<?= $escaper->escapeHtmlAttr($whatsapp_number) ?>"
+                              data-product-name="<?= $escaper->escapeHtmlAttr($product_name) ?>"
+                              data-product-sku="<?= $escaper->escapeHtmlAttr($product_sku) ?>"
+                              data-product-url="<?= $escaper->escapeUrl($prd->getProductUrl()) ?>"
+                              data-message-template="<?= $escaper->escapeHtmlAttr($whatsapp_template) ?>">
+                          <span>
+                            <?= $escaper->escapeHtml($whatsapp_button_text) ?>
+                          </span>
+                      </button>
+                      <?php
+                  }
+              }
+              ?>
             </div>
             <script>
               require(
@@ -80,6 +105,35 @@ if ($module_status == 1) {
                   function($,modal) {
                       $(document).ready(function(){
                         $("#product-inquiry-button").click(function(){
+                            // Reset WhatsApp flag for normal inquiry
+                            $('#whatsapp_submit_flag').val('0');
+                            
+                            var options = {
+                                modalClass: 'prd-inquiry-popup',
+                                type: 'popup',
+                                responsive: true,
+                                innerScroll: true,
+                                title: '<?= $escaper->escapeHtml($form_title) ?>',
+                                 buttons: []
+                            };
+                            var popup = modal(options, $('#myModal'));
+                            $('#myModal').modal('openModal');
+                        });
+                        
+                        // WhatsApp Button Handler - Open modal first
+                        $("#whatsapp-inquiry-button").click(function(){
+                            var $button = $(this);
+                            // Store WhatsApp data in the form
+                            $('#myModal').data('whatsapp-number', $button.data('whatsapp-number'));
+                            $('#myModal').data('product-name', $button.data('product-name'));
+                            $('#myModal').data('product-sku', $button.data('product-sku'));
+                            $('#myModal').data('product-url', $button.data('product-url'));
+                            $('#myModal').data('message-template', $button.data('message-template'));
+                            
+                            // Mark as WhatsApp submission
+                            $('#whatsapp_submit_flag').val('1');
+                            
+                            // Open the modal
                             var options = {
                                 modalClass: 'prd-inquiry-popup',
                                 type: 'popup',
@@ -120,6 +174,7 @@ if ($module_status == 1) {
                                id="prd_sku"
                                value="<?= $escaper->escapeHtml($product_sku) ?>" >
                         <input type="hidden" name="inquiry_status" id="inquiry_status" value="0">
+                        <input type="hidden" name="whatsapp_submit_flag" id="whatsapp_submit_flag" value="0">
                         <div class="field required">
                             <label for="user_name" class="label">
                                 <span><?= $escaper->escapeHtml('Name:') ?></span>

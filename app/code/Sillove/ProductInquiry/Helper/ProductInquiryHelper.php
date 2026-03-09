@@ -28,6 +28,10 @@ class ProductInquiryHelper extends AbstractHelper
     public const ADMIN_EMAIL_ADDRESS_COPY = 'productinquiry/email_setting/email_copy';
     public const EMAIL_TEMPLATE_CUSTOMER = 'productinquiry/email_setting/email_template_customer';
     public const STORE_EMAIL_LIST = 'productinquiry/email_setting/store_email_list';
+    public const ENABLE_WHATSAPP = 'productinquiry/whatsapp_setting/enable_whatsapp';
+    public const WHATSAPP_MOBILE_NUMBER = 'productinquiry/whatsapp_setting/whatsapp_mobile_number';
+    public const WHATSAPP_BUTTON_TEXT = 'productinquiry/whatsapp_setting/whatsapp_button_text';
+    public const WHATSAPP_MESSAGE_TEMPLATE = 'productinquiry/whatsapp_setting/whatsapp_message_template';
 
     /**
      * @var StoreManagerInterface
@@ -389,5 +393,93 @@ class ProductInquiryHelper extends AbstractHelper
             }
         }
         return $fileType;
+    }
+
+    /**
+     * Get WhatsApp Enable Status
+     *
+     * @return mixed
+     */
+    public function getWhatsAppEnableStatus()
+    {
+        return $this->scopeConfig->getValue(self::ENABLE_WHATSAPP, ScopeInterface::SCOPE_STORE);
+    }
+
+    /**
+     * Get WhatsApp Mobile Number
+     *
+     * @return mixed
+     */
+    public function getWhatsAppMobileNumber()
+    {
+        return $this->scopeConfig->getValue(self::WHATSAPP_MOBILE_NUMBER, ScopeInterface::SCOPE_STORE);
+    }
+
+    /**
+     * Get WhatsApp Button Text
+     *
+     * @return mixed
+     */
+    public function getWhatsAppButtonText()
+    {
+        $buttonText = $this->scopeConfig->getValue(self::WHATSAPP_BUTTON_TEXT, ScopeInterface::SCOPE_STORE);
+        if (empty($buttonText)) {
+            $buttonText = 'Send via WhatsApp';
+        }
+        return $buttonText;
+    }
+
+    /**
+     * Get WhatsApp Message Template
+     *
+     * @return mixed
+     */
+    public function getWhatsAppMessageTemplate()
+    {
+        return $this->scopeConfig->getValue(self::WHATSAPP_MESSAGE_TEMPLATE, ScopeInterface::SCOPE_STORE);
+    }
+
+    /**
+     * Format WhatsApp Message
+     *
+     * @param array $inquiryData
+     * @param string $productName
+     * @param string $productSku
+     * @param string $productUrl
+     * @return string
+     */
+    public function formatWhatsAppMessage($inquiryData, $productName = '', $productSku = '', $productUrl = '')
+    {
+        $template = $this->getWhatsAppMessageTemplate();
+        
+        if (empty($template)) {
+            // Default template
+            $message = "Product Inquiry\n\n";
+            $message .= "Name: " . ($inquiryData['usr_name'] ?? '') . "\n";
+            $message .= "Email: " . ($inquiryData['email'] ?? '') . "\n";
+            $message .= "Subject: " . ($inquiryData['subject'] ?? '') . "\n";
+            $message .= "Message: " . ($inquiryData['inq_msg'] ?? '') . "\n";
+            if (!empty($productName)) {
+                $message .= "\nProduct: " . $productName . "\n";
+            }
+            if (!empty($productSku)) {
+                $message .= "SKU: " . $productSku . "\n";
+            }
+            if (!empty($productUrl)) {
+                $message .= "Product URL: " . $productUrl . "\n";
+            }
+        } else {
+            // Custom template with variable replacement
+            $message = $template;
+            $message = str_replace('{{name}}', $inquiryData['usr_name'] ?? '', $message);
+            $message = str_replace('{{email}}', $inquiryData['email'] ?? '', $message);
+            $message = str_replace('{{subject}}', $inquiryData['subject'] ?? '', $message);
+            $message = str_replace('{{message}}', $inquiryData['inq_msg'] ?? '', $message);
+            $message = str_replace('{{product_name}}', $productName, $message);
+            $message = str_replace('{{product_sku}}', $productSku, $message);
+            $message = str_replace('{{product_url}}', $productUrl, $message);
+        }
+        
+        return $message;
     }
 }

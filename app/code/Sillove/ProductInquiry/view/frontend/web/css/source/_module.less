@@ -3,6 +3,30 @@
 .inquiry-actions {
     display: block;
     margin: 10px 0 20px 0;
+    
+    button {
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .whatsapp-inquiry {
+        background-color: #25D366;
+        border-color: #25D366;
+        color: #ffffff;
+        
+        &:hover {
+            background-color: #20BA5A;
+            border-color: #20BA5A;
+            color: #ffffff;
+        }
+        
+        &:active,
+        &:focus {
+            background-color: #20BA5A;
+            border-color: #20BA5A;
+            color: #ffffff;
+        }
+    }
 }
 /*for popup dispaly none*/
 .modal {
@@ -28,6 +52,29 @@ aside.modal-popup.prd-inquiry-popup.modal-slide._inner-scroll._show
 }
 .inquiry-submit {
     margin-top: 15px;
+}
+
+/* WhatsApp button in form actions */
+.actions-toolbar {
+    .whatsapp-inquiry {
+        background-color: #25D366;
+        border-color: #25D366;
+        color: #ffffff;
+        margin-left: 10px;
+        
+        &:hover {
+            background-color: #20BA5A;
+            border-color: #20BA5A;
+            color: #ffffff;
+        }
+        
+        &:active,
+        &:focus {
+            background-color: #20BA5A;
+            border-color: #20BA5A;
+            color: #ffffff;
+        }
+    }
 }
 .attachement-error-msg {
     display: block;
