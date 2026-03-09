@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="Sillove" translate="label" sortOrder="300">
+            <label>Sillove</label>
+        </tab>
+        <section id="jewellery" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Jewellery Settings</label>
+            <tab>Sillove</tab>
+            <resource>Sillove_JewelleryPrice::config</resource>
+            <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                <comment>Price = (Labor + Silver Rate) × Silver Weight. All values are per gram. When you change Silver Rate here, all jewellery product prices update automatically.</comment>
+
+                <field id="silver_rate" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Silver Rate (per gram)</label>
+                    <comment>Current silver rate per gram. Saving a new value here updates all jewellery product prices immediately across the store.</comment>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
