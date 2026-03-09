@@ -221,6 +221,13 @@ class Save extends Action
                     $this->_productInquiryHelper->sendEmail(1, $rowData);
                     $this->_productInquiryHelper->sendEmail(0, $rowData);
                     $this->dataPersistor->clear('inquiry_form_data');
+                    
+                    // Check if this is a WhatsApp submission and redirect
+                    $whatsappRedirectUrl = $this->getWhatsAppRedirectUrl($data, $rowData);
+                    if ($whatsappRedirectUrl) {
+                        $resultRedirect->setUrl($whatsappRedirectUrl);
+                        return $resultRedirect;
+                    }
                 } catch (\Exception $e) {
                     $this->messageManager->addError(__('Please try again form was not submitted.'));
                 }
@@ -236,6 +243,13 @@ class Save extends Action
                     $this->_productInquiryHelper->sendEmail(1, $rowData);
                     $this->_productInquiryHelper->sendEmail(0, $rowData);
                     $this->dataPersistor->clear('inquiry_form_data');
+                    
+                    // Check if this is a WhatsApp submission and redirect
+                    $whatsappRedirectUrl = $this->getWhatsAppRedirectUrl($data, $rowData);
+                    if ($whatsappRedirectUrl) {
+                        $resultRedirect->setUrl($whatsappRedirectUrl);
+                        return $resultRedirect;
+                    }
                 } catch (\Exception $e) {
                     $this->messageManager->addError(__('Please try again, Form was not submitted.'));
                 }
@@ -248,5 +262,73 @@ class Save extends Action
             $resultRedirect->setUrl($this->_redirect->getRefererUrl());
             return $resultRedirect;
         }
+    }
+
+    /**
+     * Get WhatsApp Redirect URL if this is a WhatsApp submission
+     *
+     * @param array $data
+     * @param \Sillove\ProductInquiry\Model\Productinquiry $rowData
+     * @return string|null
+     */
+    private function getWhatsAppRedirectUrl($data, $rowData)
+    {
+        // Check if this is a WhatsApp submission
+        $whatsappSubmitFlag = isset($data['whatsapp_submit_flag']) && $data['whatsapp_submit_flag'] == '1';
+        
+        if (!$whatsappSubmitFlag) {
+            return null;
+        }
+        
+        // Get WhatsApp configuration
+        $whatsappNumber = $this->_productInquiryHelper->getWhatsAppMobileNumber();
+        if (empty($whatsappNumber)) {
+            return null;
+        }
+        
+        // Clean the WhatsApp number (remove spaces, +, -, and any non-digit characters except numbers)
+        $whatsappNumber = preg_replace('/[^0-9]/', '', $whatsappNumber);
+        
+        if (empty($whatsappNumber)) {
+            return null;
+        }
+        
+        // Get product details
+        $productId = isset($data['prd_entity_id']) ? $data['prd_entity_id'] : null;
+        $productName = '';
+        $productSku = isset($data['prd_sku']) ? $data['prd_sku'] : '';
+        $productUrl = '';
+        
+        if ($productId) {
+            try {
+                $product = $this->product->create()->load($productId);
+                $productName = $product->getName();
+                $productSku = $product->getSku();
+                $productUrl = $product->getProductUrl();
+            } catch (\Exception $e) {
+                // Product not found, use provided data
+            }
+        }
+        
+        // Format WhatsApp message using saved inquiry data
+        $inquiryData = [
+            'usr_name' => $rowData->getUsrName(),
+            'email' => $rowData->getEmail(),
+            'subject' => $rowData->getSubject(),
+            'inq_msg' => $rowData->getInqMsg()
+        ];
+        
+        $whatsappMessage = $this->_productInquiryHelper->formatWhatsAppMessage(
+            $inquiryData,
+            $productName,
+            $productSku,
+            $productUrl
+        );
+        
+        // Create WhatsApp URL - format: https://wa.me/<number>?text=<urlencodedmessage>
+        $encodedMessage = urlencode($whatsappMessage);
+        $whatsappUrl = 'https://wa.me/' . $whatsappNumber . '?text=' . $encodedMessage;
+        
+        return $whatsappUrl;
     }
 }
