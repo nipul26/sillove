@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">add_product_inquiry_form.add_product_inquiry_form_data_source</item>
+            <item name="deps" xsi:type="string">add_product_inquiry_form.add_product_inquiry_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">General Information</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">add_product_inquiry_form</item>
+        </item>
+        <item name="spinner" xsi:type="string">general_information</item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">Sillove\ProductInquiry\Block\Adminhtml\Productinquiry\Edit\Button\BackButton</item>
+            <item name="save" xsi:type="string">Sillove\ProductInquiry\Block\Adminhtml\Productinquiry\Edit\Button\SaveButton</item>
+            <item name="reset" xsi:type="string">Sillove\ProductInquiry\Block\Adminhtml\Productinquiry\Edit\Button\ResetButton</item>
+            <item name="delete" xsi:type="string">Sillove\ProductInquiry\Block\Adminhtml\Productinquiry\Edit\Button\DeleteButton</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <dataSource name="add_product_inquiry_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Sillove\ProductInquiry\Model\DataProvider</argument>
+            <argument name="name" xsi:type="string">add_product_inquiry_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+              <item name="config" xsi:type="array">
+                 <item name="submit_url" xsi:type="url" path="*/*/save"/>
+              </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="general_information">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string" translate="true"></item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <field name="inquiry_status">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Sillove\ProductInquiry\Model\InquiryStatus</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">inquiry_status</item>
+                    <item name="dataScope" xsi:type="string">inquiry_status</item>
+                </item>
+            </argument>
+        </field>
+        <field name="prd_entity_id" component="Sillove_ProductInquiry/js/components/select-product" sortOrder="20" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                    <item name="showCheckbox" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+            <settings>
+                <required>true</required>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+                <label translate="true">Select Product</label>
+                <dataScope>prd_entity_id</dataScope>
+                <componentType>field</componentType>
+                <listens>
+                    <link name="${ $.namespace }.${ $.namespace }:responseData">setParsed</link>
+                </listens>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Sillove\ProductInquiry\Ui\Component\Create\Form\Productinquiry\ProductOptions"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="usr_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Customer Name</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">usr_name</item>
+                    <item name="dataScope" xsi:type="string">usr_name</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="email">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Customer Email</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">email</item>
+                    <item name="dataScope" xsi:type="string">email</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="validate-email" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="subject">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Subject</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">subject</item>
+                    <item name="dataScope" xsi:type="string">subject</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="inq_msg">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Massage</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="source" xsi:type="string">inq_msg</item>
+                    <item name="dataScope" xsi:type="string">inq_msg</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="storeviews">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Cms\Ui\Component\Listing\Column\Cms\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" xsi:type="string" translate="true">Store View</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">storeviews</item>
+                    <item name="dataScope" xsi:type="string">storeviews</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="attechment_file">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="source" xsi:type="string">attechment_file</item>
+                    <item name="dataScope" xsi:type="string">attechment_file</item>
+                    <item name="label" xsi:type="string" translate="true">Upload Attachment File</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="allowedExtensions" xsi:type="string">pdf csv xls doc docx txt jpg jpeg gif png</item>
+                    <item name="maxFileSize" xsi:type="number">2097152</item>
+                    <item name="formElement" xsi:type="string">fileUploader</item>
+                    <item name="previewTmpl" xsi:type="string">Sillove_ProductInquiry/file-preview</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                    <item name="required" xsi:type="boolean">false</item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="url" path="productinquiry/productinquiry/uploadfile" >
+                            <param name="target_element_id">attechment_file</param>
+                            <param name="type">image</param>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>

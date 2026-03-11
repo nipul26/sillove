@@ -1,0 +1,81 @@
+{{template config_path="design/email/header_template"}}
+<!--@subject {{trans "Product Inquiry - %subject" subject=$subject}}   @-->
+<!--@vars {
+"var add":"Add",
+"var inq_reply":"Inquiry Replay",
+"var subject":"Subject",
+"var usr_name":"Username",
+"var email":"Email",
+"var prd_name":"Product Name",
+"var prd_sku":"Product Sku",
+"var prd_url":"Product Url",
+"var store_view":"Store View",
+"var inq_msg":"Inquiry Message",
+"var support_name":"Support Name",
+"var support_email":"Support Email"
+} @-->
+<div>
+	<h2 align="center">PRODUCT INQUIRY DETAILS</h2>
+		<h3>
+			<strong>Hello {{trans "%usr_name" usr_name=$usr_name}},</strong>
+		</h3>
+		{{if add}}
+		<p>
+			<span>Your request has been generated successfully, you will hear from us shortly.</span>
+		</p>
+		{{/if}}
+	<p><span><strong><u>Your Inquiry Details:</u></strong></span></p>
+	<table cellpadding="5" width="100%" border="1" style="border-color: #ddd;">
+		<tr>
+			<td width="20%" ><b>Name:</b></td>
+			<td style="padding-left: 8px; " >{{var usr_name}}</td>
+		</tr>
+		<tr>
+			<td width="20%" ><b>E-mail:</b></td>
+			<td style="padding-left: 8px; " >{{var email}}</td>
+		</tr>
+		<tr>
+			<td width="20%" ><b>Subject:</b></td>
+			<td style="padding-left: 8px; " >{{var subject}}</td>
+		</tr>
+		<tr>
+			<td width="20%" ><b>Product Name:</b></td>
+			<td style="padding-left: 8px; " >{{var prd_name}}</td>
+		</tr>
+		<tr>
+			<td width="20%" ><b>Product SKU:</b></td>
+			<td style="padding-left: 8px; " >{{var prd_sku}}</td>
+		</tr>
+		<tr>
+			<td width="20%" ><b>Page Source:</b></td>
+			<td style="padding-left: 8px; " >{{var prd_url}}</td>
+		</tr>
+		<tr>
+			<td width="20%" ><b>Store View:</b></td>
+			<td style="padding-left: 8px; " >{{var store_view}}</td>
+		</tr>
+		<tr>
+			<td width="20%" ><b>Message:</b></td>
+			<td style="padding-left: 8px;" >{{var inq_msg}}</td>
+		</tr>
+		{{if inq_reply}}
+		<tr>
+			<td width="20%" ><b>Reply:</b></td>
+			<td style="padding-left: 8px;" >{{var inq_reply}}</td>
+		</tr>
+		{{/if}}
+	</table>
+	<p>
+		<span>
+			<strong>This messsage has been generated automatically and please do not replay to it.</strong>
+		</span>
+	</p>
+	<div>
+		<p>
+			<span>Kind regards,</span>
+			<span>{{var support_name}}</span>
+			<span>Email: {{var support_email}}</span>
+		</p>
+	</div>
+</div>
+{{template config_path="design/email/footer_template"}}

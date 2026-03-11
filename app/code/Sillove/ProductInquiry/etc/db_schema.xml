@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="sillove_productinquiry_admingrid" resource="default" engine="innodb" comment="Product Inquiry Table">
+    <column xsi:type="int" name="id" padding="11" unsigned="false" nullable="false" identity="true" comment="Product Id"/>
+    <column xsi:type="varchar" name="prd_entity_id" nullable="false" length="255" comment="Product Entity ID"/>
+    <column xsi:type="varchar" name="prd_sku" nullable="false" length="255" comment="Product SKU"/>
+    <column xsi:type="varchar" name="storeviews" nullable="false" length="255" comment="Current Store View"/>
+    <column xsi:type="varchar" name="usr_name" nullable="false" length="255" comment="User Name"/>
+    <column xsi:type="varchar" name="email" nullable="false" length="255" comment="Email Address"/>
+    <column xsi:type="mediumtext" name="subject" nullable="false" comment="Subject"/>
+    <column xsi:type="mediumtext" name="inq_msg" nullable="false" comment="Inquiry Massage"/>
+    <column xsi:type="varchar" name="attechment_file" nullable="true" length="255" comment="Attechment File Name"/>
+    <column xsi:type="varchar" name="inquiry_status" nullable="true" length="255" comment="Inquiry Status"/>
+    <column xsi:type="mediumtext" name="inq_reply" nullable="false" comment="Inquiry Reply"/>
+    <column xsi:type="timestamp" name="pubish_datetime" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Publish Date Time"/>
+    <column xsi:type="timestamp" name="update_datetime" on_update="false" nullable="true" comment="Modification Date Time"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="id"/>
+    </constraint>
+  </table>
+</schema>

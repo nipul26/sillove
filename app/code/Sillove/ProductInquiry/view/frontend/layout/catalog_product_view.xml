@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.main">
+            <block class="Sillove\ProductInquiry\Block\Catalog\Product\View\Enquiry"
+                   name="product.info.enquiry" after="product.info.price"
+                   template="Sillove_ProductInquiry::catalog/product/view/inquirybutton.phtml">
+                <!-- For Magento Recaptcha -->
+                <container name="form.additional.info.product.inquiry.button">
+                    <block class="Magento\ReCaptchaUi\Block\ReCaptcha"
+                           name="recaptcha1"
+                           after="-"
+                           template="Magento_ReCaptchaFrontendUi::recaptcha.phtml"
+                           ifconfig="recaptcha_frontend/type_for/productinquiry">
+                        <arguments>
+                            <argument name="recaptcha_for" xsi:type="string">productinquiry</argument>
+                            <argument name="jsLayout" xsi:type="array">
+                                <item name="components" xsi:type="array">
+                                    <item name="recaptcha" xsi:type="array">
+                                        <item name="component" xsi:type="string">Magento_ReCaptchaFrontendUi/js/reCaptcha</item>
+                                    </item>
+                                </item>
+                            </argument>
+                        </arguments>
+                    </block>
+                </container>
+            </block>
+        </referenceContainer>
+        <referenceBlock name="product.info.details">
+            <block class="Sillove\ProductInquiry\Block\Catalog\Product\View\Enquiry" name="product-inquiry-tab-main" template="Sillove_ProductInquiry::catalog/product/view/inquirytab.phtml" group="detailed_info">
+                <arguments>
+                    <argument name="sort_order" xsi:type="string">1000</argument>
+                </arguments>
+                <!-- For Magento Recaptcha -->
+                <container name="form.additional.info.product.inquiry.tab">
+                    <block class="Magento\ReCaptchaUi\Block\ReCaptcha"
+                           name="recaptcha2"
+                           after="-"
+                           template="Magento_ReCaptchaFrontendUi::recaptcha.phtml"
+                           ifconfig="recaptcha_frontend/type_for/productinquirytab">
+                        <arguments>
+                            <argument name="recaptcha_for" xsi:type="string">productinquirytab</argument>
+                            <argument name="jsLayout" xsi:type="array">
+                                <item name="components" xsi:type="array">
+                                    <item name="recaptcha" xsi:type="array">
+                                        <item name="component" xsi:type="string">Magento_ReCaptchaFrontendUi/js/reCaptcha</item>
+                                    </item>
+                                </item>
+                            </argument>
+                        </arguments>
+                    </block>
+                </container>
+            </block>
+        </referenceBlock>
+        <referenceBlock name="head.components">
+            <block class="Magento\Framework\View\Element\Js\Components" name="captcha_page_head_components" template="Magento_Captcha::js/components.phtml"/>
+        </referenceBlock>
+    </body>
+</page>

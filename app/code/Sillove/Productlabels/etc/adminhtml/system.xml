@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="productlable" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Product Labels</label>
+            <tab>sillove</tab>
+            <resource>Sillove_Productlabels::productlable_configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <field id="enable"
+                       translate="label"
+                       type="select"
+                       sortOrder="10"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="padding_setting"
+                       translate="label"
+                       type="text"
+                       sortOrder="20"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Padding Between Labels</label>
+                    <depends>
+                        <field id="*/*/enable">1</field>
+                    </depends>
+                    <validate>required-entry validate-digits validate-not-negative-number validate-digits-range digits-range-0-10000</validate>
+                </field>
+                <field id="display_mode"
+                       translate="label"
+                       type="select"
+                       sortOrder="30"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Display Mode</label>
+                    <depends>
+                        <field id="*/*/enable">1</field>
+                    </depends>
+                    <source_model>Sillove\Productlabels\Model\Config\Source\DisplayMode</source_model>
+                    <comment><![CDATA[]]></comment>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

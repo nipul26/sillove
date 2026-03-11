@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="urn:Magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="productinquiry_email_setting_email_template" label="Product Inquiry Template" file="inquiry_template.html" type="html" module="Sillove_ProductInquiry" area="frontend"/>
+    <template id="productinquiry_email_setting_email_template_customer" label="Product Inquiry Reply Template" file="inquiry_template_customer.html" type="html" module="Sillove_ProductInquiry" area="frontend"/>
+</config>

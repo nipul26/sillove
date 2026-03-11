@@ -1,0 +1,224 @@
+//
+//  Color variables
+//  _____________________________________________
+@theme-primary-color: #1A3D5C;
+@theme-secondary-color: #F6E9D1;
+@theme__color__primary: @theme-primary-color;
+@bg-color-red: #E26363;
+@border-color-light: #e9e9e9;
+@color-text-gray: #747474;
+@color-686868:#686868;
+
+//
+//  Input
+//  _____________________________________________
+@input-placeholder-color: @theme-secondary-color;
+
+//
+//  Button
+//  _____________________________________________
+@button-primary__color: @theme-secondary-color;
+@button-primary__hover__border: 1px solid @theme__color__primary;
+@button-primary__hover__color: @theme-primary-color;
+@button__font-weight: @font-weight__heavier;
+@button-primary__active__color: @theme-primary-color;
+@button-primary__active__border: 1px solid @theme-primary-color;
+
+//
+//  Typography
+//  _____________________________________________
+@font-family-name__base: 'Poppins';
+
+
+//
+//  Navigation
+//  _____________________________________________
+@navigation-level0-item__line-height: normal;
+
+@navigation-level0-item__active__background: @theme-primary-color;
+@navigation-level0-item__active__border-color: false;
+@navigation-level0-item__active__border-style: false;
+@navigation-level0-item__active__border-width: false;
+@navigation-level0-item__active__color: @color-white;
+@navigation-level0-item__hover__color: @color-white;
+
+//
+//  Desktop Navigation
+//  _____________________________________________
+@navigation-desktop__background: @theme-secondary-color;
+@navigation-desktop__font-weight: @font-weight__regular;
+@navigation-desktop-level0-item__color: @theme-primary-color;
+
+@navigation-desktop-level0-item__active__background: @theme-primary-color;
+@navigation-desktop-level0-item__active__border-color: '';
+@navigation-desktop-level0-item__active__border-style: '';
+@navigation-desktop-level0-item__active__border-width: '';
+@navigation-desktop-level0-item__active__color: @color-white;
+
+@navigation-desktop-level0-item__hover__background: @theme-primary-color;
+@navigation-desktop-level0-item__hover__color: @color-white;
+
+@submenu-desktop-item__hover__background: @theme-primary-color;
+@submenu-desktop-item__hover__color: @color-white;
+
+@submenu-desktop-item__active__background: @submenu-desktop-item__hover__background;
+@submenu-desktop-item__active__border-color: '';
+@submenu-desktop-item__active__border-style: '';
+@submenu-desktop-item__active__border-width: 0;
+@submenu-desktop-item__active__color: @color-white;
+
+
+@submenu-item__active__color: @theme-primary-color;
+
+//
+//  Form variables
+//  _____________________________________________
+@form-element-input__height: 36px;
+@form-element-input__padding: 0 18px;
+@form-element-input__background: #f4f4f4;
+@form-element-input__border-radius: 5px;
+@form-element-input__font-size: 12px;
+@form-element-input__color: #686868;
+@form-element-input__font-weight: @font-weight__regular;
+
+
+//
+//  Focus
+//  ---------------------------------------------
+@focus__box-shadow: none;
+
+
+//
+//  Layout variables
+//  _____________________________________________
+@layout__max-width: 188rem;
+@layout-indent__width: 45px;
+
+//
+//  Link
+//  _____________________________________________
+@link__color: @theme-primary-color;
+
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .pages {
+        .page {
+            min-width: 18px;
+            background-color: @color-white;
+            border: 1px solid @theme-primary-color;
+            font-weight: @font-weight__semibold;
+            border-radius: 5px;
+        }
+    }
+
+    .abs-cart-block {
+         > .title {
+            border-top: 1px solid @border-color-light;
+            padding: 9px 40px 9px 0;
+            text-align: left;
+
+            &:after {
+                color: @theme-primary-color;
+            }
+         }
+
+         .content {
+            display: block;
+         }
+    }
+
+    .abs-sidebar-totals {
+        border-top: 1px solid @border-color-light;
+        .grand {
+            th,
+            td {
+                padding: 30px 0;
+            }
+            strong {
+                color: @theme-primary-color;
+                padding: 0;
+            }
+            .mark,
+            .amount {
+                .lib-font-size(15);
+                border-top: 1px solid @border-color-light;
+            }
+        }
+
+        tbody tr:last-child td {
+            padding-bottom: 0;
+        }
+    }
+
+    .abs-discount-block {
+        .actions-toolbar {
+            .action {
+                &.primary,
+                &.cancel {
+                    .lib-button-primary();
+                    border-bottom-left-radius: 5px;
+                    border-top-left-radius: 5px;
+                    margin: 0;
+                    white-space: nowrap;
+                    width: auto;
+                    height: 49px;
+                    
+                     &:not(:focus) {
+                        box-shadow: unset;
+                    }
+
+                    &:active {
+                        box-shadow: unset;
+                    }
+                }
+            }
+        }
+    }
+
+    .abs-checkout-title {
+        .lib-css(padding-bottom, @checkout-step-title__padding);
+        .lib-typography(
+        @_font-size: @checkout-step-title__font-size,
+        @_font-weight: @checkout-step-title__font-weight,
+        @_font-family: false,
+        @_font-style: false,
+        @_line-height: false
+        );
+        color: @theme-primary-color;
+        margin-bottom: 10px;
+        border-bottom: 1px solid @border-color-light;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .abs-shopping-cart-items-desktop {
+        padding-right: 28px;
+    }
+
+    .abs-discount-block-desktop {
+        .block {
+            .content {
+                .lib-css(padding, 0);
+            }
+        }
+    }
+
+    .abs-pager-toolbar {
+        .toolbar-amount {
+            line-height: 18px;
+            padding: 6px 11px;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .abs-cart-block {
+        > .title {
+            padding: 9px 40px 9px 15px;
+        }
+    }
+}
