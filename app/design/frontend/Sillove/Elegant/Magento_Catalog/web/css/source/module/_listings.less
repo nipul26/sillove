@@ -62,11 +62,16 @@
                 display: block;
                 hyphens: auto;
                 word-wrap: break-word;
+                min-height: 40px;
                 
                 a {
                     font-size: 13px;
                     color: @theme-primary-color;
                     font-weight: @font-weight__semibold;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;  
+                    overflow: hidden;
 
                     &:hover,
                     &:active,
