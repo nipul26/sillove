@@ -34,11 +34,11 @@
             </container>
         </referenceContainer>
         
-        <referenceBlock name="customer" remove="true"/>
         <referenceBlock name="register-link" remove="true"/>
+        <referenceBlock name="footer_links" remove="true"/>
         <referenceBlock name="header.panel" remove="true"/>
-        <referenceBlock name="footer_links" remove="true"/>      
-        
+
         <move element="header.links" destination="header-wrapper" before="minicart"/>
+
     </body>
 </page>
