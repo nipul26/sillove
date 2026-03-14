@@ -157,6 +157,8 @@
         .fotorama__stage {
             margin-bottom: 23px;
             box-shadow: 2px 2px 20px rgba(0,0,0,.1);
+            border-radius: 10px;
+            background: @color-white;
         }
         .fotorama__nav__shaft {
             .fotorama__thumb-border {
@@ -177,30 +179,11 @@
                 }
             }
         }
-
-        // .fotorama__thumb {
-        //     border-radius: 12px;
-        //     border: 1px solid @color-686868;
-        // }
-        // .fotorama__nav__shaft {
-        //     display: flex;
-        //     column-gap: 18px;
-
-        //     .fotorama__nav__frame {
-        //         margin: 0;
-        //     }
-
-        //     .fotorama__thumb-border {
-        //         border-radius: 12px;
-        //         margin: 3px 1px;
-        //         border: 2px solid @color-686868; 
-        //     }
-        // }
-        // .fotorama__active {
-        //     .fotorama__thumb {
-        //         border: none;
-        //     }
-        // }
+        .fotorama__stage__frame {
+            .fotorama__img {
+                border-radius: 10px;
+            }
+        }
     }
 
     .product.info.detailed {
@@ -1264,26 +1247,39 @@
 
 & when (@media-common = true) {
 
-    .block.related {
-        .action.select {
-            &:extend(.abs-action-button-as-link all);
-            vertical-align: top;
-        }
-
-        .field.choice {
-            left: 10px;
-            position: absolute;
-            top: 10px;
-            z-index: 1;
-
-            .label {
-                &:extend(.abs-visually-hidden all);
+    .block {
+        &.related,
+        &.upsell {
+            .action.select {
+                &:extend(.abs-action-button-as-link all);
+                vertical-align: top;
             }
-        }
 
-        .products-related {
+            .field.choice {
+                left: 10px;
+                position: absolute;
+                top: 10px;
+                z-index: 1;
+
+                .label {
+                    &:extend(.abs-visually-hidden all);
+                }
+            }
+            .product-items {
+                opacity: 0;
+
+                &.slick-initialized {
+                    opacity: 1;
+                }
+            }
+            .slick-track {
+                margin: 0 -10px;
+            }
+            .slick-slide {
+                padding: 0 10px;
+            }
             .product-item {
-                width: 100%;
+                margin-bottom: 0;
             }
         }
     }
