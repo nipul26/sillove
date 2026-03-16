@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+	    <testimonial>
+            <general>
+                <enabled>1</enabled>
+                <title>Trusted By Millions Of Customers</title>
+                <customers_submit>0</customers_submit>
+                <allowGuest>1</allowGuest>
+                <autoApprove>1</autoApprove>
+                <per_page>2</per_page>
+                <slide>1</slide>
+                <vertical>false</vertical>
+                <infinite>true</infinite>
+                <autoplay>true</autoplay>
+                <arrows>true</arrows>
+                <center_mode>true</center_mode>
+                <dots>false</dots>
+                <fade>true</fade>
+                <rows>0</rows>
+                <speed>150</speed>
+                <autoplay_speed>2000</autoplay_speed>
+                <adaptive_height>false</adaptive_height>
+                <padding>15</padding>
+                <mobile>1</mobile>
+                <portrait>1</portrait>
+                <landscape>1</landscape>
+                <tablet>1</tablet>
+                <notebook>1</notebook>
+                <laptop>1</laptop>
+                <desktop>1</desktop>
+                <widescreen>1</widescreen>
+                <visible>1</visible>
+            </general>
+	    </testimonial>
+	</default>
+</config>
