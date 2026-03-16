@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="V4U_ZipChecker::manager" title="Zipcode Checker" module="V4U_ZipChecker" sortOrder="10" resource="V4U_ZipChecker::manager" />
+        <add id="V4U_ZipChecker::add_row" title="Manage Zipcodes" module="V4U_ZipChecker" sortOrder="20" parent="V4U_ZipChecker::manager" action="grid/grid" resource="V4U_ZipChecker::add_row"/>
+    </menu>
+</config>
