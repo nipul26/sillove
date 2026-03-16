@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+		<tab id="v4u" translate="label" sortOrder="400">
+           <label>V4U ZipChecker</label>
+        </tab>
+        <section id="zipchecker" translate="label" type="text" sortOrder="450" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Check Delivery</label>
+            <tab>v4u</tab>
+            <resource>V4U_ZipChecker::config_zipchecker</resource>
+            <group id="config" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="is_enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="success_message" translate="label" type="text" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Success message</label>
+					<validate>required-entry</validate>
+					<depends>
+                        <field id="is_enabled">1</field>
+                    </depends>
+                </field>
+				<field id="error_message" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Error message</label>
+					<validate>required-entry</validate>
+					<depends>
+                        <field id="is_enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
