@@ -1,0 +1,40 @@
+<?php
+    $width = $block->getWidth();
+    $height = $block->getHeight();
+    $product_id = $block->getProductId();
+    $data = $block->getFlipImageUrl($product_id);
+    $mediaUrlLink = $data['flipimgurl'];
+    $flipImage = $data['imageflip'];
+    $isEnable = $block->getIsEnable();
+    $flipImageUrl = "";
+    $flipValue = "";
+    $flipValue = $escaper->escapeUrl($block->getFlipvalue());
+?>
+<span class="product-image-container"
+  style="width:<?=$escaper->escapeHtmlAttr($width)?>px;">
+    <span class="product-image-wrapper" style="padding-bottom: <?=($block->getRatio() * 100)?>%;">
+        <img class="<?=$escaper->escapeHtmlAttr($block->getClass())?>"
+            <?= $block->getCustomAttributes() ? $escaper->escapeHtmlAttr($block->getCustomAttributes()) : ''?>
+            src="<?=$escaper->escapeUrl($block->getImageUrl())?>"
+            <?php if (isset($flipImage) && $flipImage != 'no_selection' && $isEnable == 1) {
+                $flipImageUrl = $escaper->escapeUrl($mediaUrlLink);
+                ?>
+                <?php if ($flipValue) { ?>
+            flipurl= "<?=/* @noEscape */$flipImageUrl;?>"
+            flipvalue= "<?=/* @noEscape */$flipValue;?>"
+            <?php } ?>
+            <?php } ?>
+            max-width="<?=$escaper->escapeHtmlAttr($width)?>"
+            max-height="<?=$escaper->escapeHtmlAttr($height)?>"
+            alt="<?=/* @noEscape */$block->stripTags($block->getLabel(), null, true)?>"
+            />
+    </span>
+</span>
+
+<script type="text/x-magento-init">
+{
+    "*": {
+        "imageflip": {}
+    }
+}
+</script>
