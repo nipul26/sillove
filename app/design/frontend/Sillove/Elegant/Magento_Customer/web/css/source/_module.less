@@ -262,7 +262,8 @@
         .box-actions {
             margin-top: @indent__xs;
         }
-        &.related {
+        &.related,
+        &.upsell {
             .title {
                 margin-bottom: @indent__s;
                 text-align: center;
@@ -505,7 +506,8 @@
     }
 
     .block {
-        &.related {
+        &.related,
+        &.upsell {
             .title {
                 strong {
                     font-size: 20px;
@@ -520,6 +522,20 @@
                     &::after {
                         right: -45px;
                     }
+                }
+            }
+            .slick-track {
+                margin: 0 -5px;
+            }
+            .slick-slide {
+                padding: 0 5px;
+            }
+        }
+        &.upsell {
+            .title {
+                strong {
+                    width: 70%;
+                    display: inline-block;
                 }
             }
         }

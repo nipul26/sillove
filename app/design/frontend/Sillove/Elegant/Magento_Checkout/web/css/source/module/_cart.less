@@ -650,6 +650,30 @@
         }
     }
 
+    .block.crosssell {
+        .title {
+            strong {
+                font-size: 20px;
+
+                &::before,
+                &::after {
+                    width: 37px;
+                }
+                &::before {
+                    left: -45px;
+                }
+                &::after {
+                    right: -45px;
+                }
+            }
+        }
+        .slick-track {
+            margin: 0 -5px;
+        }
+        .slick-slide {
+            padding: 0 5px;
+        }
+    }
 }
 
 //
@@ -660,11 +684,50 @@
     //  Cross sell
     .block {
         &.crosssell {
-            .lib-css(padding, 0 @mobile-cart-padding);
             margin-top: 70px;
+            width: 100%;
 
-            .product-item-info {
-                width: 200px;
+            .title {
+                margin-bottom: @indent__s;
+                text-align: center;
+
+                strong {
+                    font-size: 24px;
+                    font-weight: @font-weight__regular;
+                    margin: 0 0 10px;
+                    color: @theme-primary-color;
+                    text-transform: uppercase;
+                    letter-spacing: 3px;
+                    position: relative;
+
+                    &::before,
+                    &::after {
+                        content: '';
+                        width: 47px;
+                        height: 2px;
+                        background: @theme-primary-color;
+                        display: inline-block;
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                    }
+                    &::before {
+                        left: -65px;
+                    }
+                    &::after {
+                        right: -65px;
+                    }
+                }
+            }
+
+            .slick-track {
+                margin: 0 -10px;
+            }
+            .slick-slide {
+                padding: 0 10px;
+            }
+            .product-item {
+                margin-bottom: 0;
             }
         }
     }
@@ -879,19 +942,6 @@
     //  Empty cart
     .cart-empty {
         &:extend(.abs-revert-side-paddings all);
-    }
-
-    //  Cross sell
-    .block {
-        &.crosssell {
-            .lib-layout-column(2, 1, @layout-column-checkout__width-main);
-            &:extend(.abs-add-box-sizing-desktop all);
-            padding: 0 4% 0 0;
-
-            .products-grid .product-item {
-                width: (100%/4);
-            }
-        }
     }
 }
 
