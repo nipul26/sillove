@@ -24,7 +24,6 @@
 
     .nav-sections {
         .lib-css(background, @navigation-desktop__background);
-        margin-bottom: 25px;
     }
 
     .nav-toggle {
@@ -227,7 +226,7 @@
             @_shadow: 0 0 5px 0 rgba(50, 50, 50, .75);
             .lib-css(box-shadow, @_shadow, 1);
             left: 0;
-            z-index: 99;
+            z-index: @z-index-10;
             background: @color-white;
         }
 
@@ -307,6 +306,11 @@
     .nav-sections {
         .lib-vendor-prefix-flex-shrink(0);
         .lib-vendor-prefix-flex-basis(auto);
+        position: fixed;
+        top: 106px;
+        left: 0;
+        width: 100%;
+        z-index: @z-index-2 - 1;
     }
 
     .nav-sections-item-title {
@@ -340,6 +344,14 @@
                 font-family: "Inter";
                 border-radius: 0 10px 0 0;
             }
+        }
+    }
+}
+
+& when (@media-common = true) {
+    @media only screen and (min-width: @screen__m) and (max-width: (@screen__l - 1)) {
+        .sections.nav-sections {
+            top: 101px;
         }
     }
 }
