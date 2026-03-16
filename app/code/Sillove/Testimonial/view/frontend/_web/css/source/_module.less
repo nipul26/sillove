@@ -1,0 +1,265 @@
+// /**
+//  * phpcs:ignoreFile
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .testimonial-form {
+        > .fieldset {
+            .account & {
+                border-radius: 10px;
+                border: 1px solid #cacaca;
+                margin-bottom: 2.5rem;
+            }
+            .legend {
+                .account & {
+                    border-bottom: 1px solid #cacaca;
+                    font-size: 1.8rem;
+                    line-height: 2.7rem;
+                    margin: 0;
+                    padding: 2rem;
+                    width: 100%;
+                }
+            }
+            .fieldset.fieldset-form-container {
+                margin: 0;
+                padding: 2rem;
+            }
+        }
+        .rating-summary {
+            input[type='radio'] {
+                margin-right: 10px;
+                margin-top: -2px;
+                vertical-align: middle;
+            }
+        }
+    }
+    .block-testimonial {
+        max-width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .testimonial {
+        background: @color-white;
+        padding-bottom: 0;
+        position: relative;
+
+        &:not(.slick-initialized) {
+            .item {
+                &:not(:first-child) {
+                    display: none;
+                }
+            }
+        }
+        
+        .item {
+            border: 1px solid @text__color__muted;
+            background: @color-white;
+            border-radius: 12px;
+            padding: 2.2rem;
+            position: relative;
+            opacity: .4;
+            transform: scale(0.7);
+            transition: opacity .25s ease, transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+        }
+
+        .slick-track {
+            .lib-vendor-prefix-display(flex);
+            .lib-vendor-box-align(center);
+        }
+
+        .slick-slide {
+            &:not(.slick-current) {
+                &:not(.slick-current ~ .slick-slide) {
+                    transform: translateX(60%);
+                }
+            }
+        }
+
+        .slick-current.slick-center {
+            ~ .slick-slide {
+                display: none;
+                transform: translateX(-60%);
+            }
+            + .slick-slide {
+                display: block;
+            }
+        }
+
+        .slick-current,
+        .slick-center {
+            .item {
+                border-color: @theme__color__secondary;
+                box-shadow: 0 0 20px 0 rgba(0, 0, 0, .1);
+                opacity: 1;
+                transform: scale(1);
+                z-index: 1;
+            }
+        }
+
+        .review-content {
+            margin: 0;
+            position: relative;
+        }
+
+        .author-info {
+            .lib-css(font-weight, @font-weight__bold);
+            .author-designation {
+                color: @text__color__muted;
+                display: block;
+                font-size: 14px;
+                font-weight: normal;
+                line-height: 24px;
+            }
+        }
+
+
+        .comment {
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 4;
+            display: -webkit-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            &.h5 {
+                font-size: 2rem;
+                line-height: 3rem;
+                margin: 0 0 2.2rem;
+            }
+        }
+
+        .review-actions {
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 16px;
+            margin-bottom: 1.6rem;
+        }
+
+        .review-number {
+            font-size: 1.6rem;
+            font-weight: bold;
+            line-height: 2.5rem;
+            margin: 0;
+        }
+
+        .rating-summary {
+            overflow: hidden;
+            white-space: nowrap;
+            .rating-result {
+                margin-left: 0;
+            }
+        }
+        .tagline {
+            font-weight: 700;
+        }
+
+        .actions-toolbar {
+            text-align: center;
+        }
+
+        .slick-dots {
+            display: flex;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 3rem;
+            max-width: 329px;
+            position: relative;
+            width: 100%;
+            z-index: 9;
+
+            li {
+                flex: 1;
+                height: 4px;
+                margin: 0 -1px;
+                padding: 0;
+                width: auto;
+
+                button {
+                    background: @theme__border__color;
+                    border: 0;
+                    border-radius: 999px;
+                    height: 4px;
+                    padding: 0;
+                    width: 100%;
+
+                    &:before {
+                        display: none;
+                    }
+                }
+
+                &.slick-active {
+                    button {
+                        background: @theme__color__secondary;
+                    }
+                }
+            }
+        }
+
+        .slick-list {
+            overflow: visible;
+            z-index: 9;
+        }
+    }
+}
+
+//
+//  Mobile (style-m.css)
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .testimonial {
+        .review-columns {
+            .lib-vendor-prefix-flex-direction(column-reverse);
+            justify-content: center;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .testimonial {
+        .slick-list {
+            padding: 0 !important;
+        }
+        .slick-current.slick-center ~ .slick-slide,
+        .slick-slide:not(.slick-current):not(.slick-current ~ .slick-slide) {
+            transform: none;
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .testimonial-form {
+        > .fieldset {
+            max-width: 50%;
+        }
+    }
+    .testimonial {
+        .comment {
+            -webkit-line-clamp: 6;
+            &.h5 {
+                font-size: 2.4rem;
+                line-height: 3.2rem;
+                margin-bottom: 3.2rem;
+            }
+        }
+
+        .item {
+            padding: 3.2rem;
+        }
+        .slick-dots {
+            margin-top: 4.1rem;
+        }
+    }
+}
