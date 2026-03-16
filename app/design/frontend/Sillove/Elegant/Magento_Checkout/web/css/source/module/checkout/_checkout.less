@@ -110,6 +110,14 @@
     }
 }
 
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .checkout-index-index {
+        .page-wrapper {
+            padding-top: 80px;
+        }
+    }
+}
+
 //
 //  Desktop
 //  _____________________________________________
@@ -126,6 +134,12 @@
             display: block;
             float: right;
             margin: 23px 0 0;
+        }
+    }
+
+    .checkout-index-index {
+        .page-wrapper {
+            padding-top: 108px;
         }
     }
 }

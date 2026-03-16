@@ -92,6 +92,11 @@
     .page-header {
         .lib-css(background-color, @header__background-color);
         border-bottom: 1px solid @border-color__base;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: @z-index-2;
 
         .panel.wrapper {
             .lib-css(background-color, @header-panel__background-color);
@@ -388,9 +393,16 @@
             .payment-links {
                 display: flex;
                 flex-wrap: wrap;
+                column-gap: 6px;
+            }
+            .social-links {
+                a {
+                    transition: @ease-transition-5s;
+                    display: inline-block;
 
-                li {
-                    margin-left: 6px;
+                    &:hover {
+                        margin-top: -3px;
+                    }
                 }
             }
         }
@@ -530,9 +542,15 @@
 
     .discount-panel-header {
         overflow: hidden;
+
+        figure {
+            height: 30px;
+        }
         img {
+            height: 100% !important;
             animation: marqueeAnimation 30s linear infinite;
             padding-left: 100%;
+            object-fit: scale-down;
         }
     }
 
@@ -618,6 +636,12 @@
         .categories-box {
             img {
                 margin: 0 auto;
+                transition: @ease-transition-5s;
+            }
+            &:hover {
+                img {
+                    scale: 1.03;
+                }
             }
         }
     }
@@ -641,6 +665,11 @@
                 img {
                     display: block;
                     width: 100%;
+                    transition: @ease-transition-5s;
+
+                    &:hover {
+                        scale: 1.03;
+                    }
                 }
 
                 .content-section {
@@ -657,11 +686,20 @@
                 flex-direction: column;
                 justify-content: space-between;
 
-                img {
-                    display: block;
+                .img-box {
                     border-radius: 10px;
                     overflow: hidden;
                     width: 100%;
+                    
+                    img {
+                        width: 100%;
+                        display: block;
+                        transition: @ease-transition-5s;
+                        
+                        &:hover {
+                            scale: 1.03;
+                        }
+                    }
                 }
             }
         }
@@ -683,22 +721,28 @@
                 img {
                     display: block;
                     width: 100%;
+                    transition: @ease-transition-5s;
+
+                    &:hover {
+                        scale: 1.03;
+                    }
                 }
             }
         }
-        .btn-view-more {
-            text-align: center;
-            margin: 30px 0 0;
+    }
 
-            .action.primary {
-                max-width: 189px;
-                width: 100%;
-                height: 43px;
-                line-height: 28px;
-                text-transform: uppercase;
-                font-size: 16px;
-                font-weight: @font-weight__heavier;
-            }
+    .btn-view-more {
+        text-align: center;
+        margin: 30px 0 0;
+
+        .action.primary {
+            max-width: 190px;
+            width: 100%;
+            height: 45px;
+            line-height: 28px;
+            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: @font-weight__heavier;
         }
     }
 
@@ -732,20 +776,7 @@
     // New arrival section
     .new-arrival-section {
         margin-bottom: 30px;
-        .btn-view-more {
-            text-align: center;
-            margin: 30px 0 0;
-
-            .action.primary {
-                max-width: 150px;
-                width: 100%;
-                height: 37px;
-                line-height: 23px;
-                text-transform: uppercase;
-                font-size: 16px;
-                font-weight: @font-weight__heavier;
-            }
-        }
+        
         .product-item {
             .product-image-wrapper {
                 padding-bottom: 100% !important;
@@ -784,6 +815,11 @@
                 img {
                     display: block;
                     width: 100%;
+                    transition: @ease-transition-5s;
+
+                    &:hover {
+                        scale: 1.03;
+                    }
                 }
             }
         }
@@ -797,6 +833,11 @@
             .gifting-relation-box {
                 max-width: ~"calc(100% / 4 - 16px)";
                 width: 100%;
+                transition: @ease-transition-5s;
+
+                &:hover {
+                    margin-top: -5px;
+                }
 
                 img {
                     display: block;
@@ -896,6 +937,11 @@
                 img {
                     width: 100%;
                     display: block;
+                    transition: @ease-transition-5s;
+
+                    &:hover {
+                        scale: 1.03;
+                    }
                 }
             }
         }
@@ -908,6 +954,11 @@
             img {
                 width: 100%;
                 display: block;
+                transition: @ease-transition-5s;
+
+                &:hover {
+                    scale: 1.03;
+                }
             }
         }
     }
@@ -918,9 +969,6 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
-    .page-header {
-        margin-bottom: 15px;
-    }
     
     .customer-name,
     .customer-welcome + .authorization-link {
@@ -984,6 +1032,10 @@
         padding-right: 15px;
     }
     
+    .page-wrapper {
+        padding-top: 95px;
+    }
+
     .logo {
         margin: 0 auto;
         max-width: 110px;
@@ -1137,7 +1189,7 @@
                 max-width: 100%;
                 flex-direction: row;
 
-                img {
+                .img-box {
                     max-width: ~"calc(100% / 2 - 4px)";
                     width: 100%;
                 }
@@ -1173,8 +1225,12 @@
 
     .gifting-suggestion-section {
         .gifting-section-wrapper {
-            row-gap: 8px;
-            column-gap: 8px;
+            row-gap: 10px;
+            column-gap: 10px;
+
+            .gifting-box {
+                max-width: ~"calc(50% - 5px)";
+            }
         }
         .gifting-relation-wrapper {
             column-gap: 10px;
@@ -1463,6 +1519,7 @@
         margin: 0;
         position: relative;
         transition: margin .3s ease-out 0s;
+        padding-top: 165px;
 
         > .breadcrumbs,
         > .top-container,
