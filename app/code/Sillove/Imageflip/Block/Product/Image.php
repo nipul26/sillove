@@ -3,11 +3,13 @@
 namespace Sillove\Imageflip\Block\Product;
 
 use Sillove\Imageflip\Helper\Data;
+use Sillove\Productlabels\Block\Product\Image as ProductLabelsImage;
+use Sillove\Productlabels\Helper\ProductLabeHelper;
 use Magento\Catalog\Model\ProductFactory;
 use Magento\Catalog\Model\Product\Image\UrlBuilder;
 use Magento\Framework\View\Element\Template\Context;
 
-class Image extends \Magento\Catalog\Block\Product\Image
+class Image extends ProductLabelsImage
 {
     /**
      * @var ProductFactory
@@ -25,16 +27,17 @@ class Image extends \Magento\Catalog\Block\Product\Image
     protected $helperData;
 
     /**
-     * [__construct Construct Initialize]
-     * @param Data           $helperData  [description]
-     * @param Context        $context     [description]
-     * @param ProductFactory $productColl [description]
-     * @param UrlBuilder     $urlBuilder  [description]
-     * @param array          $data        [description]
+     * @param Data $helperData
+     * @param Context $context
+     * @param ProductLabeHelper $productlabehelper
+     * @param ProductFactory $productColl
+     * @param UrlBuilder $urlBuilder
+     * @param array $data
      */
     public function __construct(
         Data $helperData,
         Context $context,
+        ProductLabeHelper $productlabehelper,
         ProductFactory $productColl,
         UrlBuilder $urlBuilder,
         array $data = []
@@ -46,7 +49,7 @@ class Image extends \Magento\Catalog\Block\Product\Image
         $this->productColl = $productColl;
         $this->imageUrlBuilder = $urlBuilder;
         $this->helperData = $helperData;
-        parent::__construct($context, $data);
+        parent::__construct($context, $productlabehelper, $data);
     }
 
     /**

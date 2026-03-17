@@ -2,10 +2,6 @@
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
 
-    <!--  for product image block -->
-    <preference for="Magento\Catalog\Block\Product\Image" type="Sillove\Productlabels\Block\Product\Image" />
-
-
 <!--  for swatch change discount change  -->
     <type name="Magento\ConfigurableProduct\Block\Product\View\Type\Configurable">
         <plugin name="Sillove_Productlabels_product_block" type="Sillove\Productlabels\Plugin\Product\View\Type\ConfigurablePlugin" sortOrder="1" />

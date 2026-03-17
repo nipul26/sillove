@@ -13,6 +13,71 @@
 <span class="product-image-container"
   style="width:<?=$escaper->escapeHtmlAttr($width)?>px;">
     <span class="product-image-wrapper" style="padding-bottom: <?=($block->getRatio() * 100)?>%;">
+<?php
+$discount_val = 0;
+$helper = $block->getProductLabelhelper();
+$curr_page = $helper->getPageName();
+$prd_label = [];
+$module_ststus = $helper->getModuleStatus();
+if (($module_ststus) && ($curr_page != 'checkout_cart_index') && ($curr_page != 'catalog_product_view')) {
+    $label_data = $helper->getLabelData();
+    foreach ($label_data as $label_datakey => $label_datavalue) {
+        $prd_curr = $helper->getProductData($block->getProductId());
+        $page = $helper->getPageType($label_datavalue->getDisplayIn());
+        $group = $label_datavalue->getCustomerGroup();
+        $group_flage = $helper->getCurrentGroup($group);
+        $store_ids = $label_datavalue->getStoreviews();
+        $store_flage = $helper->getCurrentStore($store_ids);
+        if (($group_flage == 1) && ($store_flage == 1) && ($page == 1)) {
+            $fromDate = $prd_curr->getNewsFromDate();
+            $toDate = $prd_curr->getNewsToDate();
+            $rule_type = $label_datavalue->getRuleType();
+            if ($rule_type == 0) {
+                $date_cal = $helper->getDateCalculation($fromDate, $toDate);
+                if ($date_cal) {
+                    $prd_label[] = $label_datavalue->getData();
+                }
+                continue;
+            }
+            if ($rule_type == 1) {
+                $discount_data = $helper->getDiscountData($label_datavalue->getId());
+                if (count($discount_data->getData())) {
+                    $group = $helper->getGroup();
+                    $discount_val = $helper->getDiscount($prd_curr, $group);
+                    $discount_array = $helper->getDiscountColore($label_datavalue->getId(), $discount_val);
+                    if (($discount_val) && (!empty($discount_array))) {
+                        //@codingStandardsIgnoreStart
+                        $prd_label[] = array_merge($label_datavalue->getData(), array("discount"=>$discount_val));
+                        //@codingStandardsIgnoreEnd
+                    }
+                }
+                continue;
+            }
+            if ($rule_type == 2) {
+                $cond_data = $helper->getConditionData($label_datavalue, $prd_curr);
+                if ($cond_data == 1) {
+                    $prd_label[] = $label_datavalue->getData();
+                }
+            }
+        }
+    }
+    if (!empty($prd_label)) {
+        $label_show = $helper->getProductLabelHtml($prd_label, $discount_val);
+        $hover_val = $helper->getDisplayMode();
+        $hover_class = "";
+        if ($hover_val) {
+            $hover_class = "container-hover";
+        }
+        ?>
+        <div class="product-label-main  <?= $escaper->escapeHtmlAttr($hover_class) ?>">
+            <div class="product-label-div" >
+                <?= /* @noEscape */ $label_show ?>
+            </div>
+        </div>
+        <?php
+    }
+}
+?>
         <img class="<?=$escaper->escapeHtmlAttr($block->getClass())?>"
             <?= $block->getCustomAttributes() ? $escaper->escapeHtmlAttr($block->getCustomAttributes()) : ''?>
             src="<?=$escaper->escapeUrl($block->getImageUrl())?>"
@@ -22,7 +87,7 @@
                 <?php if ($flipValue) { ?>
             flipurl= "<?=/* @noEscape */$flipImageUrl;?>"
             flipvalue= "<?=/* @noEscape */$flipValue;?>"
-            <?php } ?>
+                <?php } ?>
             <?php } ?>
             max-width="<?=$escaper->escapeHtmlAttr($width)?>"
             max-height="<?=$escaper->escapeHtmlAttr($height)?>"
