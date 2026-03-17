@@ -137,7 +137,7 @@ class Toolbar extends \Magento\Catalog\Block\Product\ProductList\Toolbar
      *
      * @return string
      */
-    public function getDirection($code)
+    public function getDirection($code = null)
     {
         $direction = $this->_scopeConfig->getValue(
             'advanced_sorting/'.$code.'/sorting_dir',
