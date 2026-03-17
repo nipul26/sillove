@@ -1,0 +1,33 @@
+"Only Custom Modules","Only Custom Modules"
+"All Magento Modules","All Magento Modules"
+OK,OK
+"CHECK REWRITE","CHECK REWRITE"
+N/A,N/A
+"Up to Date","Up to Date"
+"Update needed","Update needed"
+Modules,Modules
+"Check Rewrites / Preferences","Check Rewrites / Preferences"
+Valid,Valid
+Invalid,Invalid
+"Yes (Recommended)","Yes (Recommended)"
+No,No
+Enabled,Enabled
+"Current Version","Current Version"
+"Latest Version","Latest Version"
+"Theme module","Theme module"
+Themes,Themes
+WeltPixel,WeltPixel
+"WeltPixel Documentation","WeltPixel Documentation"
+"Recommended Solutions:","Recommended Solutions:"
+Developer,Developer
+"System Information","System Information"
+Logs,Logs
+"Enable broken reference logs","Enable broken reference logs"
+"Content Security Policies","Content Security Policies"
+"Change Magento Default Mode","Change Magento Default Mode"
+"Only available from 2.3.5 version.","Only available from 2.3.5 version."
+"Report Only","Report Only"
+Area,Area
+"Original Class","Original Class"
+"Rewrite Class","Rewrite Class"
+Status,Status
