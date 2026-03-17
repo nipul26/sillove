@@ -130,16 +130,8 @@
             .lib-css(border, @swatch-option__border);
             cursor: pointer;
             float: left;
-            height: 56px;
             margin: 0 @indent__s @indent__xs 0;
-            max-width: 100%;
-            min-width: 56px;
-            overflow: hidden;
-            padding: 0;
             position: relative;
-            text-align: center;
-            text-overflow: ellipsis;
-            border-radius: 50%;
 
             &:focus {
                 box-shadow: @focus__box-shadow;
@@ -155,6 +147,7 @@
                 padding: 10px 8px;
                 height: auto;
                 border-radius: 5px;
+                text-align: center;
 
                 &.selected {
                     .lib-css(background-color, @swatch-option-text__selected__background-color);
@@ -176,6 +169,15 @@
 
             &.image,
             &.color {
+                height: 56px;
+                max-width: 100%;
+                min-width: 56px;
+                overflow: hidden;
+                padding: 0;
+                text-align: center;
+                text-overflow: ellipsis;
+                border-radius: 50%;
+
                 &:not(.disabled):hover {
                     .lib-css(border, @img-color-swatch-option__hover__border);
                     .lib-css(outline, @img-color-swatch-option__hover__outline);
@@ -360,7 +362,8 @@
     .sidebar {
         .filter-options {
             .swatch-option {
-                &.image {
+                &.image,
+                &.color {
                     min-width: 40px;
                     height: 40px;
                 }
