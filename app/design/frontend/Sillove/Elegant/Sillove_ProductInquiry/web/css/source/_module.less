@@ -1,0 +1,127 @@
+@red-colour: #e02b27;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    
+    /* For button show  */
+    .inquiry-actions {
+        display: block;
+        margin: 0;
+        
+        button {
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .action.inquiry {
+            display: none;
+        }
+        
+        .whatsapp-inquiry {
+            position: relative;
+            font-size: 0;
+            margin: 0 0 0 20px;
+            border: 0;
+            background: transparent;
+            
+            &::before {
+                content: '';
+                width: 26px;
+                height: 27px;
+                background: url('@{baseDir}/images/whatsapp-icon.png') no-repeat center center;
+                background-size: 26px;
+                position: absolute;
+                left: 0;
+                top: 0;
+                opacity: 0.8;
+            }
+        }
+    }
+    /*for popup dispaly none*/
+    .modal {
+        display: none;
+    }
+    /* popup css*/
+    aside.modal-popup.prd-inquiry-popup.modal-slide._inner-scroll._show
+    header.modal-header {
+        display: block;
+        margin: 0;
+        padding-top: 15px;
+    }
+    aside.modal-popup.prd-inquiry-popup.modal-slide._inner-scroll._show
+    .modal-inner-wrap {
+        box-sizing: border-box;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1024px;
+    }
+    /* form css*/
+    .inquiry-form fieldset.fieldset {
+        margin: 0 !important;
+    }
+    .inquiry-submit {
+        margin-top: 15px;
+    }
+
+    /* WhatsApp button in form actions */
+    .actions-toolbar {
+        .whatsapp-inquiry {
+            background-color: #25D366;
+            border-color: #25D366;
+            color: #ffffff;
+            margin-left: 10px;
+            
+            &:hover {
+                background-color: #20BA5A;
+                border-color: #20BA5A;
+                color: #ffffff;
+            }
+            
+            &:active,
+            &:focus {
+                background-color: #20BA5A;
+                border-color: #20BA5A;
+                color: #ffffff;
+            }
+        }
+    }
+    .attachement-error-msg {
+        display: block;
+        margin-top: 10px;
+    }
+    .extension-error,
+    .attachement-error-msg,
+    .captcha-error-msg {
+        color: @red-colour;
+        font-size: 1.2rem;
+    }
+    .inquiry-form .file-upload {
+        display: block;
+        margin-bottom: 8px;
+        width: 100%;
+    }
+    .file-upload-section .control input#attechment_file {
+        display: block;
+        margin-bottom: 8px;
+        width: 100%;
+    }
+    /* tab css */
+    div#product-inquiry-tab-main
+    div#myModal-tab
+    fieldset.fieldset
+    legend.legend.inuiry-legend {
+        border: none;
+        display: block;
+    }
+
+    @media only screen and (min-width: @screen__m) and (max-width: (@screen__l - 1)) {
+        .inquiry-actions {
+            .whatsapp-inquiry {
+                margin: 0 0 0 10px;
+            }
+        }
+    }
+}

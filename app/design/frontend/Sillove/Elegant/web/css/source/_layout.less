@@ -146,3 +146,30 @@
         padding: 10px 20px;
     }
 }
+
+& when (@media-common = true) {
+    @media only screen and (min-width: @screen__m) and (max-width: (@screen__l - 1)) {
+        .navigation,
+        .breadcrumbs,
+        .page-header .header.panel,
+        .header.content,
+        .footer.content,
+        .page-main,
+        .page-wrapper > .widget,
+        .page-wrapper > .page-bottom,
+        .block.category.event,
+        .top-container {
+            padding-left: @layout__width-xs-indent !important;
+            padding-right: @layout__width-xs-indent !important;
+        }
+
+        .page-layout-2columns-left {
+            .sidebar-main {
+                width: 30% !important;
+            }
+            .column.main {
+                width: 70% !important;
+            }
+        } 
+    }
+}
