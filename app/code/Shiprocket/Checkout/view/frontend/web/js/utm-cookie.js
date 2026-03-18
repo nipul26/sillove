@@ -18,9 +18,7 @@
  * @license     https://checkout.shiprocket.in/magento-license
  */
 
-define([], function () {
-    'use strict';
-
+(function () {
     var queryParams = new URLSearchParams(window.location.search);
     queryParams.delete('q');
     queryParams.delete('p');
@@ -34,4 +32,4 @@ define([], function () {
     if (utmString) {
         document.cookie = "sr_utm_data=" + encodeURIComponent(utmString) + "; path=/; max-age=2592000";
     }
-});
+})();
