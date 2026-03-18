@@ -1,0 +1,67 @@
+<?php
+/** @var $block Shiprocket\Checkout\Block\Adminhtml\System\Config\AccessKey */
+?>
+<?= $block->getChildHtml('button') ?>
+<span id="srcheckout_span">
+    <img class="processing" hidden="hidden" alt="Verifying..." style="margin:0 5px"
+         src="<?= $escaper->escapeUrl($block->getViewFileUrl('images/process_spinner.gif')) ?>"/>
+    <img class="proccessed" hidden="hidden" alt="Collected" style="margin:-3px 5px"
+         src="<?= $escaper->escapeUrl($block->getViewFileUrl('images/rule_component_apply.gif')) ?>"/>
+</span>
+<div>
+    <div id="srcheckout_access_token"></div>
+    <div id="srcheckout_access_secret"></div>
+    <div id="srcheckout_api_base_url"></div>
+</div> 
+<script>
+    require([
+        'jquery',
+        'prototype'
+    ], function (jQuery) {
+        jQuery('#srcheckout_get_access_key_button').click(function () {
+            generatedSrCheckoutAccessToken();
+        });
+ 
+        function generatedSrCheckoutAccessToken() {
+            var srcheckoutSpan = jQuery('#srcheckout_span');
+            new Ajax.Request('<?= $escaper->escapeUrl($block->getAjaxAccessKeyUrl()) ?>', {
+                method: 'get',
+                loaderArea: true,
+                asynchronous: true,
+                onCreate: function () {
+                    srcheckoutSpan.find('.proccessed').hide();
+                    srcheckoutSpan.find('.processing').show();
+                    jQuery('#srcheckout_access_token').text('');
+                    jQuery('#srcheckout_access_secret').text('');
+                    jQuery('#srcheckout_api_base_url').text('');
+                },
+                onSuccess: function (response) {
+                    srcheckoutSpan.find('.processing').hide();
+                    var resultText = '';
+                    var secret = '';
+                    var apiUrl = '';
+                    if (response.status > 200) {
+                        resultText = response.responseJSON.msg;
+                    } else {
+                        resultText = 'Access Token: '+ response.responseJSON.token;
+                        secret = 'Access Token Secret: '+ response.responseJSON.secret;
+                        apiUrl = 'API Url: '+ response.responseJSON.apiurl;
+                        if(response.responseJSON.status == true){
+                            srcheckoutSpan.find('.proccessed').show();
+                            jQuery('#srcheckout_access_token').css('color', 'green');
+                            jQuery('#srcheckout_access_secret').css('color', 'green');
+                            jQuery('#srcheckout_api_base_url').css('color', 'green');
+                            jQuery('#srcheckout_access_token').text(resultText);
+                            jQuery('#srcheckout_access_secret').text(secret);
+                            jQuery('#srcheckout_api_base_url').text(apiUrl);
+                        } else {
+                            jQuery('#srcheckout_access_token').css('color', 'red');
+                        }
+                    }
+                    jQuery('#srcheckout_access_token').text(resultText);
+                }
+            });
+        }
+ 
+    });
+</script>

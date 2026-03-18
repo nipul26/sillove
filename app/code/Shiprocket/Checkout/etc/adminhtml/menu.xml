@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Shiprocket
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the shiprocket.in license that is
+ * available through the world-wide-web at this URL:
+ * https://checkout.shiprocket.in/magento-license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Shiprocket
+ * @package     Shiprocket_Checkout
+ * @copyright   Copyright (c) Shiprocket (https://www.shiprocket.in/)
+ * @license     https://checkout.shiprocket.in/magento-license
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Shiprocket_Checkout::srcheckout" title="Shiprocket" module="Shiprocket_Checkout" sortOrder="51" resource="Shiprocket_Checkout::srcheckout"/>
+        <add id="Shiprocket_Checkout::orderlog" title="Order Log" module="Shiprocket_Checkout" sortOrder="10" action="srcheckout/orderlog" resource="Shiprocket_Checkout::orderlog" parent="Shiprocket_Checkout::srcheckout"/>
+        <add id="Shiprocket_Checkout::config" title="Configuration Settings" module="Shiprocket_Checkout" sortOrder="20" action="adminhtml/system_config/edit/section/shiprocket_checkout" resource="Shiprocket_Checkout::config" parent="Shiprocket_Checkout::srcheckout"/>
+    </menu>
+</config>

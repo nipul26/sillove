@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Shiprocket
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the shiprocket.in license that is
+ * available through the world-wide-web at this URL:
+ * https://checkout.shiprocket.in/magento-license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Shiprocket
+ * @package     Shiprocket_Checkout
+ * @copyright   Copyright (c) Shiprocket (https://www.shiprocket.in/)
+ * @license     https://checkout.shiprocket.in/magento-license
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+	<module name="Shiprocket_Checkout" setup_version="1.1.0"/>
+	<sequence>
+        <module name="Magento_Webapi" />
+        <module name="Magento_Sales"/>
+        <module name="Magento_Quote"/>
+        <module name="Magento_Checkout"/>
+        <module name="Magento_OfflinePayments"/>
+        <module name="Magento_Payment"/>
+    </sequence>
+</config>
