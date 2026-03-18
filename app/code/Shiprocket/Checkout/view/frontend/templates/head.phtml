@@ -20,6 +20,25 @@
  */
 
 if ($block->isEnabled()): ?>
+?>
+<script type="text/javascript">
+(function () {
+    var queryParams = new URLSearchParams(window.location.search);
+    queryParams.delete('q');
+    queryParams.delete('p');
+    queryParams.delete('pageNum');
+    var utmString = Array.from(queryParams.entries())
+        .map(function (pair) {
+            return pair[0] + '=' + pair[1];
+        })
+        .join('&');
+    if (utmString) {
+        document.cookie = "sr_utm_data=" + encodeURIComponent(utmString) + "; path=/; max-age=2592000";
+    }
+})();
+</script>
+
+<?php if ($block->isEnabled()): ?>
     <script>var _srDefine = window.define; window.define = undefined;</script>
     <script src="<?= $escaper->escapeUrl($block->getCheckoutJs()) ?>" src_type="url" ></script>
     <?php if ($block->isPromiseEnabled()): ?>
