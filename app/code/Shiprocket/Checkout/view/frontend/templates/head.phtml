@@ -1,55 +1,74 @@
 <?php
 /**
- * Shiprocket
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the shiprocket.in license that is
- * available through the world-wide-web at this URL:
- * https://checkout.shiprocket.in/magento-license
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade this extension to newer
- * version in the future.
- *
- * @category    Shiprocket
- * @package     Shiprocket_Checkout
- * @copyright   Copyright (c) Shiprocket (https://www.shiprocket.in/)
- * @license     https://checkout.shiprocket.in/magento-license
+ * Shiprocket Safe Integration (Fixed for Magento RequireJS)
  */
-
-if ($block->isEnabled()): ?>
 ?>
+
+<!-- UTM Cookie Script -->
 <script type="text/javascript">
-(function () {
-    var queryParams = new URLSearchParams(window.location.search);
-    queryParams.delete('q');
-    queryParams.delete('p');
-    queryParams.delete('pageNum');
-    var utmString = Array.from(queryParams.entries())
-        .map(function (pair) {
-            return pair[0] + '=' + pair[1];
-        })
-        .join('&');
-    if (utmString) {
-        document.cookie = "sr_utm_data=" + encodeURIComponent(utmString) + "; path=/; max-age=2592000";
+(function(){
+    var q = new URLSearchParams(window.location.search);
+    q.delete("q");
+    q.delete("p");
+    q.delete("pageNum");
+
+    var s = Array.from(q.entries()).map(function(p){
+        return p[0] + "=" + p[1];
+    }).join("&");
+
+    if (s) {
+        document.cookie = "sr_utm_data=" + encodeURIComponent(s) + "; path=/; max-age=2592000";
     }
 })();
 </script>
 
 <?php if ($block->isEnabled()): ?>
-    <script>var _srDefine = window.define; window.define = undefined;</script>
-    <script src="<?= $escaper->escapeUrl($block->getCheckoutJs()) ?>" src_type="url" ></script>
-    <?php if ($block->isPromiseEnabled()): ?>
-        <script src="<?= $escaper->escapeUrl($block->getPromiseJs()) ?>" src_type="url" ></script>
+
+    <?php
+    // Prevent loading on checkout page (IMPORTANT)
+    $fullActionName = $block->getRequest()->getFullActionName();
+    ?>
+
+    <?php if ($fullActionName !== 'checkout_index_index'): ?>
+
+        <!-- Load Shiprocket JS safely AFTER page load -->
+        <script>
+        window.addEventListener('load', function () {
+            try {
+                var script = document.createElement('script');
+                script.src = "<?= $escaper->escapeUrl($block->getCheckoutJs()) ?>";
+                script.async = true;
+                document.body.appendChild(script);
+            } catch (e) {
+                console.error('Shiprocket JS load error:', e);
+            }
+        });
+        </script>
+
+        <?php if ($block->isPromiseEnabled()): ?>
+        <script>
+        window.addEventListener('load', function () {
+            try {
+                var script = document.createElement('script');
+                script.src = "<?= $escaper->escapeUrl($block->getPromiseJs()) ?>";
+                script.async = true;
+                document.body.appendChild(script);
+            } catch (e) {
+                console.error('Shiprocket Promise JS error:', e);
+            }
+        });
+        </script>
+        <?php endif; ?>
+
+        <!-- CSS -->
+        <link href="<?= $escaper->escapeUrl($block->getCheckoutCss()) ?>" rel="stylesheet" type="text/css" media="all" />
+
     <?php endif; ?>
-    <script>window.define = _srDefine;</script>
-    <link href="<?= $escaper->escapeUrl($block->getCheckoutCss()) ?>" rel="stylesheet" type="text/css" media="all" />
+
 <?php endif; ?>
 
 <?php if (!$block->isProduction()): ?>
-    <script type="application/javascript">
-        const checkoutBuyer = "https://fastrr-boost-ui-dev.pickrr.com/";
-    </script>
+<script type="application/javascript">
+    var checkoutBuyer = "https://fastrr-boost-ui-dev.pickrr.com/";
+</script>
 <?php endif; ?>
