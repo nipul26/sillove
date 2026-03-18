@@ -1,0 +1,10 @@
+.admin__menu .item-srcheckout.level-0 > a::before {
+    content: url('../images/srlogog.svg');
+    height: 35px;
+}
+.admin__menu .item-srcheckout.level-0:hover > a::before, .admin__menu .item-srcheckout._active.level-0 > a::before {
+    content: url('../images/srlogow.svg');
+}
+.admin__menu .item-srcheckout.level-0 > a{
+    padding: .5rem .5rem .5rem;
+}

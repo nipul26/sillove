@@ -1,0 +1,102 @@
+<?php
+/**
+ * @var $block \Shiprocket\Checkout\Block\Buynow
+ */
+
+$srHelper = $block->getShiprocketHelper();
+$integrationType = $srHelper->getMiniCartIntegrationType();
+$integrationId = $srHelper->getMiniCartIntegrationId();
+$checkoutUrl = $block->getUrl('checkout', ['_secure' => true]);
+$cartItemUrl = $block->getUrl('srcheckout/cart/index');
+$integrationId = '#'.$integrationId;
+
+if ($srHelper->isEnabled() && $srHelper->isEnabledOnMiniCartPage()) {
+    if ($srHelper->getMiniCartIntegrationType()) {
+        $url = $block->getBaseUrl();
+        $domain = $url = preg_replace("#^[^:/.]*[:/]+#i", "", trim($url, '/'));
+        ?>
+        <?php if ($integrationType) { ?>
+            <?php $integrationId = '#sr-minicart-buynow-button' ?>
+            <div data-type="minicart" class="shiprocket-mini-headless" type="button">
+                <input type="hidden" value="<?= $escaper->escapeHtmlAttr($domain) ?>" id="sellerDomain"/>
+                <button type="button" class="sr-headless-checkout" id="sr-minicart-buynow-button">
+                    <div class="sr-d-flex flex-center">
+                        <div class="sr-d-flex full-width flex-center">
+                            <span class="sr-checkout-visible2">
+                                <?= $escaper->escapeHtmlAttr($srHelper->getMinicartButtonText()) ?>
+                            </span>
+                            <img src="<?= $escaper->escapeUrl($srHelper->getUpiOptionImageUrl()) ?>" 
+                            alt="Google Pay | Phone Pay | UPI" class="sr-pl-15 sr-checkout-visible" />
+                            <div class="loader5"></div>
+                            <img src="<?= $escaper->escapeUrl($srHelper->getRightArrowImageUrl()) ?>" 
+                            class="sr-pl-15 sr-checkout-visible1" alt="right_arrow">
+                        </div>
+                        <div>
+                            <span class="sr-powered-by">
+                                <img src="<?= $escaper->escapeUrl($srHelper->getPoweredImageUrl()) ?>" alt="" />
+                            </span>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        <?php } ?>
+    <?php } ?>
+    <style>
+        <?= $escaper->escapeUrl($srHelper->getMiniCartPageCSS()) ?>
+    </style>
+    <script>
+        require(['jquery', 'Magento_Customer/js/customer-data'], function ($, customerData) {
+            $(function () {
+                var itemUrl = "<?= $escaper->escapeUrl($cartItemUrl) ?>";
+                var integrationId = "<?= /* @noEscape */ $integrationId ?>";
+                var oos = '<div class="product-item-details" id="fynd-item-error" '+
+                 'style="color:red">Out of Stock</div>';
+                var coos = '<div id="fynd-out-of-stock" style="color: red">' +
+                    'Some items in your cart are out of stock</div>';
+                $(document).on('click', integrationId, function (event) {
+                    event.preventDefault();
+                    localStorage.setItem('fastrrCouponCode', '');
+                    $.ajax({
+                        url: itemUrl,
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {},
+                        beforeSend: function () {
+                            $('[id="fynd-item-error"]').remove();
+                            $('[id="fynd-out-of-stock"]').remove();
+                        },
+                        complete: function(response) {
+                            $('[id="fynd-item-error"]').remove();
+                            $('[id="fynd-out-of-stock"]').remove();
+                            var stockStatus = response.responseJSON.stockStatus;
+                            $.each(stockStatus, function(key, value) {
+                                if (value['is_serviceable'] === false) {
+                                    $('[data-cart-item="'+key+'"]').parent().parent().parent().parent().append(oos);
+                                }
+                            });
+                            var status = response.responseJSON.status;
+                            if (status === true) {
+                                var coupons = response.responseJSON.coupons;
+                                if (coupons) {
+                                    localStorage.setItem('fastrrCouponCode', coupons);
+                                }
+                                var cartData = response.responseJSON.itemData;
+                                cartData.onInitiationFailure = function() {
+                                    window.location = '<?= $escaper->escapeUrl($checkoutUrl) ?>';
+                                };
+                                console.log(cartData);
+                                shiprocketCheckoutBuyCartHandler(cartData);
+                            } else {
+                                $(integrationId).before(coos);
+                            }
+                        },
+                        error: function (xhr, status, errorThrown) {
+                            console.log('Error: Unable to fetch cart Items');
+                        }
+                    });
+                });
+
+            });
+        });
+    </script>
+<?php } ?>

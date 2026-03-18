@@ -1,0 +1,29 @@
+{
+    "name": "shiprocket/module-checkout",
+    "description": "One Step Checkout By Shiprocket",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Amit Kumar",
+            "email": "amit.k@pickrr.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "keywords": [
+        "Magento 2",
+        "Magento 2 Checkout",
+        "Magento 2 One Click Checkout",
+        "Shiprocket Fastrr Checkout"
+    ],
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Shiprocket\\Checkout\\": ""
+        }
+    },
+    "version": "1.1.0"
+}

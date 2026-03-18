@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Shiprocket
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the shiprocket.in license that is
+ * available through the world-wide-web at this URL:
+ * https://checkout.shiprocket.in/magento-license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Shiprocket
+ * @package     Shiprocket_Checkout
+ * @copyright   Copyright (c) Shiprocket (https://www.shiprocket.in/)
+ * @license     https://checkout.shiprocket.in/magento-license
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="shiprocket_checkout" sortOrder="1000">
+            <label>Shiprocket Checkout</label>
+        </tab>
+        <section id="shiprocket_checkout" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1" type="text">
+            <tab>shiprocket_checkout</tab>
+            <label>General</label>
+            <resource>Shiprocket_Checkout::config</resource>
+            <group id="integration" type="text" showInWebsite="1" showInStore="1" showInDefault="1" sortOrder="10">
+                <label>Support</label>
+                <field id="msg" translate="label" type="note" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <frontend_model>Shiprocket\Checkout\Block\Adminhtml\System\Config\Integration</frontend_model>
+                </field>
+            </group>
+            <group id="features" type="text" showInWebsite="1" showInStore="1" showInDefault="1" sortOrder="20">
+                <label>Feature Requests</label>
+                <field id="msg" translate="label" type="note" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <frontend_model>Shiprocket\Checkout\Block\Adminhtml\System\Config\Features</frontend_model>
+                </field>
+            </group>
+            <group id="general" type="text" showInWebsite="1" showInStore="1" showInDefault="1" sortOrder="30">
+                <label>General</label>
+                <field id="enabled" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1" type="select">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="mode" sortOrder="20" showInDefault="1" showInStore="1" showInWebsite="1" type="select">
+                    <label>Production Mode</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="shiprocket_checkout/general/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="create_invoice" sortOrder="30" showInDefault="1" showInStore="1" showInWebsite="1" type="select">
+                    <label>Create Invoice for prepaid Order</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="shiprocket_checkout/general/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="product_discount" sortOrder="40" showInDefault="1" showInStore="1" showInWebsite="1" type="select">
+                    <label>Add Total Discount to Order items</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If enabled then total discount will be applied to all order items</comment>
+                    <depends>
+                        <field id="shiprocket_checkout/general/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="ordr_log" sortOrder="50" showInDefault="1" showInStore="1" showInWebsite="1" type="select">
+                    <label>Create Order Log</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="shiprocket_checkout/general/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="ordr_log_cleanup_frequency" sortOrder="60" showInDefault="1" showInStore="1" showInWebsite="1" type="select">
+                    <label>Order Log Cleanup Frequency</label>
+                    <source_model>Shiprocket\Checkout\Model\Config\Source\LogCleanupFrequency</source_model>
+                    <depends>
+                        <field id="shiprocket_checkout/general/enabled">1</field>
+                    </depends>
+                </field>
+				<field id="get_access_key" translate="label" sortOrder="80" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <frontend_model>Shiprocket\Checkout\Block\Adminhtml\System\Config\AccessKey</frontend_model>
+                    <depends>
+                        <field id="shiprocket_checkout/general/enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="button" type="text" showInWebsite="1" showInStore="1" showInDefault="1" sortOrder="40">
+                <depends>
+                    <field id="shiprocket_checkout/general/enabled">1</field>
+                </depends>
+                <label>Shiprocket Checkout Button Settings</label>
+                <group id="productpage" type="text" showInWebsite="1" showInStore="1" showInDefault="1" sortOrder="10">
+                    <label>Product Page</label>
+                    <field id="product" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1" type="select">
+                        <label>Enable</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <depends>
+                            <field id="shiprocket_checkout/general/enabled">1</field>
+                        </depends>
+                    </field>
+                    <field id="product_integration_type" sortOrder="11" showInDefault="1" showInStore="1" showInWebsite="1" type="select">
+                        <label>Integration Type</label>
+                        <source_model>Shiprocket\Checkout\Model\Config\Source\IntegrationType</source_model>
+                        <comment>Use custom if you want to integration on your custom button</comment>
+                        <depends>
+                            <field id="shiprocket_checkout/button/productpage/product">1</field>
+                        </depends>
+                    </field>
+                    <field id="product_button_id" sortOrder="12" showInDefault="1" showInStore="1" showInWebsite="1" type="text">
+                        <label>Button selector</label>
+                        <comment>eg. #sr-buynow-button</comment>
+                        <depends>
+                            <field id="shiprocket_checkout/button/productpage/product_integration_type">0</field>
+                        </depends>
+                    </field>
+                    <field id="producttxt" sortOrder="13" showInDefault="1" showInStore="1" showInWebsite="1" type="text">
+                        <label>Button text</label>
+                        <depends>
+                            <field id="shiprocket_checkout/button/productpage/product_integration_type">1</field>
+                        </depends>
+                    </field>
+                    <field id="productcss" sortOrder="15" showInDefault="1" showInStore="1" showInWebsite="1" type="textarea">
+                        <label>Button CSS</label>
+                        <depends>
+                            <field id="shiprocket_checkout/button/productpage/product">1</field>
+                        </depends>
+                    </field>
+                </group>
+                <group id="cartpage" type="text" showInWebsite="1" showInStore="1" showInDefault="1" sortOrder="20">
+                    <label>Cart Page</label>
+                    <field id="cart" sortOrder="20" showInDefault="1" showInStore="1" showInWebsite="1" type="select">
+                        <label>Enable</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <depends>
+                            <field id="shiprocket_checkout/general/enabled">1</field>
+                        </depends>
+                    </field>
+                    <field id="cart_integration_type" sortOrder="21" showInDefault="1" showInStore="1" showInWebsite="1" type="select">
+                        <label>Integration Type</label>
+                        <source_model>Shiprocket\Checkout\Model\Config\Source\IntegrationType</source_model>
+                        <comment>Use custom if you want to integration on your custom button</comment>
+                        <depends>
+                            <field id="shiprocket_checkout/button/cartpage/product">1</field>
+                        </depends>
+                    </field>
+                    <field id="cart_button_id" sortOrder="22" showInDefault="1" showInStore="1" showInWebsite="1" type="text">
+                        <label>Button selector</label>
+                        <comment>eg. #sr-buynow-button</comment>
+                        <depends>
+                            <field id="shiprocket_checkout/button/cartpage/cart_integration_type">0</field>
+                        </depends>
+                    </field>
+                    <field id="carttxt" sortOrder="23" showInDefault="1" showInStore="1" showInWebsite="1" type="text">
+                        <label>Button text</label>
+                        <depends>
+                            <field id="shiprocket_checkout/button/cartpage/cart_integration_type">1</field>
+                        </depends>
+                    </field>
+                    <field id="cartcss" sortOrder="25" showInDefault="1" showInStore="1" showInWebsite="1" type="textarea">
+                        <label>Bustom CSS</label>
+                        <depends>
+                            <field id="shiprocket_checkout/button/cartpage/cart">1</field>
+                        </depends>
+                    </field>
+                </group>
+                <group id="minicartpage" type="text" showInWebsite="1" showInStore="1" showInDefault="1" sortOrder="30">
+                    <label>Minicart Page</label>
+                    <field id="minicart" sortOrder="30" showInDefault="1" showInStore="1" showInWebsite="1" type="select">
+                        <label>Enable</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <depends>
+                            <field id="shiprocket_checkout/general/enabled">1</field>
+                        </depends>
+                    </field>
+                    <field id="minicart_type" sortOrder="31" showInDefault="1" showInStore="1" showInWebsite="1" type="select">
+                        <label>Integration Type</label>
+                        <source_model>Shiprocket\Checkout\Model\Config\Source\IntegrationType</source_model>
+                        <depends>
+                            <field id="shiprocket_checkout/button/minicartpage/minicart">1</field>
+                        </depends>
+                    </field>
+                    <field id="minicart_button_id" sortOrder="32" showInDefault="1" showInStore="1" showInWebsite="1" type="text">
+                        <label>Button selector</label>
+                        <comment>eg. #sr-buynow-button</comment>
+                        <depends>
+                            <field id="shiprocket_checkout/button/minicartpage/minicart_type">0</field>
+                        </depends>
+                    </field>
+                    <field id="minicarttxt" sortOrder="36" showInDefault="1" showInStore="1" showInWebsite="1" type="text">
+                        <label>Button text</label>
+                        <depends>
+                            <field id="shiprocket_checkout/button/minicartpage/minicart_type">1</field>
+                        </depends>
+                    </field>
+                    <field id="minicartcss" sortOrder="40" showInDefault="1" showInStore="1" showInWebsite="1" type="textarea">
+                        <label>Button CSS</label>
+                        <depends>
+                            <field id="shiprocket_checkout/button/minicartpage/minicart">1</field>
+                        </depends>
+                    </field>
+                </group>
+            </group>
+            <group id="customer" type="text" showInWebsite="0" showInStore="0" showInDefault="1" sortOrder="50">
+                <depends>
+                    <field id="shiprocket_checkout/general/enabled">1</field>
+                </depends>
+                <label>Customer Settings</label>
+                <field id="setdefaultaddress" sortOrder="10" showInDefault="1" showInStore="0" showInWebsite="0" type="select">
+                    <label>Set address as default billing and shipping</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="guest" sortOrder="20" showInDefault="1" showInStore="0" showInWebsite="0" type="select">
+                    <label>Create Order as Guest Customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="customerattribute" sortOrder="30" showInDefault="1" showInStore="0" showInWebsite="0" type="select">
+                    <label>Select Customer Identifier Attribute</label>
+                    <source_model>Shiprocket\Checkout\Model\Config\Source\CustomerAttribute</source_model>
+                    <comment>We support Email/Mobile number only</comment>
+                    <depends>
+                        <field id="shiprocket_checkout/customer/guest">0</field>
+                    </depends>
+                </field>
+                <field id="mobileprefix" sortOrder="40" showInDefault="1" showInStore="1" showInWebsite="1" type="text">
+                    <label>Mobile Number Prefix</label>
+                    <comment>For example +91 or 91</comment>
+                    <depends>
+                        <field id="shiprocket_checkout/customer/guest">0</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="promise" type="text" showInWebsite="0" showInStore="0" showInDefault="1" sortOrder="60">
+                <depends>
+                    <field id="shiprocket_checkout/general/enabled">1</field>
+                </depends>
+                <label>Promise (EDD)</label>
+                <field id="enabled" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1" type="select">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Additional charges applicable.</comment>
+                </field>
+                <field id="promisecss" sortOrder="20" showInDefault="1" showInStore="1" showInWebsite="1" type="textarea">
+                    <label>Custom CSS</label>
+                    <depends>
+                        <field id="shiprocket_checkout/promise/enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+        <section id="carriers" translate="label" type="text" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="srshipping" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Shiprocket Shipping</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="name" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Method Name</label>
+                </field>
+                <field id="price" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Price</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+                <field id="handling_type" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Calculate Handling Fee</label>
+                    <source_model>Magento\Shipping\Model\Source\HandlingType</source_model>
+                </field>
+                <field id="handling_fee" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Handling Fee</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Sort Order</label>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Title</label>
+                </field>
+                <field id="sallowspecific" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Ship to Applicable Countries</label>
+                    <frontend_class>shipping-applicable-country</frontend_class>
+                    <source_model>Magento\Shipping\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="91" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Ship to Specific Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="showmethod" translate="label" type="select" sortOrder="92" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Show Method if Not Applicable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <frontend_class>shipping-skip-hide</frontend_class>
+                </field>
+                <field id="specificerrmsg" translate="label" type="textarea" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Displayed Error Message</label>
+                </field>
+            </group>
+        </section>
+         <section id="payment">
+            <group id="srcheckout_prepaid" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>SrCheckout Prepaid</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>SrCheckout Prepaid</label>
+                </field>
+                <field id="order_status" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Order Status</label>
+                    <source_model>Shiprocket\Checkout\Model\Config\Source\OrderStatus</source_model>
+                </field>
+            </group>
+            <group id="srcheckout_cod" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>SrCheckout COD</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>SrCheckout COD</label>
+                </field>
+                <field id="order_status" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Order Status</label>
+                    <source_model>Shiprocket\Checkout\Model\Config\Source\OrderStatus</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
