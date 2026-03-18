@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "be14fa9dd828464f0298c4b139d9abfa",
+    "content-hash": "98d4eea559d3f6dc7a94dff048b56489",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -21901,40 +21901,6 @@
             "time": "2023-09-03T09:24:00+00:00"
         },
         {
-            "name": "shiprocket/module-checkout",
-            "version": "1.1.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://repo.magento.com/archives/shiprocket/module-checkout/shiprocket-module-checkout-1.1.0.0.zip",
-                "shasum": "b6f3193b8f917608590632788dbd41a6db03dadf"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "Shiprocket\\Checkout\\": ""
-                }
-            },
-            "license": [
-                "GPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "Amit Kumar",
-                    "email": "amit.k@pickrr.com"
-                }
-            ],
-            "description": "One Step Checkout By Shiprocket",
-            "keywords": [
-                "Magento 2 Checkout",
-                "Magento 2 One Click Checkout",
-                "Shiprocket Fastrr Checkout",
-                "magento 2"
-            ]
-        },
-        {
             "name": "spomky-labs/aes-key-wrap",
             "version": "v7.0.0",
             "source": {
@@ -30242,7 +30208,7 @@
     },
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
+    "platform": {},
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
