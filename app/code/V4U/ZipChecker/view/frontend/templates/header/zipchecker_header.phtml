@@ -1,4 +1,5 @@
 <?php /** @var \V4U\ZipChecker\Block\Product\View\ZipChecker $block */ ?>
+<?php if($block->getIsActive()) { ?>
     <div class="zipchecker-header">
         <form class="form-header-zipcode" method="post" id="form-header-zipcode" novalidate="novalidate">
             <div class="zipcode-box">
@@ -87,3 +88,4 @@
             });
         });
     </script>
+<?php } ?>
