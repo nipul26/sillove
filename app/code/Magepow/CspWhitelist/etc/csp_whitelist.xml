@@ -19,6 +19,8 @@
                 <value id="fontawesome.com" type="host">*.fontawesome.com</value>
                 <value id="googleapis" type="host">*.googleapis.com</value>
                 <value id="gstatic.com" type="host">*.gstatic.com</value>
+                <value id="razorpay" type="host">*.razorpay.com</value>
+                <value id="razorpay-cdn" type="host">cdn.razorpay.com</value>
             </values>
         </policy>
         <policy id="style-src">
@@ -39,6 +41,7 @@
                 <value id="fontawesome.com" type="host">*.fontawesome.com</value>
                 <value id="googleapis" type="host">*.googleapis.com</value>
                 <value id="gstatic.com" type="host">*.gstatic.com</value>
+                <value id="razorpay" type="host">*.razorpay.com</value>
             </values>
         </policy>
         <policy id="img-src">
