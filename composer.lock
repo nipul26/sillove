@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "98d4eea559d3f6dc7a94dff048b56489",
+    "content-hash": "3e344245a8cdcffa23c17b4cf3d37062",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -2054,6 +2054,64 @@
                 "source": "https://github.com/firebase/php-jwt/tree/v7.0.3"
             },
             "time": "2026-02-25T22:16:40+00:00"
+        },
+        {
+            "name": "geoip2/geoip2",
+            "version": "v3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maxmind/GeoIP2-php.git",
+                "reference": "49fceddd694295e76e970a32848e03bb19e56b42"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/maxmind/GeoIP2-php/zipball/49fceddd694295e76e970a32848e03bb19e56b42",
+                "reference": "49fceddd694295e76e970a32848e03bb19e56b42",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "maxmind-db/reader": "^1.13.0",
+                "maxmind/web-service-common": "~0.11",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "3.*",
+                "phpstan/phpstan": "*",
+                "phpunit/phpunit": "^10.0",
+                "squizlabs/php_codesniffer": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "GeoIp2\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Gregory J. Oschwald",
+                    "email": "goschwald@maxmind.com",
+                    "homepage": "https://www.maxmind.com/"
+                }
+            ],
+            "description": "MaxMind GeoIP2 PHP API",
+            "homepage": "https://github.com/maxmind/GeoIP2-php",
+            "keywords": [
+                "IP",
+                "geoip",
+                "geoip2",
+                "geolocation",
+                "maxmind"
+            ],
+            "support": {
+                "issues": "https://github.com/maxmind/GeoIP2-php/issues",
+                "source": "https://github.com/maxmind/GeoIP2-php/tree/v3.3.0"
+            },
+            "time": "2025-11-20T18:50:15+00:00"
         },
         {
             "name": "giggsey/libphonenumber-for-php",
@@ -19040,6 +19098,121 @@
             "time": "2025-09-14T11:18:39+00:00"
         },
         {
+            "name": "maxmind-db/reader",
+            "version": "v1.13.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maxmind/MaxMind-DB-Reader-php.git",
+                "reference": "2194f58d0f024ce923e685cdf92af3daf9951908"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/maxmind/MaxMind-DB-Reader-php/zipball/2194f58d0f024ce923e685cdf92af3daf9951908",
+                "reference": "2194f58d0f024ce923e685cdf92af3daf9951908",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "conflict": {
+                "ext-maxminddb": "<1.11.1 || >=2.0.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "3.*",
+                "phpstan/phpstan": "*",
+                "phpunit/phpunit": ">=8.0.0,<10.0.0",
+                "squizlabs/php_codesniffer": "4.*"
+            },
+            "suggest": {
+                "ext-bcmath": "bcmath or gmp is required for decoding larger integers with the pure PHP decoder",
+                "ext-gmp": "bcmath or gmp is required for decoding larger integers with the pure PHP decoder",
+                "ext-maxminddb": "A C-based database decoder that provides significantly faster lookups",
+                "maxmind-db/reader-ext": "C extension for significantly faster IP lookups (install via PIE: pie install maxmind-db/reader-ext)"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MaxMind\\Db\\": "src/MaxMind/Db"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Gregory J. Oschwald",
+                    "email": "goschwald@maxmind.com",
+                    "homepage": "https://www.maxmind.com/"
+                }
+            ],
+            "description": "MaxMind DB Reader API",
+            "homepage": "https://github.com/maxmind/MaxMind-DB-Reader-php",
+            "keywords": [
+                "database",
+                "geoip",
+                "geoip2",
+                "geolocation",
+                "maxmind"
+            ],
+            "support": {
+                "issues": "https://github.com/maxmind/MaxMind-DB-Reader-php/issues",
+                "source": "https://github.com/maxmind/MaxMind-DB-Reader-php/tree/v1.13.1"
+            },
+            "time": "2025-11-21T22:24:26+00:00"
+        },
+        {
+            "name": "maxmind/web-service-common",
+            "version": "v0.11.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maxmind/web-service-common-php.git",
+                "reference": "c309236b5a5555b96cf560089ec3cead12d845d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/maxmind/web-service-common-php/zipball/c309236b5a5555b96cf560089ec3cead12d845d2",
+                "reference": "c309236b5a5555b96cf560089ec3cead12d845d2",
+                "shasum": ""
+            },
+            "require": {
+                "composer/ca-bundle": "^1.0.3",
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "3.*",
+                "phpstan/phpstan": "*",
+                "phpunit/phpunit": "^10.0",
+                "squizlabs/php_codesniffer": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MaxMind\\Exception\\": "src/Exception",
+                    "MaxMind\\WebService\\": "src/WebService"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Gregory Oschwald",
+                    "email": "goschwald@maxmind.com"
+                }
+            ],
+            "description": "Internal MaxMind Web Service API",
+            "homepage": "https://github.com/maxmind/web-service-common-php",
+            "support": {
+                "issues": "https://github.com/maxmind/web-service-common-php/issues",
+                "source": "https://github.com/maxmind/web-service-common-php/tree/v0.11.1"
+            },
+            "time": "2026-01-13T17:56:03+00:00"
+        },
+        {
             "name": "monolog/monolog",
             "version": "3.10.0",
             "source": {
@@ -21899,6 +22072,128 @@
                 "source": "https://github.com/Seldaek/signal-handler/tree/2.0.2"
             },
             "time": "2023-09-03T09:24:00+00:00"
+        },
+        {
+            "name": "smile/elasticsuite",
+            "version": "2.11.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Smile-SA/elasticsuite.git",
+                "reference": "9a0d49f27195d829925147700f2e255e3a4922f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Smile-SA/elasticsuite/zipball/9a0d49f27195d829925147700f2e255e3a4922f5",
+                "reference": "9a0d49f27195d829925147700f2e255e3a4922f5",
+                "shasum": ""
+            },
+            "require": {
+                "magento/framework": ">=103.0.6",
+                "magento/magento-composer-installer": "*",
+                "magento/module-backend": ">=102.0.6",
+                "magento/module-catalog": ">=104.0.6",
+                "magento/module-catalog-graph-ql": ">=100.4.6",
+                "magento/module-catalog-search": ">=102.0.6",
+                "magento/module-inventory-indexer": ">=2.0.0",
+                "magento/module-inventory-sales": ">=1.1.0",
+                "magento/module-inventory-sales-api": ">=1.1.0",
+                "magento/module-store": ">=101.1.6",
+                "opensearch-project/opensearch-php": "^1.0 || ^2.0"
+            },
+            "replace": {
+                "smile/module-elasticsuite-admin-notification": "self.version",
+                "smile/module-elasticsuite-analytics": "self.version",
+                "smile/module-elasticsuite-catalog": "self.version",
+                "smile/module-elasticsuite-catalog-graph-ql": "self.version",
+                "smile/module-elasticsuite-catalog-optimizer": "self.version",
+                "smile/module-elasticsuite-catalog-rule": "self.version",
+                "smile/module-elasticsuite-core": "self.version",
+                "smile/module-elasticsuite-indices": "self.version",
+                "smile/module-elasticsuite-swatches": "self.version",
+                "smile/module-elasticsuite-thesaurus": "self.version",
+                "smile/module-elasticsuite-tracker": "self.version",
+                "smile/module-elasticsuite-virtual-category": "self.version"
+            },
+            "require-dev": {
+                "smile/magento2-smilelab-quality-suite": "~2.2.0"
+            },
+            "type": "magento2-component",
+            "extra": {
+                "map": [
+                    [
+                        "src/lib/web/fonts/elasticsuite",
+                        "lib/web/fonts/elasticsuite"
+                    ]
+                ],
+                "branch-alias": {
+                    "dev-master": "2.12.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/module-elasticsuite-core/registration.php",
+                    "src/module-elasticsuite-admin-notification/registration.php",
+                    "src/module-elasticsuite-analytics/registration.php",
+                    "src/module-elasticsuite-catalog/registration.php",
+                    "src/module-elasticsuite-catalog-graph-ql/registration.php",
+                    "src/module-elasticsuite-catalog-optimizer/registration.php",
+                    "src/module-elasticsuite-catalog-rule/registration.php",
+                    "src/module-elasticsuite-indices/registration.php",
+                    "src/module-elasticsuite-swatches/registration.php",
+                    "src/module-elasticsuite-thesaurus/registration.php",
+                    "src/module-elasticsuite-tracker/registration.php",
+                    "src/module-elasticsuite-virtual-category/registration.php"
+                ],
+                "psr-4": {
+                    "Smile\\ElasticsuiteCore\\": "src/module-elasticsuite-core",
+                    "Smile\\ElasticsuiteCatalog\\": "src/module-elasticsuite-catalog",
+                    "Smile\\ElasticsuiteIndices\\": "src/module-elasticsuite-indices",
+                    "Smile\\ElasticsuiteTracker\\": "src/module-elasticsuite-tracker",
+                    "Smile\\ElasticsuiteSwatches\\": "src/module-elasticsuite-swatches",
+                    "Smile\\ElasticsuiteAnalytics\\": "src/module-elasticsuite-analytics",
+                    "Smile\\ElasticsuiteThesaurus\\": "src/module-elasticsuite-thesaurus",
+                    "Smile\\ElasticsuiteCatalogRule\\": "src/module-elasticsuite-catalog-rule",
+                    "Smile\\ElasticsuiteCatalogGraphQl\\": "src/module-elasticsuite-catalog-graph-ql",
+                    "Smile\\ElasticsuiteVirtualCategory\\": "src/module-elasticsuite-virtual-category",
+                    "Smile\\ElasticsuiteCatalogOptimizer\\": "src/module-elasticsuite-catalog-optimizer",
+                    "Smile\\ElasticsuiteAdminNotification\\": "src/module-elasticsuite-admin-notification"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Romain Ruaud",
+                    "email": "romain.ruaud@smile.fr"
+                },
+                {
+                    "name": "Richard Bayet",
+                    "email": "richard.bayet@smile.fr"
+                },
+                {
+                    "name": "Aurélien FOUCRET",
+                    "email": "aurelien.foucret@smile.fr"
+                }
+            ],
+            "description": "Magento 2 merchandising and search engine built on ElasticSearch ",
+            "homepage": "https://github.com/Smile-SA/elasticsuite",
+            "keywords": [
+                "core",
+                "elasticsearch",
+                "graphql",
+                "magento",
+                "magento2",
+                "merchandising",
+                "search",
+                "setup"
+            ],
+            "support": {
+                "issues": "https://github.com/Smile-SA/elasticsuite/issues",
+                "source": "https://github.com/Smile-SA/elasticsuite/tree/2.11.10"
+            },
+            "time": "2024-12-10T20:30:04+00:00"
         },
         {
             "name": "spomky-labs/aes-key-wrap",
@@ -30208,7 +30503,7 @@
     },
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": {},
-    "platform-dev": {},
+    "platform": [],
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }

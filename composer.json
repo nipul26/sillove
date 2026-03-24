@@ -18,13 +18,15 @@
     },
     "version": "2.4.8-p1",
     "require": {
+        "geoip2/geoip2": "^3.3",
         "hybridauth/hybridauth": "^3.12",
         "magecomp/magento-2-mobile-login-free": "^1.0",
         "magento/composer-dependency-version-audit-plugin": "~0.1",
         "magento/composer-root-update-plugin": "^2.0.4",
         "magento/product-community-edition": "2.4.8-p4",
         "mageplaza/module-smtp": "^4.7",
-        "razorpay/magento": "^4.1"
+        "razorpay/magento": "^4.1",
+        "smile/elasticsuite": "^2.11"
     },
     "autoload": {
         "exclude-from-classmap": [
