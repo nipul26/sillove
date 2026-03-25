@@ -46,7 +46,6 @@
                 border: 0;
                 padding: 10px 0 0;
                 font-weight: @font-weight__heavier;
-                color: @color-black;
             }
             td {
                 text-align: right;
@@ -55,6 +54,21 @@
                 th,
                 td {
                     color: @theme-primary-color;
+                    .lib-font-size(15);
+                }
+                td {
+                    strong {
+                        font-weight: @font-weight__semibold;
+                    }
+                }
+            }
+
+            .totals-tax {
+                th {
+                    &:after {
+                        content: '(3%)';
+                        padding-left: 3px;
+                    }
                 }
             }
         }
