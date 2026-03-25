@@ -617,9 +617,6 @@
     // Hero banner
     .hero-banner {
         margin-bottom: 30px;
-        .slick-slide {
-            border-radius: 15px;
-        }
     }
 
     // shop by categories section
@@ -632,11 +629,15 @@
             &.slick-initialized {
                 opacity: 1;
             }
+            .slick-slide {
+                margin: 0 10px;
+            }
         }
 
         .categories-box {
             img {
-                margin: 0 auto;
+                width: 100%;
+                display: block;
                 transition: @ease-transition-5s;
             }
             &:hover {

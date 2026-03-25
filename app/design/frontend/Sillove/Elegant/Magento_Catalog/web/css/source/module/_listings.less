@@ -44,6 +44,7 @@
             border: 2px solid @border-color-light;
             border-radius: 8px;
             background: @color-white;
+            position: relative;
 
             .products-grid & {
                 display: inline-block;
@@ -69,7 +70,7 @@
                 white-space: nowrap;
                 
                 a {
-                    font-size: 13px;
+                    font-size: 14px;
                     color: @theme-primary-color;
                     font-weight: @font-weight__semibold;
 
@@ -149,6 +150,10 @@
 
             .price-box {
                 margin: 0 0 @indent__s;
+                display: flex;
+                align-items: center;
+                column-gap: 5px;
+                flex-wrap: wrap;
 
                 .price {
                     font-weight: @font-weight__semibold;
@@ -251,7 +256,7 @@
 
     .price-container {
         .price {
-            font-size: 20px;
+            font-size: 18px;
             color: @theme-primary-color;
         }
 
