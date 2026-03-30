@@ -71,7 +71,9 @@
 
         .subtotal {
             margin: 0 0 @indent__s;
-            text-align: right;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
             .label {
                 &:extend(.abs-colon all);
@@ -543,7 +545,7 @@
         order: 3;
 
         .block-minicart {
-            width: 390px;
+            width: 420px;
         }
     }
     .minilist .action.delete,

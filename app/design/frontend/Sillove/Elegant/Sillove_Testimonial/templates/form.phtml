@@ -1,0 +1,69 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Sillove\Testimonial\ViewModel\CustomerStatus $viewModel */
+
+$viewModel = $block->getData('view_model');
+?>
+<?php if ($viewModel && $viewModel->isCustomerLoggedIn()): ?>
+<form class="form testimonial-form"
+    action="<?= $escaper->escapeUrl($block->getUrl('testimonial/index/save')) ?>"
+    id="testimonial-form"
+    method="post"
+    data-hasrequired="<?= $escaper->escapeHtmlAttr(__('* Required Fields')) ?>"
+    data-mage-init='{"validation":{}}'>
+    
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?= $escaper->escapeHtml(__('Submit Your Testimonial')) ?></span></legend>
+        <div class="fieldset fieldset-form-container">
+            <div class="field required">
+                <label for="name" class="label">
+                    <span><?= $escaper->escapeHtml(__('Name')) ?></span>
+                </label>
+                <div class="control">
+                    <input type="text" name="name" id="name" class="input-text" 
+                        placeholder="<?= $escaper->escapeHtmlAttr(__('Your Name')) ?>" 
+                        data-validate="{required:true}" />
+                </div>
+            </div>
+            
+            <div class="field required">
+                <label for="text" class="label">
+                    <span><?= $escaper->escapeHtml(__('Testimonial Message')) ?></span>
+                </label>
+                <div class="control">
+                    <textarea name="text" id="text" class="input-text" 
+                        placeholder="<?= $escaper->escapeHtmlAttr(__('Your Testimonial')) ?>"
+                        data-validate="{required:true}"></textarea>
+                </div>
+            </div>
+            
+            <div class="field required">
+                <label class="label">
+                    <span><?= $escaper->escapeHtml(__('Detailed Rating')) ?></span>
+                </label>
+                <div class="control rating-summary">
+                    <?php for ($i = 1; $i <= 5; $i++): ?>
+                        <input type="radio" name="rating_summary" id="rating<?=  /* @noEscape */ $i ?>" 
+                            value="<?=  /* @noEscape */ $i ?>" <?= $i === 5 ? 'checked' : '' ?> 
+                            data-validate="{required:true}" />
+                        <label for="rating<?=  /* @noEscape */ $i ?>">
+                            <?=  /* @noEscape */ str_repeat('★', $i) . str_repeat('☆', 5 - $i) ?> 
+                            (<?=  /* @noEscape */ $i ?> <?= $escaper->escapeHtml(__('Star')) ?><?= $i > 1 ? 's' : '' ?>)
+                            
+                        </label><br>
+                    <?php endfor; ?>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" title="<?= $escaper->escapeHtmlAttr(__('Submit')) ?>" 
+                class="action submit primary">
+                <span><?= $escaper->escapeHtml(__('Submit')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>
+<?php endif; ?>

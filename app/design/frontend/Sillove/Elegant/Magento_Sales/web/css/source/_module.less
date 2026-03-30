@@ -16,6 +16,7 @@
 
             strong {
                 .lib-css(background, @tab-control__active__background-color);
+                .lib-css(color, @tab-control__active__color);
                 border: @border-width__base solid @border-color-light;
                 display: block;
                 font-weight: @tab-control__font-weight;
@@ -399,6 +400,20 @@
             padding: 15px;
             border-radius: 18px;
             border: 1px solid @border-color-light;
+
+            .action {
+                &.secondary {
+                    .lib-button-primary(
+                        @_button-background: transparent,
+                        @_button-color: @theme-primary-color,
+                        @_button-color-hover: @color-white,
+                        @_button-background-hover: @theme-primary-color,
+                    );
+                    border-radius: 3px;
+                    text-decoration: none;
+                    transition: @ease-transition-5s;
+                }
+            }
         }
     }
 
