@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="Codezspark_CouponList::js/couponlist.js" />
+    </head>
+
+    <body>
+        <referenceContainer name="content">
+            <block class="Codezspark\CouponList\Block\Cart\CouponList" name="coupon.list" template="Codezspark_CouponList::showcouponlink.phtml" />
+        </referenceContainer>
+    </body>
+</page>

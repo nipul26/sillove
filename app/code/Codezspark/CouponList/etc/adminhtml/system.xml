@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="codezspark" translate="label" sortOrder="201">
+            <label>Codezspark</label>
+        </tab>
+        <section id="couponlist" translate="label" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Coupon List</label>
+            <tab>codezspark</tab>
+            <resource>Codezspark_CouponList::couponlist_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Module Status</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="show_coupons" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Coupons</label>
+                    <source_model>Codezspark\CouponList\Model\Config\Source\CouponstoDisplay</source_model>
+                    <depends>
+                        <field id="couponlist/general/enable">1</field>
+                    </depends>
+                    <comment>
+                        <model>Codezspark\CouponList\Model\Config\RuleComment</model>
+                    </comment>
+                </field>
+                <field id="enable_pdp" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Coupon List on Product Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Enable to display available coupon codes on the product detail page.</comment>
+                    <depends>
+                        <field id="couponlist/general/enable">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

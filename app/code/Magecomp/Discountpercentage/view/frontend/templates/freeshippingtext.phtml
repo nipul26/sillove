@@ -1,0 +1,12 @@
+<?php
+// phpcs:disable Magento2.Templates.ThisInTemplate
+
+/** @var \Magecomp\Discountpercentage\Helper\Data $helper */
+$helper = $this->helper(\Magecomp\Discountpercentage\Helper\Data::class);
+$freeShippingText = $helper->getFreeShippingText();
+?>
+<?php if ($freeShippingText): ?>
+    <p style="color:green;">
+        <?= $block->escapeHtml($freeShippingText) ?>
+    </p>
+<?php endif; ?>

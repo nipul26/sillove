@@ -30,4 +30,16 @@ class Data extends AbstractHelper
     {
         return $this->_storeManager->getStore()->getId();
     }
+
+    /**
+     * @return string|null
+     */
+    public function getFreeShippingText()
+    {
+        return $this->scopeConfig->getValue(
+            'discountpercentage/general/free_shipping_text',
+            ScopeInterface::SCOPE_STORE,
+            $this->getStoreId()
+        );
+    }
 }
