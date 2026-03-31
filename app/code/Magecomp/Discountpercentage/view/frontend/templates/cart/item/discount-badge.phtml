@@ -1,0 +1,42 @@
+<?php
+/**
+ * Discount percentage badge for cart item.
+ *
+ * @var $block \Magento\Framework\View\Element\Template
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+
+$item = $block->getItem();
+if (!$item) {
+    return;
+}
+
+$product = $item->getProduct();
+$discountHelper = $this->helper(\Magecomp\Discountpercentage\Helper\Data::class);
+
+if (!$discountHelper->isActive()) {
+    return;
+}
+
+$regularPrice = (float)$product->getPriceInfo()->getPrice('regular_price')->getAmount()->getValue();
+$finalPrice = (float)$product->getPriceInfo()->getPrice('final_price')->getAmount()->getValue();
+
+if ($regularPrice <= 0 || $finalPrice <= 0 || $finalPrice >= $regularPrice) {
+    return;
+}
+
+$discountPercent = (int)round((($regularPrice - $finalPrice) / $regularPrice) * 100);
+
+/** @var \Magento\Framework\Pricing\Helper\Data $priceHelper */
+$priceHelper = $this->helper(\Magento\Framework\Pricing\Helper\Data::class);
+$formattedRegularPrice = $priceHelper->currency($regularPrice, true, false);
+?>
+<div class="discount-badge" style="margin-top:4px; margin-bottom:4px;">
+    <span style="color:#008000; font-weight:bold; font-size:13px;">
+        <?= $block->escapeHtml($discountPercent) ?>% <?= $block->escapeHtml(__('off')) ?>
+    </span>
+    <span style="text-decoration:line-through; color:#999; margin-left:5px; font-size:13px;">
+        <?= /* @noEscape */ $formattedRegularPrice ?>
+    </span>
+</div>

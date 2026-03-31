@@ -1,0 +1,150 @@
+<?php
+/** @var \Codezspark\CouponList\Block\Product\CouponList $block */
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer */
+
+if (!$block->isEnabled()) {
+    return;
+}
+
+$couponList = $block->getCouponList();
+if (empty($couponList)) {
+    return;
+}
+
+$initialCount = $block->getInitialDisplayCount();
+$totalCoupons = count($couponList);
+$remainingCount = $totalCoupons - $initialCount;
+?>
+
+<div class="pdp-coupon-offers" id="pdp-coupon-offers">
+    <div class="pdp-coupon-offers-header">
+        <span class="pdp-coupon-offers-title">
+            <?= $escaper->escapeHtml(__('Offers For You')) ?>
+        </span>
+        <span class="pdp-coupon-offers-subtitle">
+            <?= $escaper->escapeHtml(__('(Can be applied at checkout)')) ?>
+        </span>
+    </div>
+
+    <div class="pdp-coupon-offers-list">
+        <?php foreach ($couponList as $index => $coupon) : ?>
+            <div class="pdp-coupon-item<?= $index >= $initialCount ? ' pdp-coupon-item-hidden' : '' ?>"
+                 data-coupon-index="<?= (int) $index ?>">
+                <div class="pdp-coupon-item-header" data-role="pdp-coupon-toggle">
+                    <div class="pdp-coupon-item-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e91e63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/>
+                            <line x1="7" y1="7" x2="7.01" y2="7"/>
+                        </svg>
+                    </div>
+                    <div class="pdp-coupon-item-info">
+                        <span class="pdp-coupon-item-name">
+                            <?= $escaper->escapeHtml($coupon['name']) ?>
+                        </span>
+                    </div>
+                    <div class="pdp-coupon-item-toggle-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pdp-chevron-down">
+                            <polyline points="6 9 12 15 18 9"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="pdp-coupon-item-body" style="display: none;">
+                    <?php if ($coupon['description']) : ?>
+                        <div class="pdp-coupon-item-description">
+                            <?= $escaper->escapeHtml($coupon['description']) ?>
+                        </div>
+                    <?php endif; ?>
+                    <div class="pdp-coupon-item-code-row">
+                        <span class="pdp-coupon-code-box">
+                            <?= $escaper->escapeHtml($coupon['coupon']) ?>
+                        </span>
+                        <a class="pdp-coupon-copy-btn" href="javascript:void(0);"
+                           data-coupon-code="<?= $escaper->escapeHtmlAttr($coupon['coupon']) ?>">
+                            <?= $escaper->escapeHtml(__('Copy Code')) ?>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+
+    <?php if ($remainingCount > 0) : ?>
+        <div class="pdp-coupon-more-offers">
+            <a href="javascript:void(0);" id="pdp-coupon-show-more" data-expanded="false">
+                +<?= (int) $remainingCount ?> <?= $escaper->escapeHtml(__('more offers')) ?>
+            </a>
+        </div>
+    <?php endif; ?>
+</div>
+
+<?php
+$scriptString = <<<script
+require(['jquery'], function($) {
+    'use strict';
+
+    $(document).on('click', '[data-role="pdp-coupon-toggle"]', function () {
+        var item = $(this).closest('.pdp-coupon-item');
+        var body = item.find('.pdp-coupon-item-body');
+        var chevron = $(this).find('.pdp-chevron-down');
+
+        item.siblings('.pdp-coupon-item').find('.pdp-coupon-item-body').slideUp(200);
+        item.siblings('.pdp-coupon-item').removeClass('active');
+
+        if (body.is(':visible')) {
+            body.slideUp(200);
+            item.removeClass('active');
+        } else {
+            body.slideDown(200);
+            item.addClass('active');
+        }
+    });
+
+    $(document).on('click', '.pdp-coupon-copy-btn', function (e) {
+        e.stopPropagation();
+        var btn = $(this);
+        var code = btn.data('coupon-code');
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(code).then(function () {
+                btn.text('{$escaper->escapeJs(__('Copied'))}');
+                setTimeout(function () {
+                    btn.text('{$escaper->escapeJs(__('Copy Code'))}');
+                }, 2000);
+            });
+        } else {
+            var textarea = document.createElement('textarea');
+            textarea.value = code;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            btn.text('{$escaper->escapeJs(__('Copied'))}');
+            setTimeout(function () {
+                btn.text('{$escaper->escapeJs(__('Copy Code'))}');
+            }, 2000);
+        }
+    });
+
+    $('#pdp-coupon-show-more').on('click', function () {
+        var link = $(this);
+        var isExpanded = link.data('expanded');
+
+        if (!isExpanded) {
+            $('.pdp-coupon-item-hidden').slideDown(200);
+            link.data('expanded', true);
+            link.text('{$escaper->escapeJs(__('Show less'))}');
+        } else {
+            $('.pdp-coupon-item-hidden').slideUp(200);
+            $('.pdp-coupon-item-hidden').find('.pdp-coupon-item-body').slideUp(0);
+            $('.pdp-coupon-item-hidden').removeClass('active');
+            link.data('expanded', false);
+            link.text('+{$remainingCount} {$escaper->escapeJs(__('more offers'))}');
+        }
+    });
+});
+script;
+?>
+<?= /* @noEscape */ $secureRenderer->renderTag('script', [], $scriptString, false) ?>
