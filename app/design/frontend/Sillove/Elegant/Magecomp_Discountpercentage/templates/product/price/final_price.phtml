@@ -18,13 +18,13 @@ $myhelper = $this->helper('Magecomp\Discountpercentage\Helper\Data');
         ]); ?>
     </span>
     <span class="old-price">
-        <strike><?php echo $block->renderAmount($priceModel->getAmount(), [
+        <?php echo $block->renderAmount($priceModel->getAmount(), [
                 'display_label' => __(''),
                 'price_id' => $block->getPriceId('old-price-' . $idSuffix),
                 'price_type' => 'oldPrice',
                 'include_container' => true,
                 'skip_adjustments' => true
-            ]); ?></strike>
+            ]); ?>
     </span>
     <span class="discount-badge">
         <?php

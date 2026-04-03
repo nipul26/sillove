@@ -359,16 +359,29 @@
             }
         }
 
+        .product-item-pricing {
+            .price-container {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                column-gap: 5px;
+            }
+        }
+
         .product-item {
             .product-item-details {
                 padding-left: 88px;
+
+                .price-container {
+                    .minicart-price {
+                        .price {
+                            color: @theme-primary-color;
+                        }
+                    }
+                }
             }
         }
         .product-item-details {
-
-            .price {
-                font-weight: @font-weight__bold;
-            }
 
             .price-including-tax,
             .price-excluding-tax {
