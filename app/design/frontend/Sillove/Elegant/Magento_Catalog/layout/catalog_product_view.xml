@@ -18,8 +18,10 @@
         </referenceContainer>
         
         <move element="product.info.overview" destination="product.info.main" after="page.main.title"/>
-        <move element="product.info.type" destination="page.main.title" after="-"/>
-        <!-- <move element="product.info.social" destination="product.info.addtocart.additional" after="-"/> -->
+        <!-- <move element="product.info.extrahint" destination="product.info.form.content" after="-" /> -->
+        <!-- <move element="product.info.type" destination="page.main.title" after="-"/> -->
+        <!-- <move element="product.info.extrahint" destination="product.info.addtocart.additional" after="-"/> -->
+        <!-- <move element="product.info.social" destination="product.info.addtocart.additional" before="product.info.extrahint"/> -->
 
         <referenceBlock name="breadcrumbs" remove="true"/>
         <referenceBlock name="product.info.sku" remove="true"/>

@@ -618,6 +618,14 @@
     // Hero banner
     .hero-banner {
         margin-bottom: 30px;
+
+        .hero-slider {
+            opacity: 0;
+
+            &.slick-initialized {
+                opacity: 1;
+            }
+        }
     }
 
     // shop by categories section
@@ -1109,21 +1117,7 @@
         }
     } 
 
-    .hero-banner {
-        .pagebuilder-slide-wrapper {
-            .pagebuilder-overlay {
-                &.pagebuilder-poster-overlay {
-                    align-items: flex-end;
-                    padding-bottom: 50px;
-
-                    img {
-                        max-width: 200px;
-                        width: 100%;
-                    }
-                }
-            }
-        }
-        
+    .hero-banner {        
         .slick-prev,
         .slick-next {
             transform: translate(-50%, 0);

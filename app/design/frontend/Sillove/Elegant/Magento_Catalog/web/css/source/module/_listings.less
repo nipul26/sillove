@@ -156,7 +156,6 @@
                 flex-wrap: wrap;
 
                 .price {
-                    font-weight: @font-weight__semibold;
                     white-space: nowrap;
                 }
 
@@ -165,16 +164,13 @@
                     font-size: @font-size__s;
                     display: none;
                 }
-            }
 
-            .old-price {
-                margin: @indent__xs 0;
-
-                .price {
-                    font-weight: normal;
-                    text-decoration: line-through;
-                    font-size: 14px;
-                    opacity: 0.5;
+                [data-price-type="finalPrice"] {
+                    .price {
+                        color: @theme-primary-color;
+                        font-weight: @font-weight__semibold;
+                        font-size: 16px;
+                    }
                 }
             }
 
@@ -255,10 +251,10 @@
     }
 
     .price-container {
-        .price {
-            font-size: 18px;
-            color: @theme-primary-color;
-        }
+        // .price {
+        //     font-size: 18px;
+        //     color: @theme-primary-color;
+        // }
 
         .price-including-tax + .price-excluding-tax,
         .weee {
