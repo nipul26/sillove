@@ -13,4 +13,12 @@ $links = $helper->getHeaderLinks();
             </a>
         </li>
     <?php endforeach; ?>
+
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "Sillove_DynamicHeader/js/header-active-link": {}
+            }
+        }
+    </script>
 <?php endif; ?>
