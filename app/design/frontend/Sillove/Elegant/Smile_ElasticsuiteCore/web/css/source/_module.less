@@ -1,0 +1,88 @@
+// /**
+//  * DISCLAIMER
+//  *
+//  * Do not edit or add to this file if you wish to upgrade Smile ElasticSuite to newer
+//  * versions in the future.
+//  *
+//  *
+//  * @category  Smile
+//  * @package   Smile\ElasticsuiteCore
+//  * @author    Romain Ruaud <romain.ruaud@smile.fr>
+//  * @copyright 2020 Smile
+//  * @license   Open Software License ("OSL") v. 3.0
+//  */
+
+
+& when (@media-common = true) {
+    .search-autocomplete {
+        border-radius: 16px;
+        background: #fff;
+        border: 1px solid #e9e9e9;
+        padding: 50px 15px 15px;
+        position: absolute;
+        z-index: -1;
+        overflow: hidden;
+        margin-top: 0;
+        &:extend(.abs-add-box-sizing all);
+        dl {
+            .lib-list-reset-styles();
+            dt {
+                &:not(:empty) {
+                    .lib-css(background, @autocomplete__background-color);
+                    border-top: 0;
+                    border-bottom: 0;
+                }
+                .lib-css(border-top, @autocomplete-item__border);
+                cursor: default;
+                margin: 0;
+                padding: @indent__xs @indent__xl @indent__xs 0;
+                position: relative;
+                text-align: left;
+                white-space: normal;
+                font-weight: @font-weight__semibold;
+                &:first-child {
+                    border-top: none;
+                }
+                &:hover,
+                &.selected {
+                    .lib-css(background, @autocomplete-item__hover__color);
+                }
+            }
+            dd {
+                &:not(:empty) {
+                    .lib-css(background, @autocomplete__background-color);
+                }
+                .lib-css(border-top, @autocomplete-item__border);
+                cursor: pointer;
+                margin: 0;
+                padding: @indent__xs @indent__s @indent__xs 0;
+                position: relative;
+                text-align: left;
+                white-space: normal;
+                &:first-child {
+                    border-top: none;
+                }
+                &:hover,
+                &.selected {
+                    .lib-css(background, @autocomplete-item__hover__color);
+                }
+                .amount {
+                    .lib-css(color, @autocomplete-item-amount__color);
+                    position: absolute;
+                    right: 7px;
+                    top: @indent__xs;
+                }
+                .clear {
+                    clear:both;
+                }
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .search-autocomplete {
+        top: 53px;
+        left: 0;
+    }
+}
