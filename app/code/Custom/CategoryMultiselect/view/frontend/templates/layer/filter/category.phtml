@@ -1,0 +1,47 @@
+<?php
+/**
+ * Category filter template with multiselect support.
+ * Unlike default.phtml, this renders all items as clickable links with checkboxes,
+ * even when count is 0 (so users can still toggle categories in multiselect mode).
+ *
+ * @var $block \Smile\ElasticsuiteCatalog\Block\Navigation\Renderer\Category
+ */
+?>
+
+<ol class="items">
+    <?php foreach ($filterItems as $filterItem): ?>
+        <li class="item">
+            <?php if ($filterItem->getCount() > 0 || $this->isMultipleSelectEnabled()): ?>
+                <a href="<?php echo $block->escapeUrl($filterItem->getUrl()) ?>">
+                    <?php if ($this->isMultipleSelectEnabled()) : ?>
+                        <input type="checkbox" data-bind="click: function(data, event) { event.target.parentNode.click(); return true; }" <?php if ($filterItem->getIsSelected()) : ?>checked<?php endif; ?> />
+                    <?php endif; ?>
+                    <?php /* @escapeNotVerified */ echo $filterItem->getLabel() ?>
+                    <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                        <span class="count">
+                            <?php /* @escapeNotVerified */ echo $filterItem->getCount()?>
+                        <span class="filter-count-label">
+                        <?php if ($filterItem->getCount() == 1):?>
+                            <?php /* @escapeNotVerified */ echo __('item')?>
+                        <?php else:?>
+                            <?php /* @escapeNotVerified */ echo __('items') ?>
+                        <?php endif;?></span></span>
+                    <?php endif; ?>
+                </a>
+            <?php else:?>
+                <?php /* @escapeNotVerified */ echo $filterItem->getLabel() ?>
+                <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                    <span class="count">
+                        <?php /* @escapeNotVerified */ echo $filterItem->getCount()?>
+                        <span class="filter-count-label">
+                        <?php if ($filterItem->getCount() == 1):?>
+                            <?php /* @escapeNotVerified */ echo __('item')?>
+                        <?php else:?>
+                            <?php /* @escapeNotVerified */ echo __('items') ?><?php endif;?>
+                        </span>
+                    </span>
+                <?php endif; ?>
+            <?php endif; ?>
+        </li>
+    <?php endforeach ?>
+</ol>

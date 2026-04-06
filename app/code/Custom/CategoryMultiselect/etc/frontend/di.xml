@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Replace category filter with multiselect version (category pages with URL rewrites) -->
+    <virtualType name="categoryFilterUsingRewrite" type="Custom\CategoryMultiselect\Model\Layer\Filter\Category">
+        <arguments>
+            <argument name="useUrlRewrites" xsi:type="boolean">true</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Replace category filter for search results page -->
+    <virtualType name="searchFilterList">
+        <arguments>
+            <argument name="filters" xsi:type="array">
+                <item name="category" xsi:type="string">Custom\CategoryMultiselect\Model\Layer\Filter\Category</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Wire our custom filter with the proper item factory and data provider -->
+    <type name="Custom\CategoryMultiselect\Model\Layer\Filter\Category">
+        <arguments>
+            <argument name="filterItemFactory" xsi:type="object">Custom\CategoryMultiselect\Model\Layer\Filter\Item\CategoryFactory</argument>
+            <argument name="dataProviderFactory" xsi:type="object">Smile\ElasticsuiteVirtualCategory\Model\Layer\Filter\DataProvider\CategoryFactory</argument>
+        </arguments>
+    </type>
+
+    <!-- Item factory that creates our multiselect-aware category items -->
+    <virtualType name="Custom\CategoryMultiselect\Model\Layer\Filter\Item\CategoryFactory"
+                 type="Magento\Catalog\Model\Layer\Filter\ItemFactory">
+        <arguments>
+            <argument name="instanceName" xsi:type="string">Custom\CategoryMultiselect\Model\Layer\Filter\Item\Category</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Enable multiselect checkboxes on the category renderer block -->
+    <type name="Smile\ElasticsuiteCatalog\Block\Navigation\Renderer\Category">
+        <plugin name="custom_category_multiselect_renderer"
+                type="Custom\CategoryMultiselect\Plugin\Block\Navigation\Renderer\CategoryPlugin" />
+    </type>
+
+
+</config>
