@@ -1,14 +1,14 @@
 <div class="price-container">
     <span class="price-wrapper" data-bind="html: price"></span>
     <!-- ko if: item.discount_percentage > 0 -->
-    <div class="old-price-wrapper">
-        <span class="old-price">
-            <span data-bind="html: item.regular_price" class="price"></span>
+    <div class="old-price-wrapper" style="display:flex; align-items:center; gap:5px; margin-top:3px;">
+        <span class="old-price" style="text-decoration:line-through; color:#999;">
+            <span data-bind="html: item.regular_price"></span>
         </span>
-        <span class="discount-badge"
+        <span class="discount-percent" style="color:#008000; font-weight:bold;"
               data-bind="html: item.discount_percentage + '% off'"></span>
     </div>
-    <div class="saved-amount"
+    <div class="saved-amount" style="color:#008000; font-size:12px; margin-top:2px;"
          data-bind="html: 'You Save: ' + item.saved_amount"></div>
     <!-- /ko -->
 </div>
