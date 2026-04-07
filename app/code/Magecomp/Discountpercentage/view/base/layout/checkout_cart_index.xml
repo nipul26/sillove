@@ -18,10 +18,5 @@
                 after="checkout.cart.totals" 
                 template="Magecomp_Discountpercentage::freeshippingtext.phtml" />
         </referenceContainer>
-        <referenceBlock name="additional.product.info">
-            <block class="Magento\Framework\View\Element\Template"
-                name="discount.percentage.cart.badge"
-                template="Magecomp_Discountpercentage::cart/item/discount-badge.phtml" />
-        </referenceBlock>
     </body>
  </page>

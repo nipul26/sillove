@@ -5,4 +5,7 @@
     <type name="Magento\Checkout\CustomerData\DefaultItem">
         <plugin name="AddAttPlug" type="Magecomp\Discountpercentage\Plugin\DefaultItem" disabled="false" sortOrder="10"/>
     </type>
+    <type name="Magento\Checkout\Block\Cart\Item\Renderer">
+        <plugin name="DiscountPercentageCartPrice" type="Magecomp\Discountpercentage\Plugin\CartItemPrice" sortOrder="10"/>
+    </type>
 </config>
