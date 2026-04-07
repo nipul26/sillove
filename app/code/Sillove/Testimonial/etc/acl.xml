@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="Sillove_Testimonial::testimonial" title="Customer Testiomonials" sortOrder="10">
+					<resource id="Sillove_Testimonial::Sillove_Testimonial_grid" title="Manage Customer Testimonials" sortOrder="10"/>
+					<resource id="Sillove_Testimonial::Sillove_Testimonial_config" title="Testimonial Slider Configurations" sortOrder="20"/>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

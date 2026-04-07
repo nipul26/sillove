@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Shiprocket
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the shiprocket.in license that is
+ * available through the world-wide-web at this URL:
+ * https://checkout.shiprocket.in/magento-license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Shiprocket
+ * @package     Shiprocket_Checkout
+ * @copyright   Copyright (c) Shiprocket (https://www.shiprocket.in/)
+ * @license     https://checkout.shiprocket.in/magento-license
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Shiprocket\Checkout\Api\CreateOrderInterface" type="Shiprocket\Checkout\Model\CreateOrder"/>
+    <preference for="Shiprocket\Checkout\Api\AbandonedCartInterface" type="Shiprocket\Checkout\Model\AbandonedCart"/>
+    <preference for="Shiprocket\Checkout\Api\SrProductInterface" type="Shiprocket\Checkout\Model\SrProduct"/>
+    <preference for="Shiprocket\Checkout\Api\SrOrderCountInterface" type="Shiprocket\Checkout\Model\SrOrderCount"/>
+    <type name="Magento\Shipping\Model\CarrierFactory">
+        <arguments>
+            <argument name="carriers" xsi:type="array">
+                <item name="srshipping" xsi:type="string">Shiprocket\Checkout\Model\Carrier\ShiprocketShipping</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid" type="Magento\Sales\Model\ResourceModel\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+               <item name="fastrr_order_id" xsi:type="string">sales_order.fastrr_order_id</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Shiprocket\Checkout\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Shiprocket\Checkout\Logger\SrLogger">
+        <arguments>
+            <argument name="name" xsi:type="string">ShiprocketLogger</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Shiprocket\Checkout\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

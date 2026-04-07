@@ -1,0 +1,44 @@
+type Mutation {
+    insertTestimonial(input: InsertTestimonialInput!): InsertTestimonialResponse @resolver(class: "Sillove\\Testimonial\\Model\\Resolver\\InsertTestimonialGraphQl") @doc(description: "Create a New Testimonial")
+    
+    updateTestimonial(input: UpdateTestimonialInput!): UpdateTestimonialResponse @resolver(class: "Sillove\\Testimonial\\Model\\Resolver\\UpdateTestimonialGraphQl") @doc(description: "Update an Existing Testimonial")
+
+    deleteTestimonial(testimonialId: Int!): DeleteTestimonialResponse @resolver(class: "Sillove\\Testimonial\\Model\\Resolver\\DeleteTestimonialGraphQl") @doc(description: "Delete a Testimonial")
+}
+
+input InsertTestimonialInput {
+    name: String!
+    image_base64: String
+    text: String
+    company: String
+    rating_summary: Int = 5
+    stores: String
+    order: Int
+    status: Int = 1
+}
+
+type InsertTestimonialResponse {
+    message: String!
+}
+
+input UpdateTestimonialInput {
+    testimonialId: Int!
+    name: String
+    image_base64: String
+    text: String
+    company: String
+    rating_summary: Int
+    stores: String
+    order: Int
+    status: Int
+}
+
+type UpdateTestimonialResponse {
+    message: String!
+}
+
+type DeleteTestimonialResponse {
+    message: String!
+}
+
+

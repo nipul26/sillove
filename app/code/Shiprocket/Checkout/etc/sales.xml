@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Shiprocket
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the shiprocket.in license that is
+ * available through the world-wide-web at this URL:
+ * https://checkout.shiprocket.in/magento-license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Shiprocket
+ * @package     Shiprocket_Checkout
+ * @copyright   Copyright (c) Shiprocket (https://www.shiprocket.in/)
+ * @license     https://checkout.shiprocket.in/magento-license
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Sales:etc/sales.xsd">
+    <section name="quote">
+        <group name="totals">
+            <item name="prepaiddiscount" instance="Shiprocket\Checkout\Model\Total\Quote\PrepaidDiscount" sort_order="400"/>
+            <item name="fastrrcodcharge" instance="Shiprocket\Checkout\Model\Total\Quote\CodCharge" sort_order="150"/>
+        </group>
+    </section>
+    <section name="order_invoice">
+        <group name="totals">
+            <item name="prepaiddiscount" instance="Shiprocket\Checkout\Model\Total\Invoice\PrepaidDiscount" sort_order="400"/>
+            <item name="fastrrcodcharge" instance="Shiprocket\Checkout\Model\Total\Invoice\CodCharge" sort_order="150"/>
+        </group>
+    </section>
+    <section name="order_creditmemo">
+        <group name="totals">
+            <item name="prepaiddiscount" instance="Shiprocket\Checkout\Model\Total\Creditmemo\PrepaidDiscount" sort_order="400"/>
+            <item name="fastrrcodcharge" instance="Shiprocket\Checkout\Model\Total\Creditmemo\CodCharge" sort_order="150"/>
+        </group>
+    </section>
+</config>

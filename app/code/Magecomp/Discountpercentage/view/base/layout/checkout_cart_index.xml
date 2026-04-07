@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Vendor Desc.
+ *
+ * @category  Vendor
+ * @package   Vendor_CustomModule
+ * @author    Vendor
+ * @copyright Vendor
+ * @license   https://example.com/license.html
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="checkout.cart.totals.container">
+            <block class="Magento\Framework\View\Element\Template" 
+                name="checkout.cart.custom.block" 
+                after="checkout.cart.totals" 
+                template="Magecomp_Discountpercentage::freeshippingtext.phtml" />
+        </referenceContainer>
+    </body>
+ </page>

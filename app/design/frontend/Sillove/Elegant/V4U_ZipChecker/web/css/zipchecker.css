@@ -1,0 +1,35 @@
+.zipchecker-product {
+	width: 100%;
+	margin: 10px 0 30px;
+}
+.zipchecker-product .form-product-zipcode{
+	width: 100%;
+}
+.zipchecker-product .form-product-zipcode .zipcode-box{
+	max-width: 500px;
+    width: 100%;
+    background: #fff;
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid #e9e9e9;
+    box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.1);
+	position: relative;
+    box-sizing: border-box;
+}
+.zipchecker-product .form-product-zipcode .zipcode-box .zipcode-inner .control{
+	max-width: calc(100% - 90px);
+    width: 100%;
+}
+.zipchecker-product .form-product-zipcode .zipcode-box .zipcode-inner .control .input-text{
+	background: url(../../V4U_ZipChecker/images/location.png) no-repeat 10px center;
+	padding-left: 35px;
+    background-size: 14px;
+}
+.zipchecker-product .form-product-zipcode .zipcode-box .zipcode-check-btn{
+	position: absolute;
+	right: 10px;
+	top: 12px;
+}
+.zipchecker-product .form-product-zipcode .zipcode-box .message{
+	margin: 10px 0 0;
+}

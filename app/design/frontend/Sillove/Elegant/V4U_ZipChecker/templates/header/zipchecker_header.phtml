@@ -1,0 +1,121 @@
+<?php /** @var \V4U\ZipChecker\Block\Product\View\ZipChecker $block */ ?>
+<?php if($block->getIsActive()) { ?>
+    <div class="zipchecker-header">
+        <div class="header-pincode-checker">
+            <img src="<?= $block->getViewFileUrl('images/pincode-checker.png'); ?>" alt="pincode">
+            <div class="right-block">
+                <h5>Where To Deliver?</h5>
+                <p>Update delivery pincode <i class="icon-down"></i></p>
+            </div>
+        </div>
+        <form class="form-header-zipcode" method="post" id="form-header-zipcode" novalidate="novalidate">
+            <div class="zipcode-box">
+                <div class="zipcode-inner">
+                    <div class="control">
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                value=""
+                                placeholder="<?php echo $block->escapeHtml(__('Where to Deliver')); ?>"
+                                name="zipcode"
+                                id="header-zipcode"
+                                title="<?php /* @noEscape */ echo __('Pincode'); ?>"
+                                class="input-text postcode"
+                                autocomplete="off"
+                                data-validate="{'required':true}"
+                            />
+                        </div>
+                        <button class="action primary zipchecker-icon" type="submit" title="<?php /* @noEscape */ echo __('Check'); ?>" id="button-header-zipcode-check">
+                            <span class="icon-search"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="message"></div>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript">
+        require([
+            'jquery',
+            'mage/mage'
+        ], function ($) {
+            'use strict';
+            var dataForm = $('#form-header-zipcode');
+            dataForm.mage('validation', {});
+            var dataFormMessage = $('#form-header-zipcode .message');
+            dataFormMessage.removeClass('success').removeClass('error').hide();
+
+            // Prefill header input from localStorage if available
+            if (window.localStorage) {
+                try {
+                    var storedZip = window.localStorage.getItem('zipchecker_pincode');
+                    if (storedZip) {
+                        $('#form-header-zipcode input[name="zipcode"]').val(storedZip);
+                    }
+                } catch (e) {
+                    // ignore storage errors
+                }
+            }
+
+            $('#button-header-zipcode-check').on('click', function () {
+                if (!dataForm.valid()) {
+                    return false;
+                }
+
+                var zipcodeValue = $('#form-header-zipcode input[name="zipcode"]').val();
+                if (window.localStorage) {
+                    try {
+                        window.localStorage.setItem('zipchecker_pincode', zipcodeValue);
+                    } catch (e) {
+                        // ignore storage errors
+                    }
+                }
+                var formData = new FormData();
+                formData.append('zipcode', zipcodeValue);
+
+                $.ajax({
+                    url: '<?php /* @noEscape */ echo $block->getUrl('zipchecker/zipchecker/zipchecker'); ?>',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    showLoader: true,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function () {
+                        dataFormMessage
+                            .removeClass('error')
+                            .addClass('success')
+                            .html('<?php /* @noEscape */ echo __('Pincode updated successfully.'); ?>')
+                            .show();
+
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 1000);
+                    }
+                });
+                return false;
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const checker = document.querySelector('.header-pincode-checker');
+
+            if (!checker) return;
+
+            const parentDiv = checker.closest('.zipchecker-header');
+
+            // Toggle active class
+            checker.addEventListener('click', function (e) {
+                e.stopPropagation();
+                parentDiv.classList.toggle('active');
+            });
+
+            // Remove active when clicking outside
+            document.addEventListener('click', function (e) {
+                if (!parentDiv.contains(e.target)) {
+                    parentDiv.classList.remove('active');
+                }
+            });
+        });
+    </script>
+<?php } ?>

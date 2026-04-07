@@ -1,0 +1,357 @@
+<?php
+/**
+ * Shiprocket
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the shiprocket.in license that is
+ * available through the world-wide-web at this URL:
+ * https://checkout.shiprocket.in/magento-license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Shiprocket
+ * @package     Shiprocket_Checkout
+ * @copyright   Copyright (c) Shiprocket (https://www.shiprocket.in/)
+ * @license     https://checkout.shiprocket.in/magento-license
+ */
+
+ /**
+  * @var $block \Shiprocket\Checkout\Block\Buynow
+  */
+
+$product = $block->getCurrentProduct();
+$url = $block->getBaseUrl();
+$domain = preg_replace("#^[^:/.]*[:/]+#i", "", trim($url, '/'));
+$srHelper = $block->getShiprocketHelper();
+$childProducts = $block->getChildProducts($product->getSku());
+$options = $product->getOptions();
+$productId = $product->getId();
+$productType = $product->getTypeId();
+$integrationType = $srHelper->getProductIntegrationType();
+$integrationIds = $srHelper->getProductIntegrationIds();
+$isPromiseEnabled = $srHelper->isPromiseEnabled();
+$addToCartUrl = $block->getAddToCartUrl($productId);
+$checkoutUrl = $block->getUrl('checkout', ['_secure' => true]);
+$buyNowEventUrl = $block->getUrl('srcheckout/event/index');
+if ($srHelper->isEnabled() && $srHelper->isEnabledOnProductPage() &&
+$block->isProductInStock($product->getSku(), $product->getTypeId()) && empty($options)) {
+    $productSku = $product->getSku();
+    $srUtmParams = $srHelper->getUtmSource();
+    if ($srUtmParams) {
+        $srUtmParams = urlencode($srUtmParams);
+    }
+    $productData = [
+        'products' => [
+            [
+                'variantId' => $product->getId(),
+                'quantity' => 1,
+                'customAttributes' => ['magentoSku' => $productSku]
+            ]
+        ],
+        'fallbackUrl' => $block->getUrl('srcheckout/fallback', ['pid' => $product->getId()]),
+        'cartAttributes' => [
+            'session_id' => $block->getCustomerSessionId(),
+            'utm_param' => $srHelper->getUtmSource()
+        ],
+        'utmParams' => $srUtmParams
+    ];
+    $eventProductData = [
+        'productId' => $product->getId(),
+        'quantity' => 1,
+        'sessionId' => $block->getCustomerSessionId(),
+        'utmParams' => $srUtmParams
+    ];
+    $promiseData = [
+        'product_id' => $product->getId(),
+        'variant_id' => $product->getId(),
+        'title' => $product->getName(),
+        'sku' => $product->getSku(),
+        'quantity' => 1,
+        'price' => number_format($product->getFinalPrice(), 2)
+    ];
+    $jsonProductData = json_encode($productData);
+    $jsonEventProductData = json_encode($eventProductData);
+    $jsonPromiseData = json_encode($promiseData);
+    $prefix = '#';
+    $integrationIdsArr = array_map(function ($item) use ($prefix) {
+        return $prefix . $item;
+    }, explode(',', $integrationIds));
+
+    $integrationId = implode(',', $integrationIdsArr);
+    ?>
+    <?php if ($integrationType) { ?>
+        <?php $integrationId = '#sr-buynow-button' ?>
+        <div data-type="product" class="shiprocket-headless <?= $escaper->escapeHtmlAttr($productType)?>" type="button">
+            <button type="button" class="sr-headless-checkout" id="sr-buynow-button">
+                <input type="hidden" value="<?= $escaper->escapeHtmlAttr($domain) ?>" id="sellerDomain"/>
+                <div class="sr-d-flex flex-center">
+                    <div class="sr-d-flex full-width flex-center">
+                        <span class="sr-checkout-visible2">
+                            <?= $escaper->escapeHtmlAttr($srHelper->getProductButtonText()) ?>
+                        </span>
+                        <img src="<?= $escaper->escapeUrl($srHelper->getUpiOptionImageUrl()) ?>" 
+                        alt="Google Pay | Phone Pay | UPI" class="sr-pl-15 sr-checkout-visible" />
+                        <div class="loader5"></div>
+                        <img src="<?= $escaper->escapeUrl($srHelper->getRightArrowImageUrl()) ?>" 
+                        class="sr-pl-15 sr-checkout-visible1" alt="right_arrow" />
+                    </div>
+                    <div>
+                        <span class="sr-powered-by">
+                            <img src="<?= $escaper->escapeUrl($srHelper->getPoweredImageUrl()) ?>" alt="">
+                        </span>
+                    </div>
+                </div>
+            </button>
+        </div>
+    <?php } ?>
+    <?php if ($isPromiseEnabled) { ?>
+        <div id="delivery-widget"></div>
+        <div id="srpromise">
+            <input type="hidden" id="edd_product_id" value="<?= $escaper->escapeHtmlAttr($product->getId()); ?>">
+            <input type="hidden" id="edd_variant_id" value="<?= $escaper->escapeHtmlAttr($product->getId()); ?>">
+            <input type="hidden" id="edd_title" value="<?= $escaper->escapeHtmlAttr($product->getName()); ?>">
+            <input type="hidden" id="edd_sku" value="<?= $escaper->escapeHtmlAttr($product->getSku()); ?>">
+            <input type="hidden" id="edd_quantity" value="1">
+            <input type="hidden" id="edd_price" 
+                value="<?= $escaper->escapeHtmlAttr(number_format($product->getFinalPrice(), 2)); ?>">
+        </div>
+        <style>
+            <?= $escaper->escapeUrl($srHelper->getPromiseCSS()) ?>
+        </style>
+    <?php } ?>
+    <style>
+        <?= $escaper->escapeUrl($srHelper->getProductPageCSS()) ?>
+    </style>
+    <script>
+        require([
+            'jquery',
+            'mage/validation'
+        ], function ($) {
+            $(function () {
+                var productData = JSON.parse('<?= /* @noEscape */ $jsonProductData ?>');
+                var buyNowEentProductData = JSON.parse('<?= /* @noEscape */ $jsonEventProductData ?>');
+                var buyNowEventUrl = "<?= $escaper->escapeUrl($buyNowEventUrl) ?>";
+                var productType = "<?= $escaper->escapeHtmlAttr($productType) ?>";
+                var integrationIds = "<?= /* @noEscape */ $integrationId ?>";
+                var integrationType = "<?= /* @noEscape */ $integrationType ?>";
+                if (integrationType === "0") {
+                    var integrationIdsArr = integrationIds.split(",");
+                    var powerBy = 'https://fastrr-boost-ui.pickrr.com/assets/images/boost_button/powered_by.svg';
+                    $.each(integrationIdsArr, function (index, value) {
+                        $(value).css({position: "relative"});
+                        $(value).append('<img src="'+powerBy+'" style="position: absolute;right: 5px;bottom: 2px;">');
+                    });
+                }
+                var form = $('#product_addtocart_form');
+                console.log(productType);
+                $(document).on('click', integrationIds, function (event) {
+                    event.preventDefault();
+                    localStorage.setItem('fastrrCouponCode', '');
+                    if (!form.validation() || !form.validation('isValid')) {
+                        return;
+                    }
+                    var group_option = [];
+                    var bundle_option = [];
+                    var bundle_option_qty = [];
+                    var postData = [];
+                    var qty = $('#qty').val();
+                    productData.products.quantity = qty || 1;
+                    if (productType === 'configurable' || productType === 'grouped' || productType === 'bundle') {
+                        var formArray = form.serializeArray();
+                        if(productType === 'configurable'){
+                            console.log("Configurable product, proceeding to checkout");
+                            var variantId = productData.products[0].variantId;
+                            try {
+                                variantId = $('[data-role=swatch-options]').data('mage-SwatchRenderer').getProduct();
+                            } catch (error) {
+                                variantId = $('[name="selected_configurable_option"]').val();
+                            }
+                            productData.products[0].variantId = variantId;
+                            buyNowEentProductData.childId = variantId;
+                            buyNowEentProductData.quantity = qty;
+                            productData.fallbackUrl = productData.fallbackUrl+'cid/'+variantId+'/qty/'+qty;
+                        } else if(productType === 'grouped'){
+                            console.log("Group product, proceeding to checkout");
+                            jQuery.each(formArray , function(index, val) {
+                                var ind = parseInt(val.name.replace ( /[^\d.]/g, '' ));
+                                if(val.name.indexOf('super_group[') != -1){
+                                    var tmp = {'variantId': ind, 'quantity': val.value};
+                                    group_option.push(tmp);
+                                    var tmpData = {'p': ind, 'q': val.value};
+                                    postData.push(tmpData);
+                                }
+                            });
+                            productData.products = group_option;
+
+                        } else if(productType === 'bundle'){
+                            console.log("Bundle product, proceeding to checkout");
+                            jQuery.each(formArray , function(index, val) {
+                                var ind = parseInt(val.name.replace ( /[^\d.]/g, '' ));
+                                if(val.name.indexOf('bundle_option[') != -1){
+                                    var bData = {'i': ind, 'p': val.value};
+                                    bundle_option.push(bData);
+                                }
+                                if(val.name.indexOf('bundle_option_qty[') != -1){
+                                    var bqData = {'i': ind, 'q': val.value};
+                                    bundle_option_qty.push(bqData);
+                                }
+                            });
+                            var BundleCartUrl = "<?= $escaper->escapeUrl($block->getUrl('srcheckout/cart/add')) ?>";
+                            var request = $.ajax({
+                                url: BundleCartUrl,
+                                method: "POST",
+                                data: {'data': productData.products, 'bundle_option':bundle_option, 
+                                    'bundle_option_qty':bundle_option_qty, 'type':productType},
+                                dataType: 'json'
+                            }).done(function( response ) {
+                                if(response.success){
+                                    window.location = '<?= $escaper->escapeUrl($checkoutUrl) ?>';
+                                    return false;
+                                } else {
+                                    alert('Error: ' + response.msg);
+                                }
+                            }).fail(function( jqXHR, textStatus ) {
+                                console.log("Error: Couldn't add product to cart. " + textStatus);
+                            });
+                        }
+                        productData.onInitiationFailure = function() {
+                            var addToSrCartUrl = "<?= $escaper->escapeUrl($block->getUrl('srcheckout/cart/add')) ?>";
+                            var data = {'data': postData};
+                            if(productType === 'bundle'){
+                                data = {'data': productData.products, 'bundle_option':bundle_option, 
+                                    'bundle_option_qty':bundle_option_qty, 'type':productType};
+                            }
+                            var request = $.ajax({
+                                url: addToSrCartUrl,
+                                method: "POST",
+                                data: data,
+                                dataType: 'json'
+                            }).done(function( response ) {
+                                if(response.success){
+                                    window.location = '<?= $escaper->escapeUrl($checkoutUrl) ?>';
+                                } else {
+                                    alert('Error: ' + response.msg);
+                                }
+                            }).fail(function( jqXHR, textStatus ) {
+                                console.log("Error: Couldn't add product to cart. " + textStatus);
+                            });
+                        };
+                        console.log(productData);
+                        shiprocketCheckoutBuyProductHandler(productData);
+                    } else {
+                        productData.fallbackUrl = productData.fallbackUrl+'qty/'+qty;
+                        productData.onInitiationFailure = function() {
+                            var addToCartUrl = "<?= $escaper->escapeUrl($addToCartUrl).'form_key/'; ?>";
+
+                            var formKey = jQuery.cookie("form_key");
+                            addToCartUrl += formKey;
+
+                            var formData = new FormData();
+                            formData.append("product", <?= $escaper->escapeHtmlAttr($productId) ?>);
+                            formData.append("selected_configurable_option", "");
+                            formData.append("form_key", formKey);
+
+                            jQuery('.super-attribute-select').each(function() {
+                                var attribute = jQuery(this).attr('name');
+                                formData.append(attribute, jQuery('input[name="'+attribute+'"]').val());
+                            });
+
+                            var qty = jQuery('#qty').val();
+                            formData.append("qty", qty);
+
+                            var request = jQuery.ajax({
+                                url: addToCartUrl,
+                                method: "POST",
+                                processData: false,
+                                contentType: false,
+                                data: formData
+                            }).done(function( response ) {
+                                window.location = '<?= $escaper->escapeUrl($checkoutUrl) ?>';
+                            }).fail(function( jqXHR, textStatus ) {
+                                console.log("Couldn't add product to cart. " + textStatus);
+                            });
+                        };
+                        console.log(productData);
+                        shiprocketCheckoutBuyProductHandler(productData);
+                    }
+                    $.ajax({
+                        url: buyNowEventUrl,
+                        type: 'POST',
+                        data: buyNowEentProductData,
+                        complete: function(response) {
+                            console.log(response)
+                        },
+                        error: function (xhr, status, errorThrown) {
+                            console.log('Error: Unable to post data');
+                        }
+                    });
+                });
+            });
+        });
+    </script>  
+<?php } ?>
+<?php if ($isPromiseEnabled) { ?>
+<script>
+    require([
+        'jquery',
+        'mage/validation',
+        'Magento_Swatches/js/swatch-renderer'
+    ], function ($) {
+        $(document).ready(function () {
+            var productType = "<?= $escaper->escapeHtmlAttr($productType) ?>";
+            var promiseData = JSON.parse('<?= /* @noEscape */ $jsonPromiseData ?>');
+            var childProducts = JSON.parse('<?= /* @noEscape */ json_encode($childProducts) ?>');
+            var qty = $('#qty').val();
+            promiseData.quantity = qty;
+            if (productType === 'configurable' || productType === 'grouped' || productType === 'bundle') {
+                var variantId = null;
+                try {
+                    variantId = $('[data-role=swatch-options]').data('mage-SwatchRenderer').getProduct();
+                } catch (error) {
+                    variantId = $('[name="selected_configurable_option"]').val();
+                }
+                if (variantId) {
+                    promiseData.variant_id = variantId;
+                    promiseData.title = childProducts.variantId.name;
+                    promiseData.sku = childProducts.variantId.sku;
+                    promiseData.price = childProducts.variantId.price;
+                }
+            }
+            new ShiprocketDelivery('delivery-widget', {}, 'MAGENTO', promiseData);
+
+            $('.product-info-main').on('change click', '.swatch-attribute .swatch-option, .super-attribute-select', 
+                function () {
+                setTimeout(function () {
+                    var qty = $('#qty').val();
+                    if (productType === 'configurable' || productType === 'grouped' || productType === 'bundle') {
+                        var variantId = null;
+                        try {
+                            variantId = $('[data-role=swatch-options]').data('mage-SwatchRenderer').getProduct();
+                        } catch (error) {
+                            variantId = $('[name="selected_configurable_option"]').val();
+                        }
+                        if (variantId) {
+                            $('#edd_variant_id').val(variantId);
+                            $('#edd_title').val(childProducts[variantId].name);
+                            $('#edd_sku').val(childProducts[variantId].sku);
+                            $('#edd_price').val(childProducts[variantId].price);
+                            $('#edd_quantity').val(qty);
+                            console.log("Selected SKU: " + childProducts[variantId].sku);
+                        }
+                    }
+                }, 500);
+            });
+        });
+        var form = $('#product_addtocart_form');
+        $(document).on('input', '.sr-pincode-input', function (event) {
+            if (!form.validation() || !form.validation('isValid')) {
+                $('.sr-check-btn').prop('disabled', true);
+            }
+        });
+    });
+</script>
+<?php } ?>

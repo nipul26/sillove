@@ -190,7 +190,36 @@ $_item = null;
                     </div>
                 <?php endif; ?>
                 <div class="products wrapper grid products-grid products-<?= $block->escapeHtmlAttr($type) ?>">
-                    <div class="products list items product-items owl-carousel">
+                    <div class="products list items product-items" 
+                        data-mage-init='{
+                            "slick": {
+                                "slidesToShow": 6,
+                                "slidesToScroll": 1,
+                                "autoplay":true,
+                                "autoplaySpeed": 3000,
+                                "dots":false,
+                                "arrows":false,
+                                "infinite":true,
+                                "responsive": [
+                                    {
+                                        "breakpoint": 1439,
+                                        "settings": { "slidesToShow": 5 }
+                                    },
+                                    {
+                                        "breakpoint": 1280,
+                                        "settings": { "slidesToShow": 4 }
+                                    },
+                                    {
+                                        "breakpoint": 991,
+                                        "settings": { "slidesToShow": 3 }
+                                    },
+                                    {
+                                        "breakpoint": 480,
+                                        "settings": { "slidesToShow": 2 }
+                                    }
+                                ]
+                            }
+                        }'>
                         <?php foreach ($items as $_item):?>
                             <?php $available = ''; ?>
                             <?php if (!$_item->isComposite() && $_item->isSaleable() && $type == 'related'):?>
@@ -331,24 +360,3 @@ $_item = null;
             </script>
         <?php endif;?>
         <?php endif;?>
-
-<script type="text/x-magento-init">
-{
-    ".block.related .product-items": {
-        "customOwl": {
-            "loop": true,
-            "margin": 25,
-            "nav": false,
-            "dots": false,
-            "items": 5,
-            "responsive": {
-                "0": { "items": 2 },
-                "480": { "items": 2 },
-                "768": { "items": 3 },
-                "1024": { "items": 4},
-                "1240": { "items": 5 }
-            }
-        }
-    }
-}
-</script>

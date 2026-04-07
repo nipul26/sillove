@@ -24,7 +24,6 @@
 
     .nav-sections {
         .lib-css(background, @navigation-desktop__background);
-        margin-bottom: 25px;
     }
 
     .nav-toggle {
@@ -61,9 +60,11 @@
                 position: relative;
 
                 &:after {
+                    .lib-font-size(16);
                     position: absolute;
-                    right: 7px;
-                    top: -8px;
+                    right: 15px;
+                    top: 50%;
+                    transform: translateY(-50%);
                 }
 
                 &.ui-state-active {
@@ -77,9 +78,13 @@
 
         .level0 {
             > .level-top {
+                letter-spacing: 0.5px;
                 &:hover {
                     background: @theme-primary-color;
                 }
+            }
+            > li.level1 {
+                font-weight: @font-weight__regular;
             }
         }
     }
@@ -169,6 +174,11 @@
                 > a {
                     border-top: 1px solid @color-gray82;
                 }
+                a,
+                a:hover {
+                    padding: 15px;
+                    letter-spacing: 0.5px;
+                }
             }
 
             a,
@@ -216,8 +226,8 @@
             @_shadow: 0 0 5px 0 rgba(50, 50, 50, .75);
             .lib-css(box-shadow, @_shadow, 1);
             left: 0;
-            z-index: 99;
-            background: @color-gray-light01;
+            z-index: @z-index-10;
+            background: @color-white;
         }
 
         .nav-toggle {
@@ -242,9 +252,9 @@
     }
 
     .nav-sections-item-title {
-        background: darken(@navigation__background, 5%);
+        background: @color-white;
         border: solid darken(@navigation__background, 10%);
-        border-width: 0 0 1px 1px;
+        border-width: 0 0 0 1px;
         box-sizing: border-box;
         float: left;
         height: 71px;
@@ -253,8 +263,12 @@
         width: 33.33%;
 
         &.active {
-            background: transparent;
+            background: @theme-primary-color;
             border-bottom: 0;
+
+            a {
+                color: @color-white;
+            }
         }
 
         .nav-sections-item-switch {
@@ -292,6 +306,11 @@
     .nav-sections {
         .lib-vendor-prefix-flex-shrink(0);
         .lib-vendor-prefix-flex-basis(auto);
+        position: fixed;
+        top: 119px;
+        left: 0;
+        width: 100%;
+        z-index: @z-index-2 - 1;
     }
 
     .nav-sections-item-title {
@@ -325,6 +344,14 @@
                 font-family: "Inter";
                 border-radius: 0 10px 0 0;
             }
+        }
+    }
+}
+
+& when (@media-common = true) {
+    @media only screen and (min-width: @screen__m) and (max-width: (@screen__l - 1)) {
+        .sections.nav-sections {
+            top: 101px;
         }
     }
 }

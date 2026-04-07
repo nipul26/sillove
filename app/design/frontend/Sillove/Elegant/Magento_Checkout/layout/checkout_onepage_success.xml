@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Success Page</title>
+    </head>
+    <body>
+        <referenceBlock name="page.main.title">
+            <block class="Magento\Checkout\Block\Onepage\Success" name="checkout.success.print.button" template="Magento_Checkout::button.phtml"/>
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Order Confirmed!</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <container name="onepage.success.custom" htmlClass="onepage-success-wrapper" htmlTag="div" before="-">
+                <container name="onepage.success.left.block" htmlClass="onepage-success-left-block" htmlTag="div" before="-">
+                    <block class="Magento\Framework\View\Element\Template"
+                    name="custom.success.image"
+                    template="Magento_Checkout::success-image.phtml"
+                    before="-"/>
+                </container>
+                <container name="onepage.success.right.block" htmlClass="onepage-success-right-block" htmlTag="div" after="onepage.success.left-block"></container>
+            </container>
+        </referenceContainer>
+
+        <move element="page.main.title" destination="onepage.success.right.block" before="-" />
+        <move element="checkout.success" destination="onepage.success.right.block" after="-" />
+        <move element="checkout.success.print.button" destination="onepage.success.right.block" after="checkout.success" />
+    </body>
+</page>

@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="sillove" sortOrder="201" translate="label">
+			<label>Sillove</label>
+		</tab>
+		<section id="imageflip" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+			<label>Product Image Swap/Flipper</label>
+			<tab>sillove</tab>
+			<resource>Sillove_Imageflip::config_sillove_imageflip</resource>
+			<group id="settings" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+				<label>Settings</label>
+				<field id="enabled" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select" canRestore="1">
+					<label>Enabled</label>
+					<comment>Select Yes for enable Product Image Flipper in frontend.</comment>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="autoselect" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select" canRestore="1">
+					<label>Auto Select Flip Image</label>
+					<comment>Select yes for auto select the second product image as a flip image.</comment>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="flipimage" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="15" translate="label" type="select" canRestore="1">
+					<label>Flip Image</label>
+					<source_model>Sillove\Imageflip\Model\Config\Source\Flipimage</source_model>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

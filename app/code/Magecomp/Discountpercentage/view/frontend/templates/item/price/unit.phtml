@@ -1,0 +1,92 @@
+<?php
+// phpcs:disable Magento2.Templates.ThisInTemplate
+
+/**
+ * @var $block \Magento\Weee\Block\Item\Price\Renderer
+ * @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
+ */
+
+/** @var \Magento\Weee\Helper\Data $weeeHelper */
+$weeeHelper = $block->getData('weeeHelper');
+$item = $block->getItem();
+
+$discountHelper = $this->helper(\Magecomp\Discountpercentage\Helper\Data::class);
+$regularPrice = (float)$item->getProduct()->getPriceInfo()->getPrice('regular_price')->getAmount()->getValue();
+$finalPrice = (float)$item->getProduct()->getPriceInfo()->getPrice('final_price')->getAmount()->getValue();
+$hasDiscount = $discountHelper->isActive() && $regularPrice > 0 && $finalPrice > 0 && $finalPrice < $regularPrice;
+$discountPercent = $hasDiscount ? (int)round((($regularPrice - $finalPrice) / $regularPrice) * 100) : 0;
+?>
+
+<?php if ($block->displayPriceInclTax() || $block->displayBothPrices()): ?>
+    <span class="price-including-tax" data-label="<?= $block->escapeHtmlAttr(__('Incl. Tax')) ?>">
+        <?php if ($block->displayPriceWithWeeeDetails()): ?>
+            <span class="cart-tax-total"
+                data-mage-init='{"taxToggle": {"itemTaxId" : "#unit-item-tax-details<?= (int) $item->getId() ?>"}}'>
+        <?php else: ?>
+            <span class="cart-price">
+        <?php endif; ?>
+            <?= /* @noEscape */ $block->formatPrice($block->getUnitDisplayPriceInclTax()) ?>
+            </span>
+
+        <?php if ($weeeHelper->getApplied($item)): ?>
+            <span class="cart-tax-info no-display" id="unit-item-tax-details<?= (int) $item->getId() ?>">
+                <?php foreach ($weeeHelper->getApplied($item) as $tax): ?>
+                    <span class="weee" data-label="<?= $block->escapeHtmlAttr($tax['title']) ?>">
+                        <?= /* @noEscape */ $block->formatPrice($tax['amount_incl_tax'], true, true) ?>
+                    </span>
+                <?php endforeach; ?>
+            </span>
+
+            <?php if ($block->displayFinalPrice()): ?>
+                <span class="cart-tax-total"
+                    data-mage-init='{"taxToggle": {"itemTaxId" : "#unit-item-tax-details<?= (int) $item->getId() ?>"}}'>
+                    <span class="weee" data-label="<?= $block->escapeHtmlAttr(__('Total Incl. Tax')) ?>">
+                        <?= /* @noEscape */ $block->formatPrice($block->getFinalUnitDisplayPriceInclTax()) ?>
+                    </span>
+                </span>
+            <?php endif; ?>
+        <?php endif; ?>
+    </span>
+<?php endif; ?>
+
+<?php if ($block->displayPriceExclTax() || $block->displayBothPrices()): ?>
+    <span class="price-excluding-tax" data-label="<?= $block->escapeHtmlAttr(__('Excl. Tax')) ?>">
+        <?php if ($block->displayPriceWithWeeeDetails()): ?>
+            <span class="cart-tax-total"
+                data-mage-init='{"taxToggle": {"itemTaxId" : "#eunit-item-tax-details<?= (int) $item->getId() ?>"}}'>
+        <?php else: ?>
+            <span class="cart-price">
+        <?php endif; ?>
+                <?= /* @noEscape */ $block->formatPrice($block->getUnitDisplayPriceExclTax()) ?>
+            </span>
+
+        <?php if ($weeeHelper->getApplied($item)): ?>
+            <span class="cart-tax-info no-display" id="eunit-item-tax-details<?= (int) $item->getId() ?>">
+                <?php foreach ($weeeHelper->getApplied($item) as $tax): ?>
+                    <span class="weee" data-label="<?= $block->escapeHtmlAttr($tax['title']) ?>">
+                        <?= /* @noEscape */ $block->formatPrice($tax['amount'], true, true) ?>
+                    </span>
+                <?php endforeach; ?>
+            </span>
+            <?php if ($block->displayFinalPrice()): ?>
+                <span class="cart-tax-total"
+                      data-mage-init='{"taxToggle": {"itemTaxId" : "#eunit-item-tax-details<?= (int) $item->getId() ?>"}}'>
+                    <span class="weee" data-label="<?= $block->escapeHtmlAttr(__('Total')) ?>">
+                        <?= /* @noEscape */ $block->formatPrice($block->getFinalUnitDisplayPriceExclTax()) ?>
+                    </span>
+                </span>
+            <?php endif; ?>
+        <?php endif; ?>
+    </span>
+<?php endif; ?>
+
+<?php if ($hasDiscount): ?>
+    <div class="discount-info" style="margin-top:4px;">
+        <span class="old-price" style="text-decoration:line-through; color:#999;">
+            <?= /* @noEscape */ $block->formatPrice($regularPrice) ?>
+        </span>
+        <span class="discount-percent" style="color:#008000; font-weight:bold; margin-left:5px;">
+            <?= $block->escapeHtml($discountPercent) ?>% <?= $block->escapeHtml(__('off')) ?>
+        </span>
+    </div>
+<?php endif; ?>

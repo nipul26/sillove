@@ -43,6 +43,7 @@
                 width: 27px;
                 height: 26px;
                 display: inline-block;
+                vertical-align: middle;
             }
         }
     }
@@ -213,7 +214,7 @@
                     }
 
                     .tocart {
-                        &:extend(.abs-revert-secondary-size all);
+                        width: 100%;
                     }
                 }
             }
@@ -302,6 +303,25 @@
             padding: 15px;
             border-radius: 18px;
             border: 1px solid @border-color-light;
+        }
+    }
+
+    .form-wishlist-items {
+        .actions-toolbar {
+            .action {
+                &.update,
+                &.share {
+                    .lib-button-primary(
+                        @_button-background: transparent,
+                        @_button-color: @theme-primary-color,
+                        @_button-color-hover: @color-white,
+                        @_button-background-hover: @theme-primary-color,
+                    );
+                    border-radius: 3px;
+                    text-decoration: none;
+                    transition: @ease-transition-5s;
+                }
+            }
         }
     }
 }

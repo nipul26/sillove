@@ -14,15 +14,15 @@
 @checkout-shipping-item-icon__color: @color-white;
 @checkout-shipping-item-icon__content: @icon-checkmark;
 
-@checkout-shipping-item__border: 2px solid transparent;
+@checkout-shipping-item__border: 1px solid @border-color-light;
 @checkout-shipping-item__line-height: 30px;
-@checkout-shipping-item__margin: 0 0 @indent__base;
+@checkout-shipping-item__margin: 0;
 @checkout-shipping-item__padding: @indent__base (@indent__l + 5px) @indent__base @indent__base;
 @checkout-shipping-item__transition: .3s border-color;
 @checkout-shipping-item__width: (100%/3);
-@checkout-shipping-item-tablet__width: (100%/2);
+@checkout-shipping-item-tablet__width: calc(100% / 2 - 10px);
 @checkout-shipping-item-mobile__width: 100%;
-@checkout-shipping-item__active__border-color: @active__color;
+@checkout-shipping-item__active__border-color: @bg-color-red;
 
 @checkout-shipping-item-icon__selected__height: 27px;
 @checkout-shipping-item-icon__selected__width: 29px;
@@ -85,6 +85,10 @@
 
         .shipping-address-items {
             font-size: 0;
+            display: flex;
+            flex-wrap: wrap;
+            row-gap: 20px;
+            column-gap: 20px;
         }
 
         .shipping-address-item {
@@ -139,9 +143,18 @@
             }
         }
 
+        .checkout-shipping-address {
+            .step-content {
+                .action-show-popup {
+                    margin-top: 20px;
+                }
+            }
+        }
+
         .action-select-shipping-item {
             float: right;
             margin: @indent__base 0 0;
+            .lib-button-primary();
         }
 
         .edit-address-link {
@@ -149,6 +162,7 @@
             display: block;
             float: left;
             margin: 26px 5px 0 0;
+            .lib-button-primary();
         }
 
         .form-shipping-address {
@@ -259,14 +273,9 @@
         }
 
         .shipping-address-item {
-            .lib-css(border-bottom, 1px solid @checkout-shipping-item-before__border-color);
-            .lib-css(margin, @checkout-shipping-item-mobile__margin);
-            .lib-css(padding, @checkout-shipping-item-mobile__padding);
-            width: 100%;
-
+            
             &.selected-item {
                 .lib-css(padding, @checkout-shipping-item-mobile__active__padding);
-                border-bottom-width: 2px;
 
                 .edit-address-link {
                     .lib-css(right, @checkout-shipping-item-icon__selected__width + @indent__s);
@@ -319,6 +328,14 @@
                 .field {
                     max-width: 100%;
                 }
+            }
+        }
+    }
+    .modal-popup {
+        &.new-shipping-address-modal {
+            .modal-title {
+                color: @theme-primary-color;
+                font-weight: 500;
             }
         }
     }

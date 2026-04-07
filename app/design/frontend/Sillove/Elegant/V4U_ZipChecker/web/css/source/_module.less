@@ -1,0 +1,129 @@
+& when (@media-common = true) {
+    .header-pincode-checker {
+        border: 1px solid @theme-secondary-color;
+        border-radius: 8px;
+        padding: 4px 6px 4px 4px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        img {
+            margin-right: 13px;
+        }
+        h5 {
+            font-size: 14px;
+            font-weight: @font-weight__semibold;
+            margin: 0;
+            color: @theme-secondary-color;
+        }
+        p {
+            font-size: 12px;
+            margin-bottom: 0;
+            color: @theme-secondary-color;
+
+            .icon-down {
+                font-style: normal;
+                .lib-icon-font(
+                    @_icon-font-content: @icon-down,
+                    @_icon-font-size: 10px,
+                    @_icon-font-line-height: 10px,
+                    @_icon-font-color: @color-white,
+                    @_icon-font-text-hide: true
+                );
+                display: inline-block;
+            }
+        }
+    }
+    
+    .zipchecker-header {
+        order: 3;
+        position: relative;
+        margin-left: 10px;
+
+        .form-header-zipcode {
+            display: none;
+            background: @color-white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid @border-color-light;
+            position: absolute;
+            top: ~"calc(100% + 5px)";
+            right: 0;
+            width: 320px;
+
+            &:before {
+                content: '';
+                width: 8px;
+                height: 8px;
+                background: @color-white;
+                display: inline-block;
+                position: absolute;
+                top: -4px;
+                right: 20px;
+                transform: rotate(45deg);
+            }
+        }
+        &.active {
+            .form-header-zipcode {
+                display: block;
+            }
+        }
+        .zipcode-inner {
+            margin-bottom: 5px;
+            .control {
+                display: flex;
+            }
+            .input-group {
+                max-width: ~"calc(100% - 45px)";
+                width: 100%;
+            }
+            .action {
+                &.zipchecker-icon {
+                    padding: 0;
+                    width: 40px;
+                    height: 36px;
+                    margin-left: 5px;
+                    
+                    .icon-search {
+                        .lib-icon-font(
+                            @_icon-font-content: @icon-search,
+                            @_icon-font-size: 20px,
+                            @_icon-font-line-height: 20px,
+                            @_icon-font-color: @header-icons-color,
+                            @_icon-font-text-hide: true
+                        );
+                        display: inline-block;
+                    }
+                    &:hover {
+                        .icon-search {
+                            &::before {
+                                color: @theme-primary-color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: (@screen__l - 1)) {
+        .header-pincode-checker {
+            img {
+                margin-right: 0;
+                max-width: 30px;
+                width: 100%;
+            }
+            .right-block {
+                display: none;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .zipchecker-header {
+        .form-header-zipcode {
+            max-width: 220px;
+        }
+    }
+}

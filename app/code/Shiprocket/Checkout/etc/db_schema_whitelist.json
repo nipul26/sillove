@@ -1,0 +1,63 @@
+{
+    "srcheckout_product_sync_status": {
+        "column": {
+            "entity_id": true,
+            "pid": true,
+            "type": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "srcheckout_order_log": {
+        "column": {
+            "entity_id": true,
+            "sr_order_id": true,
+            "sr_data": true,
+            "payment_type": true,
+            "order_id": true,
+            "oid": true,
+            "errmsg": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "quote_address": {
+        "column": {
+            "fastrr_cod_charge": true
+        }
+    },
+    "quote": {
+        "column": {
+            "fastrr_cod_charge": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "fastrr_order_id": true,
+            "fastrr_cod_charge": true
+        }
+    },
+    "sales_order_grid": {
+        "column": {
+            "fastrr_order_id": true
+        }
+    },
+    "sales_invoice": {
+        "column": {
+            "fastrr_cod_charge": true
+        }
+    },
+    "sales_creditmemo": {
+        "column": {
+            "fastrr_cod_charge": true
+        }
+    }
+}

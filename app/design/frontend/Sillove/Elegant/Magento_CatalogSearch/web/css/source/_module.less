@@ -34,6 +34,7 @@
 
     .block-search {
         margin-bottom: 0;
+        order: 2;
 
         .block {
             &-title {
@@ -119,7 +120,7 @@
         margin-top: -15px;
         overflow: hidden;
         position: absolute;
-        z-index: 3;
+        z-index: @z-index-3;
         &:extend(.abs-add-box-sizing all);
 
         ul {
@@ -269,7 +270,7 @@
     .block-search {
         float: right;
         position: relative;
-        max-width: 671px;
+        max-width: 40%;
         width: 100%;
         z-index: 4;
         margin: auto;
@@ -290,6 +291,7 @@
             margin: 0;
             padding-right: 35px;
             position: static;
+            background: @theme-primary-color;
         }
 
         .action.search {
@@ -318,6 +320,9 @@
 
     .search-autocomplete {
         margin-top: 0;
+        border-radius: 16px;
+        top: 0;
+        z-index: -1;
     }
 
     .form.search.advanced {

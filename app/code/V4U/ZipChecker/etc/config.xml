@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <zipchecker>
+           <!--  <config>
+                <is_enabled>0</is_enabled>
+                <success_message><![CDATA[Cash On Delivery is available in %1]]></success_message>
+                <error_message><![CDATA[Product is not available at %1]]></error_message>
+            </config> -->
+        </zipchecker>
+    </default>
+</config>

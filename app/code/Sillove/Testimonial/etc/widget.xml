@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Widget/etc/widget.xsd">
+	<widget id="Sillove_testimonial" class="Sillove\Testimonial\Block\Widget\Testimonial">
+		<label translate="true">Customer Testimonials </label>
+		<description>Customer Testimonials</description>
+		<parameters>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="centerMode" value="testimonial-center-mode.phtml">
+                        <label translate="true">Default Template</label>
+                    </option>
+                </options>
+            </parameter>
+		</parameters>
+	</widget>
+</widgets>

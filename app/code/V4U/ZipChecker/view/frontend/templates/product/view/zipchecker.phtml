@@ -1,0 +1,79 @@
+<?php $product = $this->getCurrentProduct() ?>
+<?php if($product && $product->getCheckDeliveryEnable() != 2 && $this->getIsActive() == 1): ?>
+	<div class="zipchecker-product">
+		<form class="form-product-zipcode" method="post" id="form-product-zipcode" novalidate="novalidate">
+			<div class="zipcode-box">
+				<div class="zipcode-inner">
+					<div class="control">
+						<input type="text" value="" placeholder="<?php echo __('Enter Delivery Zipcode') ?>" name="zipcode" id="zipcode" title="<?php echo __('Zipcode') ?>" class="input-text postcode valid" autocomplete="off" data-validate="{'required':true}">
+					</div>
+				</div>
+				<div class="zipcode-check-btn">
+					<button class="action primary" type="submit" title="Check" id="button-zipcode-check">
+						<span><?php echo __('Check') ?></span>
+					</button>
+				</div>
+				<div class="message"></div>
+			</div>
+		</form>
+	</div>
+<script type="text/javascript">
+require([
+	'jquery',
+	'mage/mage'
+], function ($) { 
+	var dataForm = $('#form-product-zipcode');
+	dataForm.mage('validation', {});
+	var dataFormMessage = $('#form-product-zipcode .message');
+	dataFormMessage.removeClass('success').removeClass('error').hide();
+
+	function runZipCheck() {
+		var formData = new FormData();
+		var zipcodeValue = $('#form-product-zipcode input[name="zipcode"]').val();
+		formData.append('zipcode', zipcodeValue);
+		$.ajax({
+			url: '<?php echo $this->getUrl('zipchecker/zipchecker/zipchecker',['id'=> $product->getId()]) ?>',
+			data: formData,
+			processData: false,
+			contentType: false,
+			showLoader: true,
+			type: 'POST',
+			dataType: 'json',
+			success: function (response) {
+				dataFormMessage.removeClass('success').removeClass('error').hide();
+				dataFormMessage.addClass(response.type).html(response.message).show();
+
+				if (window.localStorage) {
+					try {
+						window.localStorage.setItem('zipchecker_pincode', zipcodeValue);
+					} catch (e) {
+						// ignore storage errors
+					}
+				}
+			}
+		});
+	}
+
+	$('#button-zipcode-check').on('click', function () {
+		if (!dataForm.valid()) {
+			return false;
+		}
+		runZipCheck();
+		return false;
+	});
+
+	// Prefill from localStorage and auto-check if available
+	if (window.localStorage) {
+		try {
+			var storedZip = window.localStorage.getItem('zipchecker_pincode');
+			if (storedZip) {
+				$('#form-product-zipcode input[name="zipcode"]').val(storedZip);
+				runZipCheck();
+			}
+		} catch (e) {
+			// ignore storage errors
+		}
+	}
+});
+</script>
+<?php endif; ?>

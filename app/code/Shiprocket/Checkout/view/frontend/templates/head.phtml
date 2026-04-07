@@ -1,0 +1,74 @@
+<?php
+/**
+ * Shiprocket Safe Integration (Fixed for Magento RequireJS)
+ */
+?>
+
+<!-- UTM Cookie Script -->
+<script type="text/javascript">
+(function(){
+    var q = new URLSearchParams(window.location.search);
+    q.delete("q");
+    q.delete("p");
+    q.delete("pageNum");
+
+    var s = Array.from(q.entries()).map(function(p){
+        return p[0] + "=" + p[1];
+    }).join("&");
+
+    if (s) {
+        document.cookie = "sr_utm_data=" + encodeURIComponent(s) + "; path=/; max-age=2592000";
+    }
+})();
+</script>
+
+<?php if ($block->isEnabled()): ?>
+
+    <?php
+    // Prevent loading on checkout page (IMPORTANT)
+    $fullActionName = $block->getRequest()->getFullActionName();
+    ?>
+
+    <?php if ($fullActionName !== 'checkout_index_index'): ?>
+
+        <!-- Load Shiprocket JS safely AFTER page load -->
+        <script>
+        window.addEventListener('load', function () {
+            try {
+                var script = document.createElement('script');
+                script.src = "<?= $escaper->escapeUrl($block->getCheckoutJs()) ?>";
+                script.async = true;
+                document.body.appendChild(script);
+            } catch (e) {
+                console.error('Shiprocket JS load error:', e);
+            }
+        });
+        </script>
+
+        <?php if ($block->isPromiseEnabled()): ?>
+        <script>
+        window.addEventListener('load', function () {
+            try {
+                var script = document.createElement('script');
+                script.src = "<?= $escaper->escapeUrl($block->getPromiseJs()) ?>";
+                script.async = true;
+                document.body.appendChild(script);
+            } catch (e) {
+                console.error('Shiprocket Promise JS error:', e);
+            }
+        });
+        </script>
+        <?php endif; ?>
+
+        <!-- CSS -->
+        <link href="<?= $escaper->escapeUrl($block->getCheckoutCss()) ?>" rel="stylesheet" type="text/css" media="all" />
+
+    <?php endif; ?>
+
+<?php endif; ?>
+
+<?php if (!$block->isProduction()): ?>
+<script type="application/javascript">
+    var checkoutBuyer = "https://fastrr-boost-ui-dev.pickrr.com/";
+</script>
+<?php endif; ?>

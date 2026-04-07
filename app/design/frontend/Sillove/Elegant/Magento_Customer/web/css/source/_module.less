@@ -262,7 +262,8 @@
         .box-actions {
             margin-top: @indent__xs;
         }
-        &.related {
+        &.related,
+        &.upsell {
             .title {
                 margin-bottom: @indent__s;
                 text-align: center;
@@ -425,6 +426,40 @@
                 }
             }
         }
+        &.block-dashboard-info {
+            .box-information {
+                .action {
+                    &.secondary {
+                        .lib-button-primary(
+                            @_button-background: transparent,
+                            @_button-color: @theme-primary-color,
+                            @_button-color-hover: @color-white,
+                            @_button-background-hover: @theme-primary-color,
+                        );
+                        border-radius: 3px;
+                        text-decoration: none;
+                        transition: @ease-transition-5s;
+                    }
+                }
+            }
+        }
+        &.block-dashboard-orders {
+            .orders-recent {
+                .action {
+                    &.secondary {
+                        .lib-button-primary(
+                            @_button-background: transparent,
+                            @_button-color: @theme-primary-color,
+                            @_button-color-hover: @color-white,
+                            @_button-background-hover: @theme-primary-color,
+                        );
+                        border-radius: 3px;
+                        text-decoration: none;
+                        transition: @ease-transition-5s;
+                    }
+                }
+            }
+        }
     }
 
     .account {
@@ -505,7 +540,8 @@
     }
 
     .block {
-        &.related {
+        &.related,
+        &.upsell {
             .title {
                 strong {
                     font-size: 20px;
@@ -520,6 +556,20 @@
                     &::after {
                         right: -45px;
                     }
+                }
+            }
+            .slick-track {
+                margin: 0 -5px;
+            }
+            .slick-slide {
+                padding: 0 5px;
+            }
+        }
+        &.upsell {
+            .title {
+                strong {
+                    width: 70%;
+                    display: inline-block;
                 }
             }
         }

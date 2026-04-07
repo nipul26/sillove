@@ -92,6 +92,14 @@
     }
 }
 
+.checkout-onepage-success {
+    .print {
+        position: absolute;
+        bottom: 8px;
+        left: 200px;
+    }
+}
+
 //
 //  Mobile
 //  _____________________________________________
@@ -110,6 +118,14 @@
     }
 }
 
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .checkout-index-index {
+        .page-wrapper {
+            padding-top: 80px;
+        }
+    }
+}
+
 //
 //  Desktop
 //  _____________________________________________
@@ -124,8 +140,12 @@
     .checkout-onepage-success {
         .print {
             display: block;
-            float: right;
-            margin: 23px 0 0;
+        }
+    }
+
+    .checkout-index-index {
+        .page-wrapper {
+            padding-top: 108px;
         }
     }
 }

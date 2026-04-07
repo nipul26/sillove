@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Shiprocket
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the shiprocket.in license that is
+ * available through the world-wide-web at this URL:
+ * https://checkout.shiprocket.in/magento-license
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Shiprocket
+ * @package     Shiprocket_Checkout
+ * @copyright   Copyright (c) Shiprocket (https://www.shiprocket.in/)
+ * @license     https://checkout.shiprocket.in/magento-license
+ */
+ -->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="srcheckout_product_sync_status" resource="default" engine="innodb" comment="SR Checkout Product Status Table">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+        <column xsi:type="int" name="pid" padding="10" unsigned="true" nullable="false" comment="Product Id"/>
+        <column xsi:type="varchar" name="type" nullable="false" length="10" default="U" comment="Type"/>
+        <column xsi:type="smallint" name="status" padding="11" unsigned="false" nullable="false" default="0" comment="Status"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY_SR_PRODUCT_SYNC_STATUS_ENTITY_ID">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+
+    <table name="srcheckout_order_log" resource="default" engine="innodb" comment="SR Checkout Order History Table">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+        <column xsi:type="int" name="sr_order_id" padding="10" unsigned="true" nullable="false" comment="Shiprocket Checkout Order ID"/>
+        <column xsi:type="text" name="sr_data" nullable="false" comment="Shiprocket Checkout Order Data"/>
+        <column xsi:type="varchar" name="payment_type" nullable="false" length="10" comment="Payment Type"/>
+        <column xsi:type="varchar" name="order_id" nullable="false" length="30" comment="Magento Real Order ID"/>
+        <column xsi:type="int" name="oid" padding="10" unsigned="true" nullable="true" comment="Magento Order ID"/>
+        <column xsi:type="text" name="errmsg" nullable="true" comment="Error Message"/>
+        <column xsi:type="smallint" name="status" padding="11" unsigned="false" nullable="false" default="0" comment="Status"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY_SR_ORDER_LOG_ENTITY_ID">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+
+    <table name="quote_address" resource="default" engine="innodb">
+        <column xsi:type="decimal" name="fastrr_cod_charge" nullable="true" scale="2" precision="10" comment="Faster COD Charge"/>
+    </table>
+
+    <table name="quote" resource="default" engine="innodb">
+        <column xsi:type="decimal" name="fastrr_cod_charge" nullable="true" scale="2" precision="10" comment="Faster COD Charge"/>
+    </table>
+
+    <table name="sales_order" resource="default" engine="innodb">
+        <column xsi:type="varchar" name="fastrr_order_id" nullable="true" length="20" comment="Faster Order ID"/>
+        <column xsi:type="decimal" name="fastrr_cod_charge" nullable="true" scale="2" precision="10" comment="Faster COD Charge"/>
+    </table>
+
+    <table name="sales_order_grid" resource="default" engine="innodb">
+        <column xsi:type="varchar" name="fastrr_order_id" nullable="true" length="20" comment="Faster Order ID"/>
+    </table>
+
+    <table name="sales_invoice" resource="default" engine="innodb">
+        <column xsi:type="decimal" name="fastrr_cod_charge" nullable="true" scale="2" precision="10" comment="Faster COD Charge"/>
+    </table>
+
+    <table name="sales_creditmemo" resource="default" engine="innodb">
+        <column xsi:type="decimal" name="fastrr_cod_charge" nullable="true" scale="2" precision="10" comment="Faster COD Charge"/>
+    </table>
+</schema>

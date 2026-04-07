@@ -1,0 +1,85 @@
+<?php
+if ($block->getListHelper()->getModuleStatusConfig()) { ?>
+    <div id="coupon-model" class="coupon-model">
+        <div class="wk-coupon-wrapper">
+            <?php
+                $collection = $block->getCouponList();
+            if (count($collection)) {
+                foreach ($collection as $couponlist) { ?>
+                         <div class="coupon-code-container">
+                            <div class="coupon-code">
+                                <?= $escaper->escapeHtml(__($couponlist['coupon'])); ?>
+                            </div>
+                            <div class="coupon-name">
+                                <?= $escaper->escapeHtml(__($couponlist['name']));?>
+                            </div>
+                            <div class="coupon-description">
+                                <?= $escaper->escapeHtml(__($couponlist['description']));?>
+                            </div>
+                            <?php if ($couponlist['valid']) {
+                                if ($couponlist['applied']) { ?>
+                                        <div class="applied-coupon">
+                                            <span><?= $escaper->escapeHtml(__('Applied')) ?></span>
+                                        </div>
+                                            <?php } else { ?>
+                                        <div class="button">
+                                            <a class="applycoupon">
+                                                <button class="action primary checkout"
+                                                        type="button"
+                                                        value="<?= $escaper->escapeHtml($couponlist['coupon']);?>"
+                                                        >
+                                                    <?= $escaper->escapeHtml(__('Apply Coupon')) ?>
+                                                </button>
+                                            </a>
+                                        </div>
+                            <?php } } else { ?>
+                                <div class="invalid-coupon">
+                                    <span><?= $escaper->escapeHtml(__('Not Valid')) ?></span>
+                                </div>
+                            <?php } ?>
+                        </div>
+                <?php } } else { ?>
+                    <div class="no-coupon">
+                        <span><?= $escaper->escapeHtml(__('No Coupon Codes Available.')) ?></span>
+                    </div>
+                <?php } ?>
+        </div>
+    </div>
+    <?php $scriptString = <<<script
+        require([
+                'jquery',
+                'ko',
+                'Magento_SalesRule/js/action/set-coupon-code',
+                'Magento_Ui/js/modal/modal',
+                'mage/validation'
+            ],
+            function($, ko, setCouponCodeAction, modal) {
+
+            var isApplied;
+            $(document).on('click', '.applycoupon', function(event){
+                $('#coupon_code').val($(this).children().attr('value'));
+                $('#discount-coupon-form').submit();
+
+                var couponcode = $(this).children().attr('value');
+                isApplied = ko.observable(couponcode != null);
+                setCouponCodeAction(couponcode, isApplied);
+            });
+        });
+    script; ?>
+    <?= /* @noEscape */ $secureRenderer->renderTag('script', [], $scriptString, false) ?>
+
+    <?php
+    if (count($collection)) {
+        $scriptString = <<<script
+            require(['jquery'],
+                function($) {
+                $("#discount-coupon-form").after(
+                    "<a id='openModel' class='coupon-list-link'>Show Coupon List</a>"
+                );
+            });
+        script;
+    } ?>
+    <?= /* @noEscape */ $secureRenderer->renderTag('script', [], $scriptString, false) ?>
+<?php
+}
+?>
