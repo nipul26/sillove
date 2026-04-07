@@ -161,14 +161,14 @@
             @_dropdown-list-position-top: 0,
             @_dropdown-list-pointer-position: right,
             @_dropdown-list-pointer-position-left-right: 12px,
-            @_dropdown-list-z-index: @z-index-3,
+            @_dropdown-list-z-index: @z-index-4,
             @_dropdown-list-item-padding: false,
             @_dropdown-list-item-hover: false,
             @_dropdown-list-margin-top: 0,
             @_dropdown-list-border: 0
         );
         float: right;
-        order: 3;
+        order: 4;
 
         .action.showcart {
             &:before {
@@ -522,7 +522,7 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .minicart-wrapper {
-        margin-left: 15px;
+        margin-left: 10px;
         .lib-clearfix();
 
         .action {
@@ -554,8 +554,8 @@
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .minicart-wrapper {
-        margin-left: 13px;
-        order: 3;
+        margin-left: 16px;
+        order: 4;
 
         .block-minicart {
             width: 420px;

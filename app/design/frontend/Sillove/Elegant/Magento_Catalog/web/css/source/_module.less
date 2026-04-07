@@ -419,23 +419,30 @@
 
             .info-box {
                 background: @border-color-light;
-                padding: 8px 18px;
+                padding: 12px 8px;
                 width: 100%;
                 border-radius: 5px;
-                display: flex;
-                align-items: center;
-                column-gap: 8px;
+                text-align: center;
+                border: 1px solid @border-color-light;
+                max-width: ~"calc(100% / 4 - 30px)";
+
+                img {
+                    margin-bottom: 5px;
+                }
 
                 h3 {
                     margin: 0;
                     font-size: 14px;
                     font-weight: @font-weight__semibold;
                     color: @theme-primary-color;
+                    padding-bottom: 5px;
+                    border-bottom: 1px solid @border-color-light;
                 }
                 p {
-                    font-size: 12px;
+                    font-size: 14px;
                     color: @color-686868;
                     margin-bottom: 0;
+                    margin-top: 5px;
                 }
             }
         }
@@ -788,14 +795,29 @@
     }
 
     .product-info-main {
-        .other-info {
-             .info-box {
-                max-width: 100%;
-             }
-        }
         .box-tocart {
             .fieldset {
                 flex-wrap: wrap;
+            }
+        }
+    }
+
+    .product-info-main {
+        .other-info {
+            .info-box {
+                max-width: ~"calc(100% / 2 - 23px)";
+            }
+        }
+    }
+}
+
+& when (@media-common = true) {
+    @media only screen and (min-width: @screen__m) and (max-width: (@screen__xl - 1)) {
+        .product-info-main {
+            .other-info {
+                .info-box {
+                    max-width: ~"calc(100% / 2 - 23px)";
+                }
             }
         }
     }
@@ -1266,16 +1288,6 @@
             }
             .product-item {
                 margin-bottom: 0;
-            }
-        }
-    }
-
-    @media only screen and (min-width: @screen__l) {
-        .product-info-main {
-            .other-info {
-                .info-box {
-                    max-width: ~"calc(100% / 3 - 43px)";
-                }
             }
         }
     }

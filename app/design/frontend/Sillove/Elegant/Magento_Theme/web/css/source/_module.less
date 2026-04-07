@@ -142,7 +142,7 @@
             margin-bottom: 0;
             list-style-type: none;
             padding-left: 15px;
-            order: 4;
+            order: 5;
             display: flex;
             column-gap: 10px;
 
@@ -1044,7 +1044,7 @@
     }
     
     .page-wrapper {
-        padding-top: 95px;
+        padding-top: 115px;
     }
 
     .logo {
@@ -1516,7 +1516,7 @@
         margin: 0;
         position: relative;
         transition: margin .3s ease-out 0s;
-        padding-top: 165px;
+        padding-top: 185px;
 
         > .breadcrumbs,
         > .top-container,
@@ -1607,6 +1607,9 @@
 
 & when (@media-common = true) {
     @media only screen and (min-width: @screen__m) and (max-width: (@screen__l - 1)) {
+        .page-wrapper {
+            padding-top: 165px !important;
+        }
         .header {
             &.content {
                 .logo {
