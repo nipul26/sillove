@@ -357,6 +357,16 @@
             }
         }
     }
+
+    .product-item {
+        .price-box {
+            [data-price-type="finalPrice"] {
+                .price {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
