@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+		<title>Add New Testimonial</title>
+	</head>
+    <body>
+        <referenceContainer name="content">
+        	<referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Home</item>
+                    <item name="label" xsi:type="string">Home</item>
+                    <item name="link" xsi:type="string">{{baseUrl}}</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Testimonials</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Testimonials</item>
+                    <item name="label" xsi:type="string">Testimonials</item>
+                    <item name="link" xsi:type="string">{{baseUrl}}testimonials</item>
+                </argument>
+            </action>
+         	<action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Add New Testimonial</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Add New Testimonial</item>
+                    <item name="label" xsi:type="string">Add New Testimonial</item>
+                </argument>
+            </action>
+        </referenceBlock>
+            <block class="Magento\Framework\View\Element\Template" name="testimonials_addnew_index" template="Sparsh_Testimonials::addnew.phtml">
+                <arguments>
+					<argument name="view_model" xsi:type="object">Sparsh\Testimonials\ViewModel\Testimonial</argument>
+				</arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

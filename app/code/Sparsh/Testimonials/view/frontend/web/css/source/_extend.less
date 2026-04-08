@@ -1,0 +1,43 @@
+@import 'sparsh-testimonials.less';
+@import 'owl.carousel.less';
+.sparsh-testimonials-block{
+	.sparsh-testimonial-buttons {
+		position: relative;
+		display: inline-flex;
+		width: 100%;
+		clear: both;
+		h1 {
+			float: left;
+		}
+		p {
+			float: right;
+			position: absolute;
+			right: 0;
+		}
+	}
+	.sparsh-testimonials-content-outer-no{
+		text-align: center;
+		font-size: 40px;
+		font-weight: 100;
+	}
+	.sparsh-testimonials-detail{
+		word-break: break-all;
+	}
+	.sparsh-testimonials-name{
+		word-break: break-all;
+	}
+}
+@media only screen and (max-width: 400px) {
+	.sparsh-testimonials-block{
+		.sparsh-testimonial-buttons {
+			display: block;
+			p {
+				float: none;
+				position: unset;
+			}
+			h1 {
+				float: none;
+			}
+		}
+	}
+}

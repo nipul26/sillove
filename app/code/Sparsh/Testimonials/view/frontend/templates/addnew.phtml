@@ -1,0 +1,52 @@
+<?php
+$viewModel = $block->getViewModel();
+if ($viewModel->getConfigData()) { ?>
+    <div class="cms-block-content">
+        <form action="<?= $escaper->escapeUrl($block->getUrl('testimonials/addnew/add')); ?>"
+              class="dealership-form"
+              method="post"
+              id="testimonial-form"
+              data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+              data-hasrequired="<?= $escaper->escapeHtml(__('* Required Fields')) ?>">
+            <fieldset class="fieldset">
+                <div class="field required">
+                    <label class="label sparsh-testimonial-label"><?= $escaper->escapeHtml(__('Name')); ?></label>
+                    <input type="text" name="name" id="testimonial-name" title="<?= $escaper->escapeHtml(__('Name')) ?>"
+                           data-validate="{required:true}" class="validate-length maximum-length-60">
+                </div>
+                <div class="field required">
+                    <label class="label sparsh-testimonial-label"><?= $escaper->escapeHtml(__('Rating')); ?></label>
+                    <div class="sparsh-star-rating-input">
+                        <input type="hidden" name="rating" id="testimonial-rating" value="0" data-validate="{required:true}">
+                        <?php for ($i = 1; $i <= 5; $i++): ?>
+                            <span class="star-select" data-value="<?= $i ?>">&#9733;</span>
+                        <?php endfor; ?>
+                    </div>
+                </div>
+                <script>
+                    require(['jquery'], function ($) {
+                        $('.sparsh-star-rating-input .star-select').on('click', function () {
+                            var val = $(this).data('value');
+                            $('#testimonial-rating').val(val);
+                            $('.sparsh-star-rating-input .star-select').each(function () {
+                                $(this).toggleClass('active', $(this).data('value') <= val);
+                            });
+                        });
+                    });
+                </script>
+                <div class="field required">
+                    <label class="label sparsh-testimonial-label"><?= $escaper->escapeHtml(__('Message')); ?></label>
+                    <textarea class="validate-length maximum-length-150" rows="4" name="message" id="testimonial" 
+                    title="<?= $escaper->escapeHtml(__('Message')) ?>"
+                              data-validate="{required:true,'validate-length':true}" ></textarea>
+                </div>
+            </fieldset>
+            <div class="actions">
+                <button class="action primary" title="" type="submit"><?= $escaper->escapeHtml(__('Save')); ?></button>
+                <a href="<?= $escaper->escapeUrl($block->getUrl('testimonials')) ?>" >
+                    <button class="action"  type="button"><?= $escaper->escapeHtml(__('Cancel')); ?></button>
+                </a>
+            </div>
+        </form>
+    </div>
+<?php } ?>

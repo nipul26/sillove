@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+<head>
+	<title>Testimonials</title>
+</head>
+    <body>
+		<referenceContainer name="content">
+		<referenceBlock name="breadcrumbs">
+            <action method="addCrumb" ifconfig="testimonial/general/enable">
+                <argument name="crumbName" xsi:type="string">Home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Home</item>
+                    <item name="label" xsi:type="string">Home</item>
+                    <item name="link" xsi:type="string">{{baseUrl}}</item>
+                </argument>
+            </action>
+            <action method="addCrumb" ifconfig="testimonial/general/enable">
+                <argument name="crumbName" xsi:type="string">Testimonials</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Testimonials</item>
+                    <item name="label" xsi:type="string">Testimonials</item>
+                </argument>
+            </action>
+        </referenceBlock>
+            <block class="Sparsh\Testimonials\Block\Testimonials" name="testimonials_index_index" template="Sparsh_Testimonials::view_testimonial.phtml">
+                <arguments>
+					<argument name="view_model" xsi:type="object">Sparsh\Testimonials\ViewModel\Testimonial</argument>
+				</arguments>
+            </block>
+            <referenceBlock name="page.main.title" remove="true"/>
+        </referenceContainer>
+
+    </body>
+</page>

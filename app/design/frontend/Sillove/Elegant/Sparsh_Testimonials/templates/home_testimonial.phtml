@@ -1,0 +1,75 @@
+<?php
+$viewModel = $block->getViewModel();
+if ($viewModel->getConfigData()) {
+    $data = $block->getTestimonialsOnHomePage();
+    if (count($data) > 0) {
+        ?>
+        <div class="sparsh-testimonials-block">
+            <div class="container">
+                <div class="testimonial-image"><img src="<?= $block->getViewFileUrl('images/testimonial-img.png'); ?>" alt="Testimonial" />
+</div>
+                <div class="sparsh-testimonials-content-outer owl-carousel owl-loaded clearfix">
+                    <?php
+                    $inc = 1;
+                    foreach ($data as $item) :
+                        $rating = isset($item['rating']) ? (int)$item['rating'] : 0;
+                        ?>
+                        <div class="item sparsh-testimonials-content-block">
+                            <div class="sparsh-testimonials-name">
+                                <span class="bold-text"><?= $block->escapeHtml($item['name']); ?></span>
+                            </div>
+                            <?php if ($rating > 0): ?>
+                            <div class="sparsh-testimonials-rating">
+                                <?php for ($i = 1; $i <= 5; $i++): ?>
+                                    <span class="star <?= $i <= $rating ? 'filled' : 'empty' ?>"></span>
+                                <?php endfor; ?>
+                            </div>
+                            <?php endif; ?>
+                            <div class="sparsh-testimonials-detail">
+                                <?= $block->escapeHtml($block->getMessage($item['message'])); ?>
+                            </div>
+                        </div>
+                    <?php
+                    endforeach;
+                    ?>
+                </div>
+            </div>
+        </div>
+        <script>
+            require(['jquery', 'owal'], function ($) {
+                jQuery('.sparsh-testimonials-content-outer').owlCarousel({
+                    loop: true,
+                    margin: 30,
+                    nav: false,
+                    autoplay:true,
+                    responsive: {
+                        0: {
+                            items: 2,
+                            center: true,
+                            margin: 10,
+                        },
+                        768: {
+                            items: 2,
+                            margin: 10,
+                        },
+                        1024: {
+                            items: 2
+                        },
+                        1280: {
+                            items: 3
+                        }
+                    }
+                });
+            });
+        </script>
+    <?php } else { ?>
+        <div class="sparsh-testimonials-block">
+            <div class="container">
+                <div class="sparsh-testimonials-content-outer-no owl-carousel owl-loaded clearfix">
+                    <span><?= $block->escapeHtml(__('No Testimonial Found'));?></span>
+                </div>
+            </div>
+        </div>
+    <?php }
+}
+?>
