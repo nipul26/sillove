@@ -1,0 +1,20 @@
+{
+    "sparsh_testimonials": {
+        "column": {
+            "testimonial_id": true,
+            "message": true,
+            "name": true,
+            "place": true,
+            "rating": true,
+            "testimonial_date": true,
+            "sort_order": true,
+            "show_on_home": true,
+			"creation_time": true,
+			"update_time": true,
+			"status": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

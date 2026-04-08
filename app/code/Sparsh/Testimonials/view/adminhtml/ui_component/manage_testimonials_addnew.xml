@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">manage_testimonials_addnew.manage_testimonials_addnew_data_source</item>
+            <item name="deps" xsi:type="string">manage_testimonials_addnew.manage_testimonials_addnew_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Employee Information</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">manage_testimonials_addnew</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="buttons" xsi:type="array">
+             <item name="back" xsi:type="string">Sparsh\Testimonials\Block\Adminhtml\Testimonials\Edit\BackButton</item>
+            <item name="save" xsi:type="string">Sparsh\Testimonials\Block\Adminhtml\Testimonials\Edit\Savebutton</item>          
+        </item>
+    </argument>
+    <dataSource name="manage_testimonials_addnew_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Sparsh\Testimonials\Model\DataProvider</argument>
+            <argument name="name" xsi:type="string">manage_testimonials_addnew_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">testimonial_id</argument>
+            <argument name="requestFieldName" xsi:type="string">testimonial_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="*/Manage/Save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="general">
+        <argument name="data" xsi:type="array">
+          
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string">Testimonial</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+       
+        <field name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="label" xsi:type="string" translate="true">Name</item>					
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="max_text_length" xsi:type="string">60</item>
+					</item>
+                </item>
+            </argument>
+        </field>
+        <field name="message">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="label" xsi:type="string" translate="true">Message</item>					
+					<item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+						<item name="max_text_length" xsi:type="string">150</item>
+					</item>
+                </item>
+            </argument>
+        </field>
+        <field name="rating">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Rating</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+                <item name="options" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="value" xsi:type="string">1</item>
+                        <item name="label" xsi:type="string">1 Star</item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="value" xsi:type="string">2</item>
+                        <item name="label" xsi:type="string">2 Stars</item>
+                    </item>
+                    <item name="2" xsi:type="array">
+                        <item name="value" xsi:type="string">3</item>
+                        <item name="label" xsi:type="string">3 Stars</item>
+                    </item>
+                    <item name="3" xsi:type="array">
+                        <item name="value" xsi:type="string">4</item>
+                        <item name="label" xsi:type="string">4 Stars</item>
+                    </item>
+                    <item name="4" xsi:type="array">
+                        <item name="value" xsi:type="string">5</item>
+                        <item name="label" xsi:type="string">5 Stars</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="sort_order">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="label" xsi:type="string" translate="true">SortOrder</item> 
+                    <item name="default" xsi:type="string">0</item>                   
+                </item>
+            </argument>
+        </field>
+		<field name="testimonial_date">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">string</item>
+					<item name="label" xsi:type="string" translate="true">Published Date</item>
+					<item name="formElement" xsi:type="string">date</item>
+					<item name="source" xsi:type="string">page</item>
+					<item name="sortOrder" xsi:type="number">21</item>
+					<item name="dataScope" xsi:type="string">testimonial_date</item>
+					<item name="options" xsi:type="array">
+						<item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
+					</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+				</item>
+			</argument>
+		</field>
+		<field name="status">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Sparsh\Testimonials\Model\Category\Attribute\Source\Category</item>
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">Status</item>
+                    <item name="formElement" xsi:type="string">select</item>
+				</item>
+				</argument>
+		</field>
+        <field name="show_on_home">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="label" xsi:type="string" translate="true">Show On Home Page</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="string">Yes</item>
+                        <item name="false" xsi:type="string">No</item>
+                    </item>
+                    <item name="default" xsi:type="string">No</item>
+                </item>
+            </argument>
+        </field>        
+    </fieldset>
+</form>
