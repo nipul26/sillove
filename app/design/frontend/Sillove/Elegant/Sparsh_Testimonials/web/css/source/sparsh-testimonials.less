@@ -1,0 +1,220 @@
+@base-path: "../Sparsh_Testimonials/";
+
+.sparsh-testimonials-block{
+	h2{
+		color: #333;
+		text-align: center;	    
+		font-family: "Roboto", sans-serif;
+		font-weight: bold;
+		position: relative;
+		margin: 0px 0 30px;
+
+	}
+	.sparsh-testimonials-content-outer{
+		margin:0;
+		
+		.sparsh-testimonials-content-block{
+			background: #006bb4;
+			border-radius: 10px;
+			padding: 20px 30x;
+			
+			.box-sizing{
+				box-sizing:border-box;
+				-webkit-box-sizing:border-box;
+				-moz-box-sizing:border-box;
+				-ms-box-sizing:border-box;
+			}
+
+			.sparsh-testimonials-detail{
+				font-size: 16px;
+				color:#333;
+				font-weight:300;
+				font-style:italic;
+				line-height: 26px;
+				margin-bottom: 30px;
+				height: 65%;
+				span{
+					font-weight: 400;
+					display: block;
+				}
+			}
+
+			.sparsh-testimonials-name{
+				padding-left: 30px;
+				font-size: 12px;
+				color:#212121;
+				font-weight:300;
+				background:url('@{base-path}images/quotation-marks.png') no-repeat left 3px;
+				background-size:20px auto;
+
+				.bold-text{
+					color:#006bb4;
+					font-size: 14px;
+					line-height: 20px;
+					font-weight: 500;
+					display: block;
+				}
+			}
+		}
+
+
+		.owl-prev
+		{
+			position: absolute;
+			top: 50%;
+			width: 20px;
+			height: 20px;
+			padding: 0;
+			left: -22px;
+
+		}
+
+		.owl-next
+		{
+			position: absolute;
+			top: 50%;
+			width: 20px;
+			height: 20px;
+			padding: 0;
+			right: -22px;
+
+		}
+	}
+
+	.view-all-testimonials{
+		margin-top:40px;
+		text-align: center;
+	}
+}
+
+.sparsh-testimonials-message-column{
+	display: inline-block;
+	width: 100%;
+	ul{
+		margin:0 -15px;
+		list-style-type: none;
+		li{
+			
+			padding: 0 15px;			
+			float:left;
+			margin-left: -50px;
+			.box-sizing{
+				box-sizing:border-box;
+				-webkit-box-sizing:border-box;
+				-moz-box-sizing:border-box;
+				-ms-box-sizing:border-box;
+			}
+
+			.sparsh-testimonials-detail{
+				padding:15px;
+				background:#fff;
+				p{
+					font-size: 16px;
+					color: #333;
+					font-weight: 300;
+					font-style: italic;
+					line-height: 26px;
+					margin-bottom: 15px;
+					span{ display: block; font-weight: 400; text-transform: uppercase;}
+				}
+
+				.sparsh-testimonials-name{
+					padding-left: 60px;
+					font-size: 16px;
+					color:#212121;
+					font-weight:300;
+					background:url('@{base-path}images/quotation-marks.png') no-repeat left 3px;
+					background-size:40px auto;
+
+					.bold-text{
+						color:#006bb4;
+						font-size: 18px;
+						line-height: 20px;
+						font-weight: 500;
+						display: block;
+					}
+				}
+				h4{
+					color: #006bb4;
+					font-size: 18px;
+					line-height: 20px;
+					font-weight: 600;
+					margin-bottom: 20px;
+				}
+
+				.contact-details{
+					display: inline-block;
+					width: 100%;
+					ul{
+						padding:0;
+						margin:0;
+						display: inline-block;
+						width: 100%;
+						li{
+							padding:0 0 0 33px;
+							margin:0 0 6px 0;
+							display: inline-block;
+							width: 100%;
+							p{
+								line-height: normal;
+								margin-bottom: 0;
+								font-size: 14px;
+								font-weight:normal;
+							}							
+
+							a{
+								font-size: 14px;
+								word-break:break-all;
+								word-wrap: break-word;
+								font-weight: 300;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&.testimonials-full-width{
+		ul{
+			li{
+				width: 100%;
+				margin-bottom: 30px;
+			}
+		}
+	}
+
+}
+.sparsh-testimonial-label
+{
+	text-align: left !important;
+}
+
+.sparsh-testimonials-rating {
+	margin-bottom: 10px;
+	.star {
+		font-size: 18px;
+		color: #ccc;
+		&.filled {
+			color: #f5a623;
+		}
+		&.empty {
+			color: #ccc;
+		}
+	}
+}
+
+.sparsh-star-rating-input {
+	display: flex;
+	gap: 5px;
+	.star-select {
+		font-size: 28px;
+		color: #ccc;
+		cursor: pointer;
+		transition: color 0.2s;
+		&:hover,
+		&.active {
+			color: #f5a623;
+		}
+	}
+}

@@ -1,0 +1,58 @@
+<?php
+$viewModel = $block->getViewModel();
+if ($viewModel->getConfigData()) { ?>
+<div class="sparsh-testimonials-block">
+    <div class="sparsh-testimonial-buttons">
+        <h1><?= $block->escapeHtml(__('Testimonials')); ?></h1>
+    </div>
+    <?php
+    $data = $block->getTestimonialWithPaging();
+    if (count($data) > 0) {
+        ?>
+        <div class="testimonials-data">
+            <div class="people-block">
+                <div class="sparsh-testimonials-message-column testimonials-full-width">
+                    <ul>
+                        <?php
+                        foreach ($data as $item) {
+                            $rating = isset($item['rating']) ? (int)$item['rating'] : 0;
+                            ?>
+                            <li>
+                                <div class="sparsh-testimonials-detail"> 
+                                    <p class="product-testimonial-text static-page-tetimonials-title" >
+                                        <?= /* @noEscape */ '"'.$item['message'].'"'; ?>
+                                    </p>
+                                    <?php if ($rating > 0): ?>
+                                    <div class="sparsh-testimonials-rating">
+                                        <?php for ($i = 1; $i <= 5; $i++): ?>
+                                            <span class="star <?= $i <= $rating ? 'filled' : 'empty' ?>">&#9733;</span>
+                                        <?php endfor; ?>
+                                    </div>
+                                    <?php endif; ?>
+                                    <div class="sparsh-testimonials-name static-page-tetimonials-name">
+                                        <span class="bold-text"><?= /* @noEscape */ $item['name']; ?></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <?php
+                        }
+                        ?>      
+                    </ul>
+                </div>
+            </div>
+            <?php if ($block->getPagerHtml()) : ?>
+                <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml(); ?></div>
+            <?php endif ?>
+        </div>
+        <?php } else { ?>
+        <div class="sparsh-testimonials-block">
+            <div class="container">        
+                <div class="sparsh-testimonials-content-outer-no owl-carousel owl-loaded clearfix">
+                    <span><?= /* @noEscape */ __('No Testimonial Found');?></span>
+                </div>
+            </div>
+        </div>
+        <?php
+}
+}
+?>
