@@ -27,10 +27,6 @@
                     </block>
                 </container>
             </container>
-
-            <container name="contact-map" htmlTag="div" htmlClass="map-section">
-                <block class="Magento\Framework\View\Element\Template" name="contactMap" template="Magento_Contact::map.phtml"></block>
-            </container>
         </referenceContainer>
 
         <!-- <move element="contactForm" destination="custom-contact-us" before="-" /> -->

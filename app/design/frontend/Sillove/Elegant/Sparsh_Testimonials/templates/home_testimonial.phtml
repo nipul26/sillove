@@ -37,26 +37,29 @@ if ($viewModel->getConfigData()) {
         </div>
         <script>
             require(['jquery', 'owal'], function ($) {
-                jQuery('.sparsh-testimonials-content-outer').owlCarousel({
-                    loop: true,
+                var $carousel = $('.sparsh-testimonials-content-outer');
+                var itemCount = $carousel.children().length;
+
+                $carousel.owlCarousel({
+                    loop: itemCount >= 3,
                     margin: 30,
                     nav: false,
-                    autoplay:true,
+                    autoplay: itemCount >= 3,
                     responsive: {
                         0: {
-                            items: 2,
-                            center: true,
+                            items: itemCount >= 3 ? 2 : itemCount,
+                            center: itemCount >= 3,
                             margin: 10,
                         },
                         768: {
-                            items: 2,
+                            items: itemCount >= 3 ? 2 : itemCount,
                             margin: 10,
                         },
                         1024: {
-                            items: 2
+                            items: itemCount >= 3 ? 2 : itemCount
                         },
                         1280: {
-                            items: 3
+                            items: itemCount >= 3 ? 3 : itemCount
                         }
                     }
                 });
