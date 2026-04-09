@@ -10,6 +10,10 @@
 & when (@media-common = true) {
     .order-links {
         background: @color-white;
+        border-left: 1px solid @border-color-light;
+        border-right: 1px solid @border-color-light;
+        padding: 0 15px;
+
         .item {
             line-height: @tab-control__height;
             margin: 0 0 -1px;
@@ -26,7 +30,7 @@
             a {
                 .lib-css(background, @tab-control__background-color);
                 .lib-css(color, @tab-control__color);
-                border: @border-width__base solid @border-color__base;
+                border: @border-width__base solid @border-color-light;
                 display: block;
                 font-weight: @tab-control__font-weight;
                 padding: 0 20px;
@@ -41,17 +45,19 @@
 
     .order-details-items {
         border: @border-width__base solid @border-color-light;
+        border-top: 0;
         margin-bottom: @indent__xl;
-        padding: 15px;
+        padding: 0 15px 15px;
         background: @color-white;
         border-radius: 0 0 18px 18px;
 
         .order-title {
-            border-bottom: @border-width__base solid @border-color__base;
-            padding: 0 0 @indent__s;
+            border: 1px solid @border-color-light;
+            padding: 0 @indent__s @indent__s;
+            border-bottom: 0;
 
             > strong {
-                .lib-font-size(24);
+                .lib-font-size(18);
                 font-weight: @font-weight__light;
             }
 
@@ -62,6 +68,7 @@
 
         .table-wrapper {
             margin: 0;
+            border: @border-width__base solid @border-color-light;
 
             + .actions-toolbar {
                 display: none;
@@ -88,6 +95,7 @@
                 td {
                     padding-bottom: 20px;
                     padding-top: 20px;
+                    border-top: 1px solid @border-color-light;
                 }
 
                 .col {
@@ -227,6 +235,24 @@
                 &:first-child,
                 &:last-child {
                     margin-right: 0;
+                }
+            }
+        }
+
+        &.invoice,
+        &.shipments {
+            .actions-toolbar {
+                .action {
+                    &.print {
+                        padding: 10px;
+                        border: 1px solid @border-color-light;
+                        border-bottom: 0;
+                        display: inline-block;
+                        width: 100%;
+                        box-sizing: border-box;
+                        text-align: right;
+                        margin-top: -1px;
+                    }
                 }
             }
         }
