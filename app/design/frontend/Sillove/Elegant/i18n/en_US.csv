@@ -492,3 +492,4 @@ test,test
 Two,Two
 "Invalid data type","Invalid data type"
 "Tax","GST"
+"Thank you for registering with %1.","Thank you for login with %1."
