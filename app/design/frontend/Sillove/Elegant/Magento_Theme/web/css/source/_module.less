@@ -835,6 +835,10 @@
             }
         }
 
+        .gifting-suggestion-slick-slider {
+            display: none;
+        }
+
         .gifting-relation-wrapper {
             display: flex;
             column-gap: 21px;
@@ -1222,11 +1226,24 @@
 
     .gifting-suggestion-section {
         .gifting-section-wrapper {
-            row-gap: 10px;
-            column-gap: 10px;
+            display: none;
+        }
+        .gifting-suggestion-slick-slider {
+            display: block;
+            margin-bottom: 30px;
 
-            .gifting-box {
-                max-width: ~"calc(50% - 5px)";
+            .item-box {
+                img {
+                    display: block;
+                    border-radius: 6px;
+                    width: 100%;
+                }
+            }
+            .slick-prev,
+            .slick-next {
+                &:before {
+                    background-size: 26px;
+                }
             }
         }
         .gifting-relation-wrapper {
