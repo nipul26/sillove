@@ -1,0 +1,8 @@
+<!-- ko if: isDisplayed() -->
+<tr class="totals custom-text">
+    <th class="mark" scope="row" data-bind="text: getLabel()"></th>
+    <td class="amount" data-bind="attr: {'data-th': getLabel()}">
+        <span class="price" data-bind="text: getCustomText()"></span>
+    </td>
+</tr>
+<!-- /ko -->

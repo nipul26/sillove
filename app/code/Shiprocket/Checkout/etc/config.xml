@@ -24,7 +24,8 @@
     <default>
         <shiprocket_checkout>
             <general>
-                <mode>0</mode>
+                <enabled>1</enabled>
+                <mode>1</mode>
                 <create_invoice>0</create_invoice>
                 <product_discount>0</product_discount>
                 <ordr_log>0</ordr_log>

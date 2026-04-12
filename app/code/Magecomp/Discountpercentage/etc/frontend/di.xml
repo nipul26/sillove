@@ -8,4 +8,11 @@
     <type name="Magento\Checkout\Block\Cart\Item\Renderer">
         <plugin name="DiscountPercentageCartPrice" type="Magecomp\Discountpercentage\Plugin\CartItemPrice" sortOrder="10"/>
     </type>
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="magecomp_custom_text_config_provider" xsi:type="object">Magecomp\Discountpercentage\Model\CheckoutConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

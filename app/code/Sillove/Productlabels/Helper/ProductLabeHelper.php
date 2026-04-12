@@ -468,17 +468,22 @@ class ProductLabeHelper extends AbstractHelper
      * @param float $sale_price
      * @return float
      */
-    public function getDiscountPersentage($list_price, $sale_price)
+   public function getDiscountPersentage($list_price, $sale_price)
     {
         $discount = 0;
-        if ($list_price) {
+
+        // Convert to float and validate
+        $list_price = (float) $list_price;
+        $sale_price = (float) $sale_price;
+
+        if ($list_price > 0 && $sale_price >= 0) {
             $discount = ($list_price - $sale_price) / $list_price;
             $discount = $discount * 100;
             $discount = round($discount, 2);
         }
+
         return $discount;
     }
-
     /**
      * Get label shape class based on shape number.
      *

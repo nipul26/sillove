@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Aitoc. All rights reserved.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="aitoc_deleteorders_rules" resource="default" engine="innodb" comment="Aitoc Delete Orders Rules">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id" />
+        <column xsi:type="varchar" name="title" length="255" nullable="false" comment="Title" />
+        <column xsi:type="smallint" name="scope" unsigned="true" nullable="false" comment="Scope"/>
+        <column xsi:type="varchar" name="order_statuses" length="255" comment="Order statuses" />
+        <column xsi:type="smallint" name="action" unsigned="true" nullable="false" comment="Action"/>
+        <column xsi:type="smallint" name="time" unsigned="true" nullable="false" comment="Time"/>
+        <column xsi:type="boolean" name="is_active" nullable="false" default="1" comment="Is Active"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+
+    <table name="aitoc_deleteorders_order_archive" resource="default" engine="innodb" comment="Aitoc Delete Orders Archive">
+        <column xsi:type="int" name="record_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Record Id" />
+        <column xsi:type="int" name="order_id" unsigned="true" nullable="false" comment="Order Id" />
+        <column xsi:type="timestamp" name="archived_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Order Archived Timestamp"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="record_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="AITOC_DELETEORDERS_ORDER_ARCHIVE_ORDER_ID_SALES_ORDER_ENTITY_ID" table="aitoc_deleteorders_order_archive"
+                    column="order_id" referenceTable="sales_order" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <index referenceId="AITOC_DELETEORDERS_ORDER_ARCHIVE_ORDER_ID" indexType="btree">
+            <column name="order_id"/>
+        </index>
+    </table>
+</schema>

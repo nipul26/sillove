@@ -23,7 +23,6 @@ namespace Shiprocket\Checkout\Model\Carrier;
 
 use Magento\Quote\Model\Quote\Address\RateRequest;
 use Magento\Shipping\Model\Rate\Result;
-use Shiprocket\Checkout\Helper\Data as ShiprocketHelper;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory;
 use Psr\Log\LoggerInterface;
@@ -49,17 +48,11 @@ class ShiprocketShipping extends \Magento\Shipping\Model\Carrier\AbstractCarrier
     protected $rateMethodFactory;
 
     /**
-     * @var ShiprocketHelper
-     */
-    protected $shiprocketHelper;
-
-    /**
      * @param ScopeConfigInterface $scopeConfig
      * @param ErrorFactory $rateErrorFactory
      * @param LoggerInterface $logger
      * @param ResultFactory $rateResultFactory
      * @param MethodFactory $rateMethodFactory
-     * @param ShiprocketHelper $shiprocketHelper
      * @param array $data
      */
     public function __construct(
@@ -68,13 +61,10 @@ class ShiprocketShipping extends \Magento\Shipping\Model\Carrier\AbstractCarrier
         LoggerInterface $logger,
         ResultFactory $rateResultFactory,
         MethodFactory $rateMethodFactory,
-        ShiprocketHelper $shiprocketHelper,
         array $data = []
     ) {
-        $this->logger = $logger;
         $this->rateResultFactory = $rateResultFactory;
         $this->rateMethodFactory = $rateMethodFactory;
-        $this->shiprocketHelper = $shiprocketHelper;
         parent::__construct($scopeConfig, $rateErrorFactory, $logger, $data);
     }
 
@@ -95,10 +85,9 @@ class ShiprocketShipping extends \Magento\Shipping\Model\Carrier\AbstractCarrier
      */
     private function getShippingPrice()
     {
-        $srPrice = $this->shiprocketHelper->getCheckoutSession()->getSrShippingPrice();
-        $shippingAmount = ($srPrice) ? $srPrice : 0;
+        $configPrice = (float) $this->getConfigData('price');
 
-        return $shippingAmount;
+        return $configPrice;
     }
 
     /**
@@ -110,10 +99,6 @@ class ShiprocketShipping extends \Magento\Shipping\Model\Carrier\AbstractCarrier
     public function collectRates(RateRequest $request)
     {
         if (!$this->getConfigFlag('active')) {
-            return false;
-        }
-
-        if (!$this->shiprocketHelper->getCheckoutSession()->getSrCheckoutActive()) {
             return false;
         }
 
