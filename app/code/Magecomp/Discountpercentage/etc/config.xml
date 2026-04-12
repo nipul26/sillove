@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <discountpercentage>
+            <general>
+                <enable>1</enable>
+                <custom_text>off</custom_text>
+            </general>
+            <checkout>
+                <enable_custom_text>1</enable_custom_text>
+                <checkout_label>Custom Fee</checkout_label>
+                <checkout_text>Included</checkout_text>
+            </checkout>
+        </discountpercentage>
+    </default>
+</config>

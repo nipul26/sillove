@@ -47,13 +47,11 @@ class CartItemPrice
         $formattedRegularPrice = $this->priceCurrency->format($regularPrice, false, 2);
 
         $discountHtml = '<div class="discount-info" style="margin-top:4px;">'
-            . ' <span class="old-price">'
-            . ' <span class="price">'
-            . $formattedRegularPrice
-            . '</span>'
-            . '</span>'
-            . '<span class="discount-badge">'
+            . '<span style="color:#008000; font-weight:bold; font-size:13px;">'
             . $discountPercent . '% ' . __('off')
+            . '</span>'
+            . ' <span style="text-decoration:line-through; color:#999; font-size:13px;">'
+            . $formattedRegularPrice
             . '</span>'
             . '</div>';
 
