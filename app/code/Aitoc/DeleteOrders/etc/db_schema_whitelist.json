@@ -1,0 +1,30 @@
+{
+    "aitoc_deleteorders_rules": {
+        "column": {
+            "entity_id": true,
+            "title": true,
+            "scope": true,
+            "order_statuses": true,
+            "action": true,
+            "time": true,
+            "is_active": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "aitoc_deleteorders_order_archive": {
+        "column": {
+            "record_id": true,
+            "order_id": true,
+            "archived_at": true
+        },
+        "index": {
+            "AITOC_DELETEORDERS_ORDER_ARCHIVE_ORDER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AITOC_DELETEORDERS_ORDER_ARCHIVE_ORDER_ID_SALES_ORDER_ENTITY_ID": true
+        }
+    }
+}

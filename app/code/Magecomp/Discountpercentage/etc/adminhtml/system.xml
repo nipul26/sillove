@@ -15,9 +15,38 @@
                     <label>Discount Price</label>
                     <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
                 </field>
-                <field id="free_shipping_text" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="custom_text" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Text</label>
+                    <comment>Custom text displayed alongside the discount percentage on product pages (e.g. "off").</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="free_shipping_text" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Free Shipping Text</label>
                     <comment>Text displayed on the storefront for free shipping message.</comment>
+                </field>
+            </group>
+            <group id="checkout" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Checkout Order Summary</label>
+                <field id="enable_custom_text" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Custom Text</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>Show a custom label and text row in the checkout order summary.</comment>
+                </field>
+                <field id="checkout_label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Label</label>
+                    <comment>The label displayed on the left side (e.g. "Service Fee", "Extra Charge").</comment>
+                    <depends>
+                        <field id="enable_custom_text">1</field>
+                    </depends>
+                </field>
+                <field id="checkout_text" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Text</label>
+                    <comment>The value/text displayed on the right side (e.g. "$5", "Free", "Included").</comment>
+                    <depends>
+                        <field id="enable_custom_text">1</field>
+                    </depends>
                 </field>
             </group>
         </section>

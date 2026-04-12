@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3e344245a8cdcffa23c17b4cf3d37062",
+    "content-hash": "080d1f9e289b0197eb3cd41ae52b037f",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -4877,38 +4877,6 @@
                 }
             ],
             "time": "2024-09-21T08:32:55+00:00"
-        },
-        {
-            "name": "magecomp/magento-2-mobile-login-free",
-            "version": "1.0.4",
-            "dist": {
-                "type": "zip",
-                "url": "https://repo.magento.com/archives/magecomp/magento-2-mobile-login-free/magecomp-magento-2-mobile-login-free-1.0.4.0.zip",
-                "shasum": "2d1ec4480d9163c799900b3acc5863a2c97e62ba"
-            },
-            "require": {
-                "php": "~5.5.0||~5.6.0||~7.0.0||~7.1.0||~7.2.0||~7.3.0||~7.4.0||~8.1.0||~8.2.0||~8.3.0||~8.4.0"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "Magecomp\\Mobileloginfree\\": ""
-                }
-            },
-            "license": [
-                "Commercial"
-            ],
-            "authors": [
-                {
-                    "name": "Magecomp",
-                    "email": "support@magecomp.com",
-                    "homepage": "https://magecomp.com"
-                }
-            ],
-            "description": "Magecomp Magento 2 Mobile Login FREE"
         },
         {
             "name": "magento/adobe-stock-integration",
@@ -30503,7 +30471,7 @@
     },
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
+    "platform": {},
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }

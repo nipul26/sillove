@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magepow. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <magepow_configurablepreselect>
+            <general>
+                <enabled>1</enabled>
+                <type_preselected>1</type_preselected>
+                <enabled_categorypage>1</enabled_categorypage>
+            </general>
+        </magepow_configurablepreselect>
+    </default>
+</config>

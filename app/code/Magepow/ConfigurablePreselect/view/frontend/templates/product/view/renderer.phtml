@@ -1,0 +1,35 @@
+<?php
+/**
+ * Copyright © Magepow. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magepow\ConfigurablePreselect\Block\Product\Renderer\Configurable $block */
+/** @var \Magento\Swatches\ViewModel\Product\Renderer\Configurable $configurableViewModel */
+$configurableViewModel = $block->getConfigurableViewModel();
+/** @var \Magepow\ConfigurablePreselect\ViewModel\PreselectConfig $preselectViewModel */
+$preselectViewModel = $block->getData('preselect_view_model');
+?>
+<div class="swatch-opt" data-role="swatch-options"></div>
+<?php if ($preselectViewModel && $preselectViewModel->isEnabled()): ?>
+<script type="text/x-magento-init">
+    {
+        "[data-role=swatch-options]": {
+            "Magento_Swatches/js/swatch-renderer": {
+                "jsonConfig": <?= /* @noEscape */ $block->getJsonConfig() ?>,
+                "jsonSwatchConfig": <?= /* @noEscape */ $block->getJsonSwatchConfig() ?>,
+                "mediaCallback": "<?= $block->escapeJs($block->escapeUrl($block->getMediaCallback())) ?>",
+                "gallerySwitchStrategy": "<?= $block->escapeJs(
+                    $block->getVar('gallery_switch_strategy', 'Magento_ConfigurableProduct')
+                ) ?: 'replace'; ?>",
+                "typeConfigurablePreselectedProduct": "<?= $block->escapeJs($preselectViewModel->getTypePreselected()) ?>",
+                "jsonSwatchImageSizeConfig": <?= /* @noEscape */ $block->getJsonSwatchSizeConfig() ?>,
+                "showTooltip": <?= $block->escapeJs($configurableViewModel->getShowSwatchTooltip()) ?>
+            }
+        },
+        "*" : {
+            "Magento_Swatches/js/catalog-add-to-cart": {}
+        }
+    }
+</script>
+<?php endif; ?>
