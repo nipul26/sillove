@@ -200,6 +200,36 @@
             }
         }
     }
+
+    input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        border: 1px solid @border-color-light;
+        top: 3px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        -o-appearance: none;
+        appearance: none;
+
+        &:checked {
+            background: @theme-primary-color;
+            .lib-button-icon(
+                @_icon-font-content: @icon-checkmark,
+                @_icon-font-size: 10px,
+                @_icon-font-text-hide: true,
+                @_icon-font-color: @color-white,
+                @_icon-font-color-hover: @color-white,
+                @_icon-font-line-height: 10px
+            );
+            &:before {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
 }
 
 //

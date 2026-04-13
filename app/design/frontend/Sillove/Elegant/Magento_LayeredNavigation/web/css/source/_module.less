@@ -52,9 +52,9 @@
         .block-subtitle {
             border-bottom: @border-width__base solid @border-color__base;
             font-size: @font-size__base;
-            font-weight: @font-weight__regular;
+            font-weight: @font-weight__heavier;
             line-height: 1em;
-            padding: @indent__s @indent__s @indent__base;
+            color: @theme-primary-color;
         }
 
         &-subtitle {
@@ -62,7 +62,11 @@
         }
 
         &-current {
-            margin: 0;
+            background: @color-white;
+            padding: 15px;
+            border: 1px solid @border-color-light;
+            border-bottom: 0;
+            border-radius: 10px 10px 0 0;
 
             .items {
                 padding: @indent__xs @indent__s;
@@ -90,14 +94,20 @@
 
         &-actions {
             margin-bottom: @indent__m;
-            padding: 0 @indent__s;
+            background: @color-white;
+            padding: 0 15px 15px;
+            border: 1px solid @border-color-light;
+            border-top: 0;
+            border-radius: 0 0 10px 10px;
         }
 
         &-label {
-            font-weight: @font-weight__bold;
+            font-weight: @font-weight__semibold;
+            margin-right: 2px;
 
             &:after {
                 content: ': ';
+                margin-right: 2px;
             }
         }
 
@@ -129,11 +139,7 @@
                 }
 
                 a {
-                    color: @color-black;
-                    margin-left: -5px;
-                    margin-right: -5px;
-                    padding-left: 5px;
-                    padding-right: 7px;
+                    color: @color-gray20;
 
                     &:hover {
                         text-decoration: none;
@@ -274,18 +280,20 @@
     }
 
     .filter .filter-current {
-        border: solid @border-color__base;
-        border-width: 1px 0;
         margin: 0 0 10px;
+        border-radius: 6px;
+        padding: 10px;
 
         .items {
             display: none;
         }
 
         &-subtitle {
+            font-size: 12px;
+            color: @color-gray20;
             position: relative;
-            text-transform: uppercase;
             z-index: 1;
+            padding-bottom: 0;
 
             .lib-icon-font(
                 @_icon-font-content: @icon-down,
@@ -297,7 +305,7 @@
             &:before {
                 position: absolute;
                 right: 10px;
-                top: 10px;
+                top: 2px;
             }
 
             &:after {
@@ -378,7 +386,7 @@
         }
 
         &-actions {
-            margin-bottom: @indent__l;
+            margin-bottom: 10px;
         }
 
         &.active &-options,
