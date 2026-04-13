@@ -27,9 +27,6 @@ $savePercent = $hasDiscount ? (int)round((($regularAmount - $finalAmount) / $reg
             'schema' => $schema,
         ]); ?>
     </span>
-    <span class="discount-badge">
-        <?php echo '<b style="color:#008000">' . $savePercent . '% off</b>'; ?>
-    </span>
     <span class="old-price">
         <strike><?= /* @noEscape */ $block->renderAmount($priceModel->getAmount(), [
             'display_label' => __(''),
@@ -39,11 +36,14 @@ $savePercent = $hasDiscount ? (int)round((($regularAmount - $finalAmount) / $reg
             'skip_adjustments' => true,
         ]); ?></strike>
     </span>
+    <span class="discount-badge">
+        <?php echo '<b>' . $savePercent . '% off</b>'; ?>
+    </span>
     <?php if($block->getZone()=='item_view'): ?>
     <?php $customText = $myhelper->getCustomText(); ?>
     <?php if ($customText): ?>
-        <div class="custom-discount-text" style="margin-top:5px;">
-            <span style="font-weight:bold;"><?= $block->escapeHtml($customText) ?></span>
+        <div class="custom-discount-text">
+            <span><?= $block->escapeHtml($customText) ?></span>
         </div>
     <?php endif; ?>
     <?php endif; ?>

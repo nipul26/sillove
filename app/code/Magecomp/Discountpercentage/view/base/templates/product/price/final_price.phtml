@@ -17,13 +17,6 @@ $myhelper = $this->helper('Magecomp\Discountpercentage\Helper\Data');
             'schema' => $schema
         ]); ?>
     </span>
-    <span class="discount-badge">
-	<?php
-    $item = $block->getSaleableItem();
-    $_savePercent = 100 - round(((float)$item->getFinalPrice() / (float)$item->getPrice()) * 100);
-    echo '<b style="color:#008000">' . $_savePercent . '% off</b>';
-    ?>
-    </span>
         <span class="old-price">
         <strike><?php echo $block->renderAmount($priceModel->getAmount(), [
                 'display_label' => __(''),
@@ -32,6 +25,13 @@ $myhelper = $this->helper('Magecomp\Discountpercentage\Helper\Data');
                 'include_container' => true,
                 'skip_adjustments' => true
             ]); ?></strike>
+    </span>
+    <span class="discount-badge">
+	<?php
+    $item = $block->getSaleableItem();
+    $_savePercent = 100 - round(((float)$item->getFinalPrice() / (float)$item->getPrice()) * 100);
+    echo '<b>' . $_savePercent . '% off</b>';
+    ?>
     </span>
     <?php if($block->getZone()=='item_view'): ?>
     <?php $customText = $myhelper->getCustomText(); ?>

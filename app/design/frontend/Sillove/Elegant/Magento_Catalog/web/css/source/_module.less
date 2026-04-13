@@ -204,7 +204,6 @@
 
     .product.info.detailed {
         clear: both;
-        margin-bottom: 30px;
 
         .additional-attributes {
             width: auto;
@@ -234,6 +233,7 @@
             .price-box {
                 display: flex;
                 align-items: center;
+                flex-wrap: wrap;
                 column-gap: 10px;
                 width: auto;
 
@@ -247,6 +247,9 @@
                     .price-label {
                         display: none;
                     }
+                }
+                .custom-discount-text {
+                    width: 100%;
                 }
             }
 
@@ -406,7 +409,7 @@
         }
 
         .product-reviews-summary {
-            float: left;
+            display: none;
         }
 
         .other-info {
