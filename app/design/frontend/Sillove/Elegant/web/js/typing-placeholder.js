@@ -2,9 +2,9 @@ define(['jquery', 'domReady!'], function ($) {
     'use strict';
 
     const texts = [
-        "Gold Rings",
-        "Diamond Earrings",
-        "Silver Chains"
+        "Silver Ring",
+        "Silver Jewellery Set ",
+        "Silver Brecelet & Kada"
     ];
 
     $('.animate-input').each(function () {
