@@ -537,13 +537,31 @@
 
         .product {
             .actions {
-                float: left;
+                float: right;
                 margin: 10px 0 0 0;
             }
         }
         .update-cart-item {
             float: right;
             margin-left: 0;
+        }
+    }
+    .minicart-items {
+        .product-item-details {
+            .price-including-tax,
+            .price-excluding-tax {
+                font-size: 14px;
+            }
+            .old-price-wrapper {
+                .old-price {
+                    .price {
+                        font-size: 12px;
+                    }
+                }
+            }
+            .saved-amount {
+                font-size: 12px;
+            }
         }
     }
 }

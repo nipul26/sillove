@@ -450,6 +450,18 @@
             }
         }
     }
+
+    .product-social-links,
+    .block-bundle-summary,
+    .table-comparison {
+        .action.towishlist {
+            &::before {
+                background-size: 23px;
+                width: 23px;
+                height: 23px;
+            }
+        }
+    }
 }
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {

@@ -800,7 +800,23 @@
     .product-info-main {
         .box-tocart {
             .fieldset {
-                flex-wrap: wrap;
+                column-gap: 10px;
+            }
+            .action.tocart {
+                width: 70%;
+            }
+        }
+        .product-add-form {
+            .box-tocart {
+                .field.qty {
+                    input {
+                        padding: 0 5px;
+                        width: 44px;
+                    }
+                    button {
+                        padding: 0 11px;
+                    }
+                }
             }
         }
     }
@@ -810,6 +826,12 @@
             .info-box {
                 max-width: ~"calc(100% / 2 - 23px)";
             }
+        }
+    }
+
+    .product-addto-links {
+        .action {
+            margin-left: 10px;
         }
     }
 }

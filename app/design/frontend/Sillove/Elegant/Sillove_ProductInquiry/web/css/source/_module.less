@@ -134,3 +134,22 @@
         }
     }
 }
+
+//
+//  Mobile @screen__m
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .inquiry-actions {
+        .whatsapp-inquiry {
+            margin: 0 0 0 10px;
+            padding: 4px 12px;
+            
+            &:before {
+                width: 23px;
+                height: 23px;
+                background-size: 22px;
+            }
+        }
+    }    
+}
