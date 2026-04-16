@@ -3,11 +3,13 @@ var config = {
         'js/typing-placeholder',
         'js/aos-init'
     ],
-    paths: {
-        aos: 'js/aos'
+    map: {
+        '*': {
+            aos: 'js/aos'
+        }
     },
     shim: {
-        aos: {
+        'js/aos': {
             exports: 'AOS'
         }
     }
