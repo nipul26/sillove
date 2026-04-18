@@ -15,19 +15,47 @@ class Data extends AbstractHelper
     /**
      *
      */
-    const CONFIG_IS_ENABLED = 'zipchecker/config/is_enabled';
+    const CONFIG_IS_ENABLED = 'zipchecker/general/is_enabled';
     /**
      *
      */
-    const CONFIG_ZIPCODES = 'zipchecker/config/zipcodes';
+    const CONFIG_ZIPCODES = 'zipchecker/general/zipcodes';
     /**
      *
      */
-    const CONFIG_SUCCESS_MESSAGE = 'zipchecker/config/success_message';
+    const CONFIG_SUCCESS_MESSAGE = 'zipchecker/general/success_message';
     /**
      *
      */
-    const CONFIG_ERROR_MESSAGE = 'zipchecker/config/error_message';
+    const CONFIG_ERROR_MESSAGE = 'zipchecker/general/error_message';
+    /**
+     *
+     */
+    const CONFIG_API_EMAIL = 'zipchecker/general/api_email';
+    /**
+     *
+     */
+    const CONFIG_API_PASSWORD = 'zipchecker/general/api_password';
+    /**
+     *
+     */
+    const CONFIG_PICKUP_POSTCODE = 'zipchecker/general/pickup_postcode';
+    /**
+     *
+     */
+    const CONFIG_COD = 'zipchecker/general/cod';
+    /**
+     *
+     */
+    const CONFIG_WEIGHT = 'zipchecker/general/weight';
+    /**
+     *
+     */
+    const CONFIG_AUTH_API_URL = 'zipchecker/general/auth_api_url';
+    /**
+     *
+     */
+    const CONFIG_SERVICEABILITY_API_URL = 'zipchecker/general/serviceability_api_url';
 
     /**
      * @var ScopeConfig
@@ -88,5 +116,61 @@ class Data extends AbstractHelper
     public function getIsActive()
     {
         return $this->getStoreConfig(self::CONFIG_IS_ENABLED);
+    }
+
+    /**
+     * @return string
+     */
+    public function getApiEmail()
+    {
+        return (string) $this->getStoreConfig(self::CONFIG_API_EMAIL);
+    }
+
+    /**
+     * @return string
+     */
+    public function getApiPassword()
+    {
+        return (string) $this->getStoreConfig(self::CONFIG_API_PASSWORD);
+    }
+
+    /**
+     * @return string
+     */
+    public function getPickupPostcode()
+    {
+        return trim((string) $this->getStoreConfig(self::CONFIG_PICKUP_POSTCODE));
+    }
+
+    /**
+     * @return int
+     */
+    public function getCod()
+    {
+        return (int) $this->getStoreConfig(self::CONFIG_COD);
+    }
+
+    /**
+     * @return float
+     */
+    public function getWeight()
+    {
+        return (float) $this->getStoreConfig(self::CONFIG_WEIGHT);
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthApiUrl()
+    {
+        return trim((string) $this->getStoreConfig(self::CONFIG_AUTH_API_URL));
+    }
+
+    /**
+     * @return string
+     */
+    public function getServiceabilityApiUrl()
+    {
+        return trim((string) $this->getStoreConfig(self::CONFIG_SERVICEABILITY_API_URL));
     }
 }
