@@ -9,7 +9,7 @@
             <label>Check Delivery</label>
             <tab>v4u</tab>
             <resource>V4U_ZipChecker::config_zipchecker</resource>
-            <group id="config" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General</label>
                 <field id="is_enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable</label>
@@ -25,6 +25,58 @@
 				<field id="error_message" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Error message</label>
 					<validate>required-entry</validate>
+					<depends>
+                        <field id="is_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="api_email" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API Email</label>
+					<validate>required-entry validate-email</validate>
+					<depends>
+                        <field id="is_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="api_password" translate="label" type="text" sortOrder="31" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API Password</label>
+					<validate>required-entry</validate>
+					<depends>
+                        <field id="is_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="pickup_postcode" translate="label" type="text" sortOrder="32" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pickup Postcode</label>
+                    <comment>Warehouse or pickup pincode used for serviceability API.</comment>
+					<validate>required-entry validate-digits</validate>
+					<depends>
+                        <field id="is_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="cod" translate="label" type="select" sortOrder="33" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>COD</label>
+                    <comment>Send COD flag in serviceability request.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<depends>
+                        <field id="is_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="weight" translate="label" type="text" sortOrder="34" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Weight (kg)</label>
+                    <comment>Required with COD when order_id is not sent. Example: 0.5</comment>
+					<validate>required-entry validate-number validate-zero-or-greater</validate>
+					<depends>
+                        <field id="is_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="auth_api_url" translate="label" type="text" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Auth API URL</label>
+					<validate>required-entry validate-url</validate>
+					<depends>
+                        <field id="is_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="serviceability_api_url" translate="label" type="text" sortOrder="36" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pincode Check API URL</label>
+					<validate>required-entry validate-url</validate>
 					<depends>
                         <field id="is_enabled">1</field>
                     </depends>
