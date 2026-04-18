@@ -1,12 +1,24 @@
 <?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/config.xsd">
     <default>
         <zipchecker>
-           <!--  <config>
+            <general>
+                <is_enabled>0</is_enabled>
+                <success_message><![CDATA[Delivery is available at %1]]></success_message>
+                <error_message><![CDATA[Delivery is not available at %1]]></error_message>
+                <api_email></api_email>
+                <api_password></api_password>
+                <pickup_postcode></pickup_postcode>
+                <cod>1</cod>
+                <weight>0.5</weight>
+                <auth_api_url>https://apiv2.shiprocket.in/v1/external/auth/login</auth_api_url>
+                <serviceability_api_url>https://apiv2.shiprocket.in/v1/external/courier/serviceability/</serviceability_api_url>
+            </general>
+           <!--  <general>
                 <is_enabled>0</is_enabled>
                 <success_message><![CDATA[Cash On Delivery is available in %1]]></success_message>
                 <error_message><![CDATA[Product is not available at %1]]></error_message>
-            </config> -->
+            </general> -->
         </zipchecker>
     </default>
 </config>
