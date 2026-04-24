@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "080d1f9e289b0197eb3cd41ae52b037f",
+    "content-hash": "d5bf4e32cefc4c67addaddc68fc846cd",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -18993,6 +18993,50 @@
             "time": "2026-01-27T03:07:00+00:00"
         },
         {
+            "name": "mageplaza/module-social-share",
+            "version": "4.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mageplaza/magento-2-social-share.git",
+                "reference": "d60461654c08892f1774704e05ae36891aaa2001"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mageplaza/magento-2-social-share/zipball/d60461654c08892f1774704e05ae36891aaa2001",
+                "reference": "d60461654c08892f1774704e05ae36891aaa2001",
+                "shasum": ""
+            },
+            "require": {
+                "mageplaza/module-core": "^1.5.3"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Mageplaza\\SocialShare\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Mageplaza",
+                    "email": "support@mageplaza.com",
+                    "homepage": "https://www.mageplaza.com",
+                    "role": "Technical Support"
+                }
+            ],
+            "description": "Magento 2 Social Share Extension",
+            "support": {
+                "source": "https://github.com/mageplaza/magento-2-social-share/tree/v4.0.4"
+            },
+            "time": "2024-10-21T10:11:12+00:00"
+        },
+        {
             "name": "marc-mabe/php-enum",
             "version": "v4.7.2",
             "source": {
@@ -30471,7 +30515,7 @@
     },
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": {},
-    "platform-dev": {},
+    "platform": [],
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
