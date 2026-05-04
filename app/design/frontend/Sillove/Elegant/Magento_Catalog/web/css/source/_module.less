@@ -171,10 +171,11 @@
         }
 
         .fotorama__stage {
-            margin-bottom: 23px;
-            box-shadow: 2px 2px 20px rgba(0,0,0,.1);
-            border-radius: 10px;
-            background: @color-white;
+            .fotorama__stage__shaft {
+                // box-shadow: 2px 2px 20px rgba(0,0,0,.1);
+                border-radius: 10px;
+                background: @color-white;
+            }
         }
         .fotorama__nav__shaft {
             .fotorama__thumb-border {
@@ -182,7 +183,7 @@
             }
             .fotorama__nav__frame {
                 padding: 0 !important;
-                margin-right: 18px;
+                margin-bottom: 18px;
 
                 .fotorama__thumb {
                     border-radius: 12px;
@@ -198,6 +199,9 @@
         .fotorama__stage__frame {
             .fotorama__img {
                 border-radius: 10px;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
         }
     }
@@ -404,6 +408,10 @@
 
                 .braintree-paypal-logo.oneclick-container {
                     width: auto;
+                    display: none;
+                }
+                .instant-purchase {
+                    display: none;
                 }
             }
         }
@@ -427,7 +435,7 @@
                 border-radius: 5px;
                 text-align: center;
                 border: 1px solid @color-gray62;
-                max-width: ~"calc(100% / 4 - 30px)";
+                max-width: ~"calc(100% / 4 - 26px)";
 
                 img {
                     margin-bottom: 5px;
@@ -552,6 +560,8 @@
             display: flex;
             align-items: center;
             width: 100%;
+            position: relative;
+            column-gap: 20px;
         }
 
         .action.tocart {
@@ -561,7 +571,7 @@
             font-size: 15px;
             font-weight: @font-weight__semibold;
             height: 49px;
-            width: 60%;
+            width: 71%;
 
             span {
                 &::before {
@@ -589,10 +599,6 @@
 
     .product-addto-links {
         display: inline;
-
-        .action {
-            margin-left: 18px;
-        }
     }
 
     .product-social-links {
@@ -779,6 +785,22 @@
             min-height: inherit;
         }
     }
+
+    .pdp-social-wrapper {
+        .share-icon {
+            cursor: pointer;
+            width: 28px;
+            height: 26px;
+            img {
+                display: block;
+            }
+        }
+        .custom-social-box {
+            display: none;
+            position: absolute;
+            right: 0;
+        }
+    }
 }
 
 //
@@ -920,15 +942,21 @@
     .product.media {
         float: left;
         margin-bottom: @indent__m;
+
+        .product-label-div {
+            .shape-section-top-left {
+                left: 103px;
+            }
+        }
     }
 
     .page-layout-1column {
         .product-info-main {
-            width: 56%;
+            width: 49%;
         }
 
         .product.media {
-            width: 40%;
+            width: 48%;
         }
     }
 
@@ -936,6 +964,9 @@
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
+        max-width: 100%;
+        width: 100%;
+        margin: 0 auto;
 
         .product.media {
             position: sticky;
@@ -997,6 +1028,26 @@
             min-height: inherit;
         }
     }
+
+    .fotorama-item.fotorama {
+        &:not(.fotorama--fullscreen) {
+            .fotorama__wrap {
+                display: flex;
+            }
+            .fotorama__nav-wrap--vertical {
+                &.fotorama__nav-wrap {
+                    // margin-right: 20px;
+                    position: unset;
+                    order: 1;
+                }
+            }
+            .fotorama__stage {
+                left: 0 !important;
+                order: 2;
+            }
+        }
+    }
+
 }
 
 //
@@ -1020,6 +1071,10 @@
                 margin-left: 85px;
             }
         }
+    }
+
+    .product-info-main-wrapper {
+        max-width: 85%;
     }
 }
 
@@ -1330,11 +1385,6 @@
     }
 
     @media only screen and (min-width: @screen__m) and (max-width: (@screen__l - 1)) {
-        .product-addto-links {
-            .action {
-                margin-left: 10px;
-            }
-        }
         .product-info-main {
             .box-tocart {
                 .fieldset {
