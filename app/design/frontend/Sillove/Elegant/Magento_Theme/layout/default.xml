@@ -37,7 +37,7 @@
         <referenceBlock name="register-link" remove="true"/>
         <referenceBlock name="footer_links" remove="true"/>
         <referenceBlock name="header.panel" remove="true"/>
-        <referenceBlock name="breadcrumbs" remove="true"/>
+        <!-- <referenceBlock name="breadcrumbs" remove="true"/> -->
 
         <move element="header.links" destination="header-wrapper" before="minicart"/>
 

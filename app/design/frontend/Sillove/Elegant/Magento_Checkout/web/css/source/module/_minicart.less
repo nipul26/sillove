@@ -352,7 +352,7 @@
 
         .product-item-name {
             font-weight: @font-weight__regular;
-            margin: 0 0 @indent__s;
+            margin: 0 0 @indent__xs;
 
             a {
                 .lib-css(color, @link__color);
@@ -362,30 +362,36 @@
         .product-item-pricing {
             .price-container {
                 display: flex;
-                align-items: center;
-                flex-wrap: wrap;
-                column-gap: 5px;
+                flex-direction: column;
+                row-gap: 5px;
+                align-items: flex-end;
             }
         }
 
         .product-item {
             .product-item-details {
-                padding-left: 88px;
+                padding:0 0 0 88px;
 
                 .price-container {
                     .minicart-price {
                         .price {
+                            font-size: 14px;
                             color: @theme-primary-color;
                         }
+                    }
+                    .old-price-wrapper {
+                        text-align: right;
+                    }
+                    .saved-amount {
+                        display: none;
                     }
                 }
             }
         }
         .product-item-details {
-
-            .price-including-tax,
-            .price-excluding-tax {
-                margin: @indent__xs 0;
+            .minicart-item-details-wrapper {
+                display: flex;
+                justify-content: space-between;
             }
 
             .weee[data-label] {
@@ -396,7 +402,7 @@
             }
 
             .details-qty {
-                margin-top: @indent__s;
+                margin-top: @indent__xs;
             }
 
             .product {
@@ -562,6 +568,17 @@
             .saved-amount {
                 font-size: 12px;
             }
+            .minicart-item-details-wrapper {
+                flex-direction: column;
+            }
+            .product-item-pricing {
+                .price-container {
+                    align-items: flex-start;
+                }
+            }
+            .details-qty {
+                margin-top: 10px;
+            }
         }
     }
 }
@@ -577,6 +594,7 @@
 
         .block-minicart {
             width: 420px;
+            padding: 15px;
         }
     }
     .minilist .action.delete,

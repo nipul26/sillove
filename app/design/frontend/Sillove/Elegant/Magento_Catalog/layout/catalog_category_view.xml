@@ -17,8 +17,9 @@
             </action>
         </referenceBlock>
 
-        <referenceBlock name="page.main.title" remove="true" />
-        <referenceBlock name="breadcrumbs" remove="true"/>
+        <!-- <move element="page.main.title" destination="content" before="-"/> -->
+
+        <referenceBlock name="page.main.title" remove="true"/>
         <referenceBlock name="category.product.addto.compare" remove="true"/>
         <referenceContainer name="sidebar.additional" remove="true" />
     </body>

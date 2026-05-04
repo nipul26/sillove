@@ -9,5 +9,6 @@
     <update handle="customer_account"/>
     <body>
         <referenceBlock name="page.main.title" remove="true" />
+        <referenceBlock name="customer.wishlist.item.review" remove="true" />
     </body>
 </page>

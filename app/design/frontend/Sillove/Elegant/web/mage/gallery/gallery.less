@@ -168,6 +168,7 @@
 
 .fotorama__nav--thumbs {
     display: block;
+    width: auto !important;
     .fotorama__nav__frame {
         padding-left: 0 !important;
         &:last-child {
@@ -225,7 +226,6 @@
     height: 100%;
     overflow: hidden;
     position: relative;
-    width: 100%;
     .fotorama__nav__frame:focus & {
         &:extend(.fotorama-focus-overlay);
         z-index: 2;
@@ -783,7 +783,7 @@
         position: absolute;
         top: 50%;
         @media all and (min-width: 768px) {
-            top:49.5%;
+            top: 50%;
         }
         .fotorama-translate3d(-50%, -50%, 0);
         transition-duration: @fotorama-fullscreen-zoom-time;
@@ -810,7 +810,6 @@
     }
 
     .fotorama__nav__shaft {
-        background-color: white;
         width: 100%;
         .fotorama__nav__frame--thumb {
             display: block;
@@ -992,6 +991,7 @@
     &__image {
         display: block;
         margin: auto;
+        opacity: 0;
     }
 }
 
