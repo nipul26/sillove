@@ -6,7 +6,6 @@
 	width: 100%;
 }
 .zipchecker-product .form-product-zipcode .zipcode-box{
-	max-width: 500px;
     width: 100%;
     background: #fff;
     padding: 10px;
@@ -32,4 +31,5 @@
 }
 .zipchecker-product .form-product-zipcode .zipcode-box .message{
 	margin: 10px 0 0;
+	padding-left: 20px;
 }
