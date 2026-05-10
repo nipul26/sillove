@@ -410,7 +410,7 @@
                     width: auto;
                     display: none;
                 }
-                .instant-purchase {
+                #instant-purchase {
                     display: none;
                 }
             }
@@ -821,22 +821,26 @@
 
     .product-info-main {
         .box-tocart {
-            .fieldset {
-                column-gap: 10px;
-            }
             .action.tocart {
-                width: 70%;
+                font-size: 14px;
+                padding: 14px 10px;
+            }
+            .actions {
+                column-gap: 10px;
             }
         }
         .product-add-form {
             .box-tocart {
+                .fieldset {
+                    column-gap: 10px;
+                }
                 .field.qty {
                     input {
                         padding: 0 5px;
                         width: 44px;
                     }
                     button {
-                        padding: 0 11px;
+                        padding: 0 9px;
                     }
                 }
             }
@@ -851,9 +855,10 @@
         }
     }
 
-    .product-addto-links {
-        .action {
-            margin-left: 10px;
+    .pdp-social-wrapper {
+        .share-icon {
+            width: 23px;
+            height: 23px;
         }
     }
 }
