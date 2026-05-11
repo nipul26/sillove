@@ -25,8 +25,8 @@
 		<job instance="Shiprocket\Checkout\Cron\Cleanup" method="execute" name="shiporocket_checkout_cron_cleanup">
 			<schedule>0 4 * * *</schedule>
 		</job>
-		<job instance="Shiprocket\Checkout\Cron\SyncProduct" method="execute" name="shiporocket_checkout_cron_sync_product">
+		<!-- <job instance="Shiprocket\Checkout\Cron\SyncProduct" method="execute" name="shiporocket_checkout_cron_sync_product">
 			<schedule>*/5 * * * *</schedule>
-		</job>
+		</job> -->
 	</group>
 </config>
