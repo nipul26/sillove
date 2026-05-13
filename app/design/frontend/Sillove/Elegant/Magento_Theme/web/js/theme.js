@@ -23,5 +23,16 @@ define([
             $(this).attr('id', id + '_mobile');
         }
     });
+
+    var miniCart = $('[data-block="minicart"]');
+
+    miniCart.on('dropdowndialogopen', function () {
+        $('body').addClass('minicart-popup-active');
+    });
+
+    miniCart.on('dropdowndialogclose', function () {
+        $('body').removeClass('minicart-popup-active');
+    });
+
     keyboardHandler.apply();
 });
