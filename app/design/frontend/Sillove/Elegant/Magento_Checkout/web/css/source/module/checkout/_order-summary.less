@@ -76,7 +76,13 @@
         .mark {
             .value {
                 .lib-css(color, @checkout-summary-mark-value__color);
-                display: block;
+
+                &:before {
+                    content: '(';
+                }
+                &:after {
+                    content: ')';
+                }
             }
         }
 
