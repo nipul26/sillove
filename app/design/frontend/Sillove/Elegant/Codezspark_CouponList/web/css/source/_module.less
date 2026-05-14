@@ -1,0 +1,295 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .coupon-list-link {
+        cursor: pointer;
+        display: block;
+        margin-top: 10px;
+        text-decoration: none;
+    }
+
+    .coupon-list-link:hover {
+        text-decoration: none;
+    }
+
+    .modal-slide._inner-scroll .modal-content {
+        overflow-y: auto;
+    }
+
+    aside.modal-slide.couponlist._inner-scroll._show {
+        left: auto;
+        max-width: 420px;
+        width: 100%;
+        border-radius: 12px 0 0 12px;
+    }
+
+    .modal-slide .modal-header {
+        padding-bottom: 0rem;
+        padding-top: 2.1rem;
+    }
+
+    .page-main-actions .page-actions {
+        display: none;
+    }
+
+    .coupon-code-container {
+        border: 1px solid @color-gray76;
+        border-radius: 5px;
+        margin: 20px 0;
+        padding: 3%;
+    }
+
+    .coupon-code-container .coupon-code {
+        background-color: @theme-secondary-color;
+        color: @brown-color;
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 4px;
+    }
+
+    .coupon-code-container .coupon-name {
+        font-weight: bold;
+        margin: 10px 0 5px;
+        text-align: justify;
+    }
+
+    .coupon-code-container .coupon-description {
+        margin: 5px 0 10px;
+        text-align: justify;
+    }
+
+    .coupon-code-container .applied-coupon,
+    .coupon-code-container .invalid-coupon {
+        background-color: @theme-primary-color;
+        color: #333;
+        display: inline-block;
+        font-weight: @font-weight__heavier;
+        padding: 4px 10px;
+        text-transform: uppercase;
+        border-radius: 4px;
+    }
+
+    .cart-discount .fieldset {
+        margin: 0 0 20px;
+    }
+
+    .modals-wrapper aside.modal-slide.couponlist._inner-scroll {
+        left: unset;
+    }
+
+    header.modal-header h1.modal-title {
+        font-size: 20px;
+        font-weight: @font-weight__heavier;
+        margin-bottom: 5px;
+    }
+
+    .modal-slide .page-main-actions {
+        margin: 0;
+    }
+
+    @media only screen and (max-width: 768px) {
+        aside.modal-slide.couponlist._inner-scroll._show {
+            left: auto;
+            max-width: 95%;
+            width: 100%;
+        }
+    }
+
+    .column.main .coupon-model {
+        display: none;
+    }
+
+    // PDP Coupon Offers
+    .pdp-coupon-offers {
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        margin: 20px 0;
+        padding: 20px;
+        background: #fff;
+    }
+
+    .pdp-coupon-offers-header {
+        margin-bottom: 15px;
+    }
+
+    .pdp-coupon-offers-title {
+        font-size: 18px;
+        font-weight: 700;
+        font-style: italic;
+        color: #222;
+    }
+
+    .pdp-coupon-offers-subtitle {
+        font-size: 13px;
+        color: #888;
+        margin-left: 5px;
+    }
+
+    .pdp-coupon-item {
+        border: 1px solid #e8e8e8;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        background: #fff;
+        transition: box-shadow 0.2s ease;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &.active {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        &.pdp-coupon-item-hidden {
+            display: none;
+        }
+    }
+
+    .pdp-coupon-item-header {
+        display: flex;
+        align-items: center;
+        padding: 12px 15px;
+        cursor: pointer;
+        user-select: none;
+
+        &:hover {
+            background: #fafafa;
+            border-radius: 8px;
+        }
+    }
+
+    .pdp-coupon-item-icon {
+        flex-shrink: 0;
+        margin-right: 12px;
+        display: flex;
+        align-items: center;
+
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    .pdp-coupon-item-info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .pdp-coupon-item-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+        display: block;
+        line-height: 1.4;
+    }
+
+    .pdp-coupon-item-toggle-icon {
+        flex-shrink: 0;
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+        transition: transform 0.2s ease;
+        color: #666;
+    }
+
+    .pdp-coupon-item.active .pdp-coupon-item-toggle-icon {
+        transform: rotate(180deg);
+    }
+
+    .pdp-coupon-item-body {
+        padding: 0 15px 15px 51px;
+    }
+
+    .pdp-coupon-item-description {
+        font-size: 13px;
+        color: #666;
+        margin-bottom: 12px;
+        line-height: 1.5;
+    }
+
+    .pdp-coupon-item-code-row {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .pdp-coupon-code-box {
+        display: inline-block;
+        border: 1.5px dashed #ccc;
+        border-radius: 4px;
+        padding: 6px 14px;
+        font-size: 13px;
+        font-weight: 700;
+        color: #333;
+        letter-spacing: 0.5px;
+        background: #fafafa;
+    }
+
+    .pdp-coupon-copy-btn {
+        font-size: 13px;
+        font-weight: 600;
+        color: #e91e63;
+        cursor: pointer;
+        text-decoration: none;
+        white-space: nowrap;
+
+        &:hover {
+            color: #c2185b;
+            text-decoration: none;
+        }
+    }
+
+    .pdp-coupon-more-offers {
+        text-align: center;
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid #f0f0f0;
+
+        a {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            text-decoration: none;
+            cursor: pointer;
+
+            &:hover {
+                color: #e91e63;
+                text-decoration: none;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        .pdp-coupon-offers {
+            margin: 15px 0;
+            padding: 15px;
+        }
+
+        .pdp-coupon-offers-title {
+            font-size: 16px;
+        }
+
+        .pdp-coupon-item-body {
+            padding-left: 15px;
+        }
+
+        .pdp-coupon-item-code-row {
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    aside.modal-slide.couponlist._inner-scroll._show {
+        max-width: 90%;
+    }    
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    aside.modal-slide.couponlist._inner-scroll._show {
+        max-width: 65%;
+    }    
+}

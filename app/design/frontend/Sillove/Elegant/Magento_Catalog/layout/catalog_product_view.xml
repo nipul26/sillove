@@ -21,6 +21,18 @@
             </container>
         </referenceContainer>
         
+        <referenceBlock name="product.info.details">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="custom.product.tab"
+                   template="Magento_Catalog::product/view/custom-tab.phtml"
+                   group="detailed_info">
+                <arguments>
+                    <argument name="title" xsi:type="string">Why Sillove?</argument>
+                    <argument name="sort_order" xsi:type="number">30</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
         <move element="product.info.media" destination="product.info.main.wrapper" before="-" />
         <move element="product.info.main" destination="product.info.main.wrapper" after="product.info.media" />
         

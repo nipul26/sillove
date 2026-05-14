@@ -74,10 +74,15 @@
     }
 
     .category-image {
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        
         .image {
             display: block;
             height: auto;
             max-width: 100%;
+            width: 100%;
         }
     }
 
@@ -845,6 +850,17 @@
                 }
             }
         }
+
+        .product-options-wrapper {
+            .swatch-option {
+                &.image,
+                &.color {
+                    width: 44px !important;
+                    height: 44px !important;
+                    min-width: 44px;
+                }
+            }
+        }
     }
 
     .product-info-main {
@@ -950,7 +966,11 @@
 
         .product-label-div {
             .shape-section-top-left {
-                left: 103px;
+                left: 82px;
+
+                .shape-11 {
+                    border-radius: 11px 0 11px 0;
+                }
             }
         }
     }
@@ -1053,6 +1073,46 @@
         }
     }
 
+    .product-info-main {
+        .product.info.detailed {
+            .data.item.title {
+                width: ~"calc(100% / 3)";
+                margin: 0;
+
+                &:first-child {
+                    border-left: 1px solid #ccc;
+                }
+
+                .switch {
+                    padding: 1px 15px;
+                    border-left: 0;
+                    height: 100%;
+                    width: 100%;
+                    box-sizing: border-box;
+
+                    .lib-icon-font(
+                        @icon-down,
+                        @_icon-font-size: 12px,
+                        @_icon-font-line-height: 12px,
+                        @_icon-font-position: after
+                    );
+
+                    &:after {
+                        top: 50%;
+                        transform: translateY(-50%);
+                    }
+                }
+
+                &.active {
+                    .switch {
+                        &:after {
+                            content: @icon-up;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 //
