@@ -25,6 +25,7 @@
         "magento/product-community-edition": "2.4.8-p4",
         "mageplaza/module-smtp": "^4.7",
         "mageplaza/module-social-share": "^4.0",
+        "magiccart/magicmenu": "^1.1",
         "razorpay/magento": "^4.1",
         "smile/elasticsuite": "^2.11"
     },

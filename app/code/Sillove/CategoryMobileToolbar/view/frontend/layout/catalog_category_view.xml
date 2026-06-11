@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Sillove_CategoryMobileToolbar::css/mobile-toolbar.css"/>
+    </head>
+    <body>
+        <referenceContainer name="before.body.end">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="Sillove.category.mobile.toolbar"
+                   template="Sillove_CategoryMobileToolbar::mobile-toolbar.phtml"/>
+        </referenceContainer>
+    </body>
+</page>
