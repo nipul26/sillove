@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d5bf4e32cefc4c67addaddc68fc846cd",
+    "content-hash": "eae289b99f4f1d5fc6b534f72768d1ed",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -19037,6 +19037,95 @@
             "time": "2024-10-21T10:11:12+00:00"
         },
         {
+            "name": "magepow/core",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/magepow/magento-2-core.git",
+                "reference": "78638282999737ddaa249ab81973793a554204d4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/magepow/magento-2-core/zipball/78638282999737ddaa249ab81973793a554204d4",
+                "reference": "78638282999737ddaa249ab81973793a554204d4",
+                "shasum": ""
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magepow\\Core\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Magepow",
+                    "email": "support@magepow.com",
+                    "homepage": "https://magepow.com",
+                    "role": "Technical Support"
+                }
+            ],
+            "description": "Magepow Core for Magento 2.",
+            "support": {
+                "issues": "https://github.com/magepow/magento-2-core/issues",
+                "source": "https://github.com/magepow/magento-2-core/tree/1.1.0"
+            },
+            "time": "2026-05-25T15:21:55+00:00"
+        },
+        {
+            "name": "magiccart/magicmenu",
+            "version": "1.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/magepow/magento-2-mega-menu.git",
+                "reference": "74bfb38959401ab133a055c535aa40173549a264"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/magepow/magento-2-mega-menu/zipball/74bfb38959401ab133a055c535aa40173549a264",
+                "reference": "74bfb38959401ab133a055c535aa40173549a264",
+                "shasum": ""
+            },
+            "require": {
+                "magepow/core": "^1.0.3"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magiccart\\Magicmenu\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alothemes",
+                    "email": "support@magepow.com",
+                    "homepage": "https://magepow.com",
+                    "role": "Technical Support"
+                }
+            ],
+            "description": "Make megamenu, dropdown menu, mobile menu easy all in one.",
+            "support": {
+                "issues": "https://github.com/magepow/magento-2-mega-menu/issues",
+                "source": "https://github.com/magepow/magento-2-mega-menu/tree/1.1.3"
+            },
+            "time": "2025-07-10T16:02:39+00:00"
+        },
+        {
             "name": "marc-mabe/php-enum",
             "version": "v4.7.2",
             "source": {
@@ -30515,7 +30604,7 @@
     },
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "platform": {},
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
 }
