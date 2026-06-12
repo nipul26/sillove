@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Sillove_CustomizedJewellery::requests"
+             title="Customized Jewellery"
+             module="Sillove_CustomizedJewellery"
+             sortOrder="50"
+             parent="Magento_Customer::customer"
+             resource="Sillove_CustomizedJewellery::requests"
+             action="customizedjewellery/request/index"/>
+    </menu>
+</config>
