@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/config.xsd">
+    <default>
+        <customized_jewellery>
+            <general>
+                <enabled>1</enabled>
+            </general>
+            <email>
+                <sender>general</sender>
+                <template>customized_jewellery_email_template</template>
+            </email>
+        </customized_jewellery>
+    </default>
+</config>
