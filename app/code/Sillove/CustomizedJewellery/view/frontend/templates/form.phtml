@@ -1,0 +1,122 @@
+<?php
+$helper = $this->helper(\Sillove\CustomizedJewellery\Helper\Data::class);
+$customer = $helper->getCustomer();
+$firstName = $customer ? $customer->getFirstname() : '';
+$lastName = $customer ? $customer->getLastname() : '';
+$email = $customer ? $customer->getEmail() : '';
+$mobile = '';
+if ($customer) {
+    // Attempt to get mobile number from custom attribute if available
+    $mobileAttr = $customer->getCustomAttribute('mobile_number');
+    $mobile = $mobileAttr ? $mobileAttr->getValue() : '';
+}
+
+
+?>
+<div id="customized-jewellery-form-modal" style="display:none;">
+    <div class="customized-jewellery-form-container">
+
+
+    <form class="form customized-jewellery"
+          action="<?= $block->getUrl('customizedjewellery/index/post') ?>"
+          id="customized-jewellery-form"
+          method="post"
+          data-hasrequired="<?= __('* Required Fields') ?>"
+          data-mage-init='{"validation":{}}'>
+        <fieldset class="fieldset">
+            <legend class="legend"><span><?= __('Customized Jewellery Request') ?></span></legend><br>
+            <div class="field firstname required">
+                <label class="label" for="firstname"><span><?= __('First Name') ?></span></label>
+                <div class="control">
+                    <input name="firstname" id="firstname" title="<?= __('First Name') ?>" class="input-text" type="text" value="<?= $block->escapeHtmlAttr($firstName) ?>" data-validate="{required:true}">
+
+                </div>
+            </div>
+            <div class="field lastname required">
+                <label class="label" for="lastname"><span><?= __('Last Name') ?></span></label>
+                <div class="control">
+                    <input name="lastname" id="lastname" title="<?= __('Last Name') ?>" class="input-text" type="text" value="<?= $block->escapeHtmlAttr($lastName) ?>" data-validate="{required:true}">
+
+                </div>
+            </div>
+            <div class="field email required">
+                <label class="label" for="email"><span><?= __('Email') ?></span></label>
+                <div class="control">
+                    <input name="email" id="email" title="<?= __('Email') ?>" class="input-text" type="email" value="<?= $block->escapeHtmlAttr($email) ?>" data-validate="{required:true, 'validate-email':true}">
+
+                </div>
+            </div>
+            <div class="field mobile required">
+                <label class="label" for="mobile"><span><?= __('Mobile Number') ?></span></label>
+                <div class="control">
+                    <input name="mobile" id="mobile" title="<?= __('Mobile Number') ?>" class="input-text" type="text" value="<?= $block->escapeHtmlAttr($mobile) ?>" data-validate="{required:true}">
+
+                </div>
+            </div>
+            <div class="field message required">
+                <label class="label" for="message"><span><?= __('Message') ?></span></label>
+                <div class="control">
+                    <textarea name="message" id="message" title="<?= __('Message') ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
+                </div>
+            </div>
+        </fieldset>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <input type="hidden" name="hideit" id="hideit" value="" />
+                <button type="submit" title="<?= __('Submit') ?>" class="action submit primary">
+                    <span><?= __('Submit') ?></span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<style>
+    .customized-jewellery-form-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .customized-jewellery-form-container .legend {
+        font-size: 24px;
+        font-weight: 600;
+        color: #333;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        display: block;
+        width: 100%;
+    }
+    .customized-jewellery-form-container .field {
+        margin-bottom: 15px;
+    }
+    .customized-jewellery-form-container .label {
+        font-weight: 500;
+        color: #555;
+    }
+    .customized-jewellery-form-container .input-text {
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        transition: border-color 0.3s;
+    }
+    .customized-jewellery-form-container .input-text:focus {
+        border-color: #007dbd;
+        box-shadow: 0 0 5px rgba(0,125,189,0.2);
+    }
+    .customized-jewellery-form-container .action.submit {
+        background-color: #007dbd;
+        border: none;
+        padding: 12px 30px;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .customized-jewellery-form-container .action.submit:hover {
+        background-color: #005a8a;
+    }
+</style>
+</div>
