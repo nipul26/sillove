@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <sillove_mobileotp>
+            <general>
+                <active>0</active>
+                <privacy_policy_url>privacy-policy</privacy_policy_url>
+                <terms_url>terms-and-conditions</terms_url>
+            </general>
+        </sillove_mobileotp>
+    </default>
+</config>
