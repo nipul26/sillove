@@ -1,0 +1,227 @@
+<?php
+/** @var Magento\Framework\View\Element\Template $block */
+/** @var Sillove\MobileOtp\ViewModel\OtpLogin $viewModel */
+/** @var Magento\Framework\Escaper $escaper */
+$viewModel = $block->getViewModel();
+if (!$viewModel || !$viewModel->isEnabled()) {
+    return;
+}
+?>
+<div class="bv-mobile-login">
+    <h1 class="bv-mobile-login__heading"><?= $escaper->escapeHtml(__('Enter Mobile Number')) ?></h1>
+    <p class="bv-mobile-login__subtitle" id="bv-mobile-login-subtitle">
+        <?= $escaper->escapeHtml(__('We will send you an OTP to verify your number')) ?>
+    </p>
+
+    <form class="bv-mobile-login__form form form-otp-login"
+          action="#"
+          method="post"
+          id="bv-mobile-login-form"
+          data-mage-init='{"validation":{}}'>
+        <fieldset class="fieldset login bv-mobile-login__fieldset">
+            <div class="bv-mobile-login__phone-step" id="bv-mobile-step">
+                <div class="bv-mobile-login__phone-wrap">
+                    <div class="bv-mobile-login__country" aria-hidden="true">
+                        <span class="bv-mobile-login__flag">🇮🇳</span>
+                        <span class="bv-mobile-login__country-code">+91</span>
+                    </div>
+                    <input name="mobile_number"
+                           value=""
+                           autocomplete="tel"
+                           id="bv-mobile-number"
+                           type="tel"
+                           class="input-text bv-mobile-login__phone-input"
+                           placeholder="<?= $escaper->escapeHtmlAttr(__('Phone number')) ?>"
+                           title="<?= $escaper->escapeHtmlAttr(__('Mobile Number')) ?>"
+                           data-validate="{required:true, 'validate-number':true, 'minlength':10, 'maxlength':10}">
+                </div>
+            </div>
+
+            <div class="bv-mobile-login__otp-field field otp required" id="bv-otp-field" style="display:none;">
+                <label class="label" for="bv-otp-code">
+                    <span><?= $escaper->escapeHtml(__('Enter OTP')) ?></span>
+                </label>
+                <div class="control">
+                    <input name="otp"
+                           id="bv-otp-code"
+                           type="text"
+                           class="input-text"
+                           maxlength="6"
+                           inputmode="numeric"
+                           autocomplete="one-time-code"
+                           data-validate="{required:true}">
+                </div>
+                <a href="#" class="bv-mobile-login__change-number" id="bv-change-number">
+                    <?= $escaper->escapeHtml(__('Change mobile number')) ?>
+                </a>
+            </div>
+
+            <div id="bv-otp-messages" style="display:none;"></div>
+
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button type="button"
+                            class="bv-mobile-login__btn bv-mobile-login__btn--primary"
+                            id="bv-btn-send-otp">
+                        <span><?= $escaper->escapeHtml(__('Request OTP')) ?></span>
+                        <span class="bv-mobile-login__btn-arrow" aria-hidden="true">→</span>
+                    </button>
+                    <button type="button"
+                            class="bv-mobile-login__btn bv-mobile-login__btn--primary"
+                            id="bv-btn-verify-otp"
+                            style="display:none;">
+                        <span><?= $escaper->escapeHtml(__('Verify & Sign In')) ?></span>
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+    <div class="bv-mobile-login__footer">
+        <a class="bv-mobile-login__footer-link"
+           href="<?= $escaper->escapeUrl($viewModel->getEmailLoginUrl()) ?>">
+            <?= $escaper->escapeHtml(__('Sign in with Email')) ?>
+        </a>
+
+        <p class="bv-mobile-login__legal">
+            <?= $escaper->escapeHtml(__('I accept that I have read & understood')) ?>
+            <a href="<?= $escaper->escapeUrl($viewModel->getPrivacyPolicyUrl()) ?>">
+                <?= $escaper->escapeHtml(__('Privacy Policy')) ?>
+            </a>
+            <?= $escaper->escapeHtml(__('and')) ?>
+            <a href="<?= $escaper->escapeUrl($viewModel->getTermsUrl()) ?>">
+                <?= $escaper->escapeHtml(__('T&Cs')) ?>
+            </a>.
+        </p>
+    </div>
+</div>
+
+<div id="bv-register-modal" class="bv-register-modal" aria-hidden="true">
+    <div class="bv-register-modal__overlay" id="bv-register-modal-overlay"></div>
+    <div class="bv-register-modal__dialog" role="dialog" aria-labelledby="bv-register-modal-title">
+        <button type="button" class="bv-register-modal__close" id="bv-register-modal-close" aria-label="<?= $escaper->escapeHtmlAttr(__('Close')) ?>">×</button>
+        <h2 class="bv-register-modal__title" id="bv-register-modal-title">
+            <?= $escaper->escapeHtml(__('Complete Your Registration')) ?>
+        </h2>
+        <p class="bv-register-modal__subtitle" id="bv-register-modal-mobile"></p>
+
+        <form class="form bv-register-modal__form"
+              id="bv-register-form"
+              action="#"
+              method="post"
+              data-mage-init='{"validation":{}}'>
+            <?= $block->getBlockHtml('formkey') ?>
+            <fieldset class="fieldset bv-register-modal__fieldset">
+                <div class="field required">
+                    <label class="label" for="bv-register-firstname">
+                        <span><?= $escaper->escapeHtml(__('First Name')) ?></span>
+                    </label>
+                    <div class="control">
+                        <input type="text"
+                               name="firstname"
+                               id="bv-register-firstname"
+                               class="input-text"
+                               data-validate="{required:true}">
+                    </div>
+                </div>
+                <div class="field required">
+                    <label class="label" for="bv-register-lastname">
+                        <span><?= $escaper->escapeHtml(__('Last Name')) ?></span>
+                    </label>
+                    <div class="control">
+                        <input type="text"
+                               name="lastname"
+                               id="bv-register-lastname"
+                               class="input-text"
+                               data-validate="{required:true}">
+                    </div>
+                </div>
+                <div class="field required">
+                    <label class="label" for="bv-register-email">
+                        <span><?= $escaper->escapeHtml(__('Email')) ?></span>
+                    </label>
+                    <div class="control">
+                        <input type="email"
+                               name="email"
+                               id="bv-register-email"
+                               class="input-text"
+                               data-validate="{required:true, 'validate-email':true}">
+                    </div>
+                </div>
+                <div class="field required">
+                    <label class="label" for="bv-register-password">
+                        <span><?= $escaper->escapeHtml(__('Password')) ?></span>
+                    </label>
+                    <div class="control">
+                        <input type="password"
+                               name="password"
+                               id="bv-register-password"
+                               class="input-text"
+                               autocomplete="new-password"
+                               data-password-min-length="<?= $escaper->escapeHtmlAttr($viewModel->getMinimumPasswordLength()) ?>"
+                               data-password-min-character-sets="<?= $escaper->escapeHtmlAttr($viewModel->getRequiredCharacterClassesNumber()) ?>"
+                               data-validate="{required:true, 'validate-customer-password':true}">
+                    </div>
+                </div>
+                <div class="field required">
+                    <label class="label" for="bv-register-password-confirm">
+                        <span><?= $escaper->escapeHtml(__('Confirm Password')) ?></span>
+                    </label>
+                    <div class="control">
+                        <input type="password"
+                               name="password_confirmation"
+                               id="bv-register-password-confirm"
+                               class="input-text"
+                               autocomplete="new-password"
+                               data-validate="{required:true, equalTo:'#bv-register-password'}">
+                    </div>
+                </div>
+                <div id="bv-register-messages" style="display:none;"></div>
+                <div class="actions-toolbar">
+                    <div class="primary">
+                        <button type="button"
+                                class="bv-mobile-login__btn bv-mobile-login__btn--primary"
+                                id="bv-btn-register">
+                            <span><?= $escaper->escapeHtml(__('Create Account')) ?></span>
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+{
+    "#bv-mobile-login-form": {
+        "Sillove_MobileOtp/js/mobile-login": {
+            "formSelector": "#bv-mobile-login-form",
+            "mobileInputSelector": "#bv-mobile-number",
+            "otpFieldSelector": "#bv-otp-field",
+            "sendBtnSelector": "#bv-btn-send-otp",
+            "verifyBtnSelector": "#bv-btn-verify-otp",
+            "messagesSelector": "#bv-otp-messages",
+            "subtitleSelector": "#bv-mobile-login-subtitle",
+            "mobileStepSelector": "#bv-mobile-step",
+            "changeNumberSelector": "#bv-change-number",
+            "registerModalSelector": "#bv-register-modal",
+            "registerFormSelector": "#bv-register-form",
+            "registerBtnSelector": "#bv-btn-register",
+            "registerMessagesSelector": "#bv-register-messages",
+            "registerModalMobileSelector": "#bv-register-modal-mobile",
+            "registerModalCloseSelector": "#bv-register-modal-close",
+            "registerModalOverlaySelector": "#bv-register-modal-overlay",
+            "mobileSubtitle": "<?= $escaper->escapeJs(__('We will send you an OTP to verify your number')) ?>",
+            "otpSubtitle": "<?= $escaper->escapeJs(__('Enter the OTP sent to your mobile number')) ?>",
+            "sendingText": "<?= $escaper->escapeJs(__('Sending...')) ?>",
+            "verifyingText": "<?= $escaper->escapeJs(__('Verifying...')) ?>",
+            "creatingText": "<?= $escaper->escapeJs(__('Creating...')) ?>",
+            "registerMobileText": "<?= $escaper->escapeJs(__('Verified mobile: +91 %1')) ?>",
+            "errorText": "<?= $escaper->escapeJs(__('Something went wrong. Please try again.')) ?>",
+            "sendUrl": "<?= $escaper->escapeUrl($block->getUrl('mobileotp/ajax/send')) ?>",
+            "verifyUrl": "<?= $escaper->escapeUrl($block->getUrl('mobileotp/ajax/verify')) ?>",
+            "registerUrl": "<?= $escaper->escapeUrl($block->getUrl('mobileotp/ajax/register')) ?>"
+        }
+    }
+}
+</script>

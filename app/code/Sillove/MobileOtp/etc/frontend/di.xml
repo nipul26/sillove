@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Customer\Api\AccountManagementInterface">
+        <plugin name="sillove_mobileotp_account_management" type="Sillove\MobileOtp\Plugin\Customer\AccountManagementPlugin"/>
+    </type>
+    <type name="Magento\Customer\Model\Url">
+        <plugin name="sillove_mobileotp_login_url" type="Sillove\MobileOtp\Plugin\Customer\LoginUrlPlugin"/>
+    </type>
+</config>

@@ -1,0 +1,150 @@
+<?php
+/** @var Magento\Framework\View\Element\Template $block */
+/** @var Sillove\MobileOtp\ViewModel\OtpLogin $viewModel */
+$viewModel = $block->getViewModel();
+if (!$viewModel || !$viewModel->isEnabled()) {
+    return;
+}
+?>
+<div class="block block-customer-login-otp" style="margin-top: 20px;">
+    <div class="block-title">
+        <strong id="block-customer-login-otp-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Login with Mobile OTP')) ?></strong>
+    </div>
+    <div class="block-content" aria-labelledby="block-customer-login-otp-heading">
+        <form class="form form-otp-login"
+              action="#"
+              method="post"
+              id="otp-login-form"
+              data-mage-init='{"validation":{}}'>
+            <fieldset class="fieldset login" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
+                <div class="field mobile required" id="otp-mobile-field">
+                    <label class="label" for="mobile_number"><span><?= $block->escapeHtml(__('Mobile Number')) ?></span></label>
+                    <div class="control">
+                        <input name="mobile_number" value="" autocomplete="tel" id="mobile_number" type="text" class="input-text" title="<?= $block->escapeHtmlAttr(__('Mobile Number')) ?>" data-validate="{required:true, 'validate-number':true, 'minlength':10}">
+                    </div>
+                </div>
+                <div class="field otp required" id="otp-code-field" style="display:none;">
+                    <label class="label" for="otp"><span><?= $block->escapeHtml(__('Enter OTP')) ?></span></label>
+                    <div class="control">
+                        <input name="otp" id="otp" type="text" class="input-text" data-validate="{required:true}">
+                    </div>
+                </div>
+                <div class="actions-toolbar">
+                    <div class="primary">
+                        <button type="button" class="action login primary" name="send_otp" id="btn-send-otp">
+                            <span><?= $block->escapeHtml(__('Send OTP')) ?></span>
+                        </button>
+                        <button type="button" class="action login primary" name="verify_otp" id="btn-verify-otp" style="display:none;">
+                            <span><?= $block->escapeHtml(__('Verify & Login')) ?></span>
+                        </button>
+                    </div>
+                </div>
+                <div id="otp-messages"></div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<script>
+require([
+    'jquery',
+    'mage/validation'
+], function ($) {
+    'use strict';
+    
+    $(document).ready(function () {
+        var sendOtpBtn = $('#btn-send-otp');
+        var verifyOtpBtn = $('#btn-verify-otp');
+        var mobileInputContainer = $('#otp-mobile-field');
+        var otpInputContainer = $('#otp-code-field');
+        var messagesDiv = $('#otp-messages');
+        var form = $('#otp-login-form');
+
+        var showMessage = function(msg, isError) {
+            var color = isError ? '#e02b27' : '#006400';
+            var bgColor = isError ? '#fae5e5' : '#e5fae5';
+            messagesDiv.html('<div style="color:' + color + '; background-color: '+bgColor+'; padding: 10px; margin-top: 10px; border-radius:3px;">' + msg + '</div>');
+        };
+
+        sendOtpBtn.on('click', function () {
+            if (!form.validation('isValid')) {
+                return false;
+            }
+            var mobile = $('#mobile_number').val();
+            
+            // disable button
+            sendOtpBtn.prop('disabled', true);
+            sendOtpBtn.find('span').text('Sending...');
+            messagesDiv.empty();
+            
+            $.ajax({
+                url: '<?= $block->escapeUrl($block->getUrl("mobileotp/ajax/send")) ?>',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    mobile_number: mobile
+                },
+                success: function (res) {
+                    if (res.success) {
+                        showMessage(res.message, false);
+                        // Switch UI
+                        sendOtpBtn.hide();
+                        mobileInputContainer.find('input').prop('readonly', true);
+                        mobileInputContainer.hide();
+                        otpInputContainer.show();
+                        verifyOtpBtn.show();
+                    } else {
+                        showMessage(res.message, true);
+                        sendOtpBtn.prop('disabled', false);
+                        sendOtpBtn.find('span').text('Send OTP');
+                    }
+                },
+                error: function () {
+                    showMessage('Something went wrong. Please try again.', true);
+                    sendOtpBtn.prop('disabled', false);
+                    sendOtpBtn.find('span').text('Send OTP');
+                }
+            });
+        });
+
+        verifyOtpBtn.on('click', function () {
+            if (!form.validation('isValid')) {
+                return false;
+            }
+            var mobile = $('#mobile_number').val();
+            var otp = $('#otp').val();
+            
+            verifyOtpBtn.prop('disabled', true);
+            verifyOtpBtn.find('span').text('Verifying...');
+            messagesDiv.empty();
+
+            $.ajax({
+                url: '<?= $block->escapeUrl($block->getUrl("mobileotp/ajax/verify")) ?>',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    mobile_number: mobile,
+                    otp: otp
+                },
+                success: function (res) {
+                    if (res.success) {
+                        showMessage(res.message, false);
+                        if (res.redirect) {
+                            window.location.href = res.redirect;
+                        }
+                    } else {
+                        showMessage(res.message, true);
+                        verifyOtpBtn.prop('disabled', false);
+                        verifyOtpBtn.find('span').text('Verify & Login');
+                    }
+                },
+                error: function () {
+                    showMessage('Something went wrong. Please try again.', true);
+                    verifyOtpBtn.prop('disabled', false);
+                    verifyOtpBtn.find('span').text('Verify & Login');
+                }
+            });
+        });
+    });
+});
+</script>
