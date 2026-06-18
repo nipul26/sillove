@@ -21,9 +21,10 @@
 .bv-mobile-login__heading {
     font-size: 22px;
     font-weight: 700;
-    color: #111;
+    color: #1A3D5C;
     margin: 0 0 8px;
     line-height: 1.3;
+    font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .bv-mobile-login__subtitle {
@@ -40,8 +41,8 @@
 .bv-mobile-login__phone-wrap {
     display: flex;
     align-items: stretch;
-    border: 1px solid #d5d5d5;
-    border-radius: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
     overflow: hidden;
     background: #fff;
     margin-bottom: 20px;
@@ -52,8 +53,8 @@
     align-items: center;
     gap: 6px;
     padding: 0 12px;
-    border-right: 1px solid #d5d5d5;
-    background: #fafafa;
+    border-right: 1px solid #ccc;
+    background: #f4f4f4;
     font-size: 14px;
     color: #333;
     white-space: nowrap;
@@ -83,8 +84,8 @@
 }
 
 .bv-mobile-login__otp-field .input-text {
-    border: 1px solid #d5d5d5;
-    border-radius: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
     padding: 14px 16px;
     font-size: 15px;
     letter-spacing: 4px;
@@ -93,8 +94,8 @@
 
 .bv-mobile-login__btn {
     width: 100%;
-    border: none;
-    border-radius: 8px;
+    border: 1px solid #1A3D5C;
+    border-radius: 3px;
     padding: 14px 20px;
     font-size: 15px;
     font-weight: 600;
@@ -103,7 +104,7 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .bv-mobile-login__btn--primary {
@@ -113,8 +114,9 @@
 
 .bv-mobile-login__btn--primary:hover,
 .bv-mobile-login__btn--primary:focus {
-    background: #d1187d;
-    color: #fff;
+    background: transparent;
+    color: #1A3D5C;
+    border-color: #1A3D5C;
 }
 
 .bv-mobile-login__btn:disabled {
@@ -130,7 +132,7 @@
 .bv-otp-message {
     padding: 10px 12px;
     margin-bottom: 16px;
-    border-radius: 6px;
+    border-radius: 3px;
     font-size: 13px;
     line-height: 1.4;
 }
@@ -138,11 +140,13 @@
 .bv-otp-message--error {
     color: #e02b27;
     background: #fae5e5;
+    border: 1px solid #e02b27;
 }
 
 .bv-otp-message--success {
     color: #006400;
     background: #e5fae5;
+    border: 1px solid #006400;
 }
 
 .bv-mobile-login__footer {
@@ -179,6 +183,10 @@
     text-decoration: underline;
 }
 
+.bv-mobile-login__legal a:hover {
+    color: #1A3D5C;
+}
+
 .bv-mobile-login__change-number {
     display: inline-block;
     margin-top: 12px;
@@ -189,7 +197,7 @@
 }
 
 .bv-mobile-login__change-number:hover {
-    color: #d1187d;
+    color: #122b42;
 }
 
 .bv-register-modal {
@@ -222,7 +230,7 @@
     margin: 0;
     padding: 28px 24px 24px;
     background: #fff;
-    border-radius: 12px;
+    border-radius: 5px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
     text-align: left;
 }
@@ -248,8 +256,9 @@
     margin: 0 0 8px;
     font-size: 20px;
     font-weight: 700;
-    color: #111;
+    color: #1A3D5C;
     text-align: center;
+    font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .bv-register-modal__subtitle {
@@ -279,8 +288,8 @@
 
 .bv-register-modal__form .input-text {
     width: 100%;
-    border: 1px solid #d5d5d5;
-    border-radius: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
     padding: 12px 14px;
     font-size: 14px;
 }

@@ -6,4 +6,29 @@
     <type name="Magento\Customer\Model\Url">
         <plugin name="sillove_mobileotp_login_url" type="Sillove\MobileOtp\Plugin\Customer\LoginUrlPlugin"/>
     </type>
+    <type name="Sillove\MobileOtp\Controller\Account\Login">
+        <arguments>
+            <argument name="customerSession" xsi:type="object">Magento\Customer\Model\Session\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Sillove\MobileOtp\Controller\Ajax\Register">
+        <arguments>
+            <argument name="customerSession" xsi:type="object">Magento\Customer\Model\Session\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Sillove\MobileOtp\Controller\Ajax\Verify">
+        <arguments>
+            <argument name="customerSession" xsi:type="object">Magento\Customer\Model\Session\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Sillove\MobileOtp\Observer\CustomerRegisterSuccess">
+        <arguments>
+            <argument name="customerSession" xsi:type="object">Magento\Customer\Model\Session\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Sillove\MobileOtp\Plugin\Customer\AccountManagementPlugin">
+        <arguments>
+            <argument name="customerSession" xsi:type="object">Magento\Customer\Model\Session\Proxy</argument>
+        </arguments>
+    </type>
 </config>
