@@ -46,9 +46,10 @@ class ProductSaveBeforeObserver implements ObserverInterface
             $storeId = 0;
         }
 
-        $price = $this->priceCalculator->calculate($silverWeight, $labor, $storeId);
-        if ($price !== null) {
-            $product->setPrice($price);
+        $prices = $this->priceCalculator->calculate($silverWeight, $labor, $storeId);
+        if ($prices !== null) {
+            $product->setPrice($prices['price']);
+            $product->setSpecialPrice($prices['special_price']);
         }
     }
 }
