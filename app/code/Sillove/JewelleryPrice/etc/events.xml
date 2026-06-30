@@ -2,7 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="catalog_product_save_before">
-        <observer name="Sillove_jewellery_price_product_save_before"
+        <observer name="sillove_jewellery_price_product_save_before"
                   instance="Sillove\JewelleryPrice\Observer\ProductSaveBeforeObserver"/>
     </event>
 </config>
