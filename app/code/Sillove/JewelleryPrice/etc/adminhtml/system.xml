@@ -2,12 +2,9 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="Sillove" translate="label" sortOrder="300">
-            <label>Sillove</label>
-        </tab>
         <section id="jewellery" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Jewellery Settings</label>
-            <tab>Sillove</tab>
+            <tab>sillove</tab>
             <resource>Sillove_JewelleryPrice::config</resource>
             <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General Settings</label>
@@ -17,6 +14,11 @@
                     <label>Silver Rate (per gram)</label>
                     <comment>Current silver rate per gram. Saving a new value here updates all jewellery product prices immediately across the store.</comment>
                     <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+                <field id="discount_percentage" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Discount Percentage (%)</label>
+                    <comment>Percentage discount to apply to all jewellery products. For example: 5.</comment>
+                    <validate>validate-number validate-zero-or-greater validate-number-range number-range-0-100</validate>
                 </field>
             </group>
         </section>
